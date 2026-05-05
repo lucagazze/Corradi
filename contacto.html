@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script>!function(){var t=localStorage.getItem('corradiTheme')||'dark';document.documentElement.setAttribute('data-theme',t)}()</script>
+<link rel="stylesheet" href="css/theme.css">
+<title>Contacto - Corradi Viajes</title>
+<meta name="description" content="Contacta con Corradi Viajes. Solicita información sobre nuestros paquetes turísticos, cotizaciones personalizadas y asesoramiento para tu próximo viaje.">
+<meta name="keywords" content="contacto, agencia de viajes, cotización, información viajes, Rosario, Argentina">
+<meta name="author" content="Corradi Viajes">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="revisit-after" content="7 days">
+<link rel="canonical" href="https://corradi.vercel.app/contacto.html">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corradi.vercel.app/contacto.html">
+<meta property="og:title" content="Contacto - Corradi Viajes">
+<meta property="og:description" content="Contacta con Corradi Viajes para información sobre viajes personalizados.">
+<meta property="og:image" content="https://corradi.vercel.app/assets/logo.png">
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://corradi.vercel.app/contacto.html">
+<meta property="twitter:title" content="Contacto - Corradi Viajes">
+<meta property="twitter:description" content="Contacta con Corradi Viajes para información sobre viajes personalizados.">
+<meta property="twitter:image" content="https://corradi.vercel.app/assets/logo.png">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  @font-face { font-family:'Geomanist'; src:url('geomanist-regular-webfont.woff2') format('woff2'),url('geomanist-regular-webfont.woff') format('woff'); font-weight:400; font-style:normal; }
+  @font-face { font-family:'Geomanist'; src:url('geomanist-medium.woff') format('woff'); font-weight:500; font-style:normal; }
+  @font-face { font-family:'Geomanist'; src:url('geomanist-medium.woff') format('woff'); font-weight:600; font-style:normal; }
+  @font-face { font-family:'Geomanist'; src:url('geomanist-medium.woff') format('woff'); font-weight:700; font-style:normal; }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+  body { min-height: 100dvh; }
+
+  .fi {
+    width:100%;
+    background:rgba(255,255,255,0.06);
+    border:1.5px solid rgba(255,255,255,0.1);
+    border-radius:12px;
+    padding:12px 16px;
+    color:#fff;
+    font-size:15px;
+    outline:none;
+    transition:border-color .2s, background .2s;
+    font-family:'Geomanist','Plus Jakarta Sans',sans-serif;
+    box-shadow:none;
+    display:block;
+  }
+  .fi::placeholder { color:rgba(255,255,255,0.32); }
+  .fi:focus { border-color:#3778b8; background:rgba(255,255,255,0.08); }
+  .fi:hover:not(:focus) { border-color:rgba(255,255,255,0.2); }
+  select.fi option { background:#0d1b2e; color:#fff; }
+  .fl {
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.42);
+    margin-bottom:7px;
+    display:block;
+  }
+
+  /* Spinner */
+  .spinner { width:18px; height:18px; border:2px solid rgba(255,255,255,0.25); border-top-color:#fff; border-radius:50%; animation:spin .6s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  /* Success overlay */
+  #successState {
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:48px 24px;
+    min-height:340px;
+    gap:16px;
+  }
+  #successState.show { display:flex; }
+  #formState.hidden-form { display:none; }
+
+  .contact-info-item {
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+  }
+  .contact-info-icon {
+    width:42px; height:42px;
+    border-radius:11px;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    margin-top:2px;
+    background:rgba(255,255,255,0.1);
+  }
+
+  /* FAQ */
+  .faq-item { border-radius:16px; overflow:hidden; transition:border-color .2s; }
+  .faq-btn { cursor:pointer; user-select:none; }
+  .faq-body { max-height:0; overflow:hidden; transition:max-height .35s ease, opacity .25s; opacity:0; }
+  .faq-body.open { max-height:300px; opacity:1; }
+  .faq-icon { transition:transform .3s; }
+  .faq-item.open .faq-icon { transform:rotate(180deg); }
+</style>
+</head>
+<body style="background:#0d1b2e;color:#fff" class="antialiased overflow-x-hidden min-h-screen pb-[72px] md:pb-0 font-['Geomanist','Plus_Jakarta_Sans',sans-serif]">
+
+<app-navbar></app-navbar>
+
+<!-- ── HERO ── -->
+<section class="relative w-full overflow-hidden" style="min-height:380px; padding-top:73px;background-image:none">
+  <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1600"
+    alt="Contacto Corradi Viajes"
+    class="absolute inset-0 w-full h-full object-cover"/>
+  <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(13,27,46,0.55) 0%, rgba(13,27,46,0.9) 80%, #0d1b2e 100%)"></div>
+  <div class="relative z-10 flex flex-col items-center justify-center text-center px-5 pt-16 pb-20">
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 text-sm font-medium"
+      style="background:rgba(55,120,184,0.18);color:#7ab3e0;border:1px solid rgba(55,120,184,0.3)">
+      <span class="material-symbols-outlined text-[15px]" style="font-variation-settings:'FILL' 1">support_agent</span>
+      Atención personalizada
+    </div>
+    <h1 class="font-bold text-[38px] md:text-[52px] leading-tight mb-3">Contactanos</h1>
+    <p class="text-[17px] md:text-[18px] max-w-xl" style="color:rgba(255,255,255,0.62)">
+      Dejanos tu consulta y un asesor te contacta a la brevedad.
+    </p>
+  </div>
+</section>
+
+<!-- ── MAIN CONTENT ── -->
+<main class="w-full max-w-[1300px] mx-auto px-5 md:px-12 py-14 md:py-20">
+
+  <!-- Contact Card -->
+  <div class="rounded-[28px] overflow-hidden grid grid-cols-1 md:grid-cols-12 mb-20"
+    style="border:1px solid rgba(255,255,255,0.09);box-shadow:0 24px 80px rgba(0,0,0,0.35)">
+
+    <!-- Left: Info -->
+    <div id="contactInfoLeft" class="md:col-span-5 relative overflow-hidden flex flex-col justify-between p-8 md:p-12"
+      style="background:linear-gradient(145deg,#17396d 0%,#0f2550 100%)">
+      <div class="absolute inset-0 opacity-[0.07]"
+        style="background:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=700&q=60') center/cover"></div>
+
+      <div class="relative z-10">
+        <h2 class="font-bold text-[22px] mb-2">Información de Contacto</h2>
+        <p class="text-[15px] mb-10" style="color:rgba(255,255,255,0.6)">
+          Estamos en el corazón de Rosario, listos para planear tu próxima aventura.
+        </p>
+
+        <div class="flex flex-col gap-6">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <span class="material-symbols-outlined text-[20px]" style="color:#7ab3e0" style="font-variation-settings:'FILL' 1">location_on</span>
+            </div>
+            <div>
+              <div class="fl mb-1">Dirección</div>
+              <div class="text-[15px] font-medium">Av. Pellegrini 1234, Rosario, Santa Fe</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <span class="material-symbols-outlined text-[20px]" style="color:#7ab3e0">phone</span>
+            </div>
+            <div>
+              <div class="fl mb-1">Teléfono</div>
+              <div class="text-[15px] font-medium">+54 9 341 123-4567</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <span class="material-symbols-outlined text-[20px]" style="color:#7ab3e0">mail</span>
+            </div>
+            <div>
+              <div class="fl mb-1">Email</div>
+              <div class="text-[15px] font-medium">hola@corradiviajes.com.ar</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <span class="material-symbols-outlined text-[20px]" style="color:#7ab3e0">schedule</span>
+            </div>
+            <div>
+              <div class="fl mb-1">Horarios</div>
+              <div class="text-[15px] font-medium">Lun–Vie 9:00–18:00</div>
+              <div class="text-[13px]" style="color:rgba(255,255,255,0.45)">Sáb 9:00–13:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp CTA -->
+      <div class="relative z-10 mt-10">
+        <a id="ctcWaBtn" href="#" target="_blank" rel="noopener"
+          class="flex items-center gap-3 w-full font-semibold text-sm px-5 py-4 rounded-[14px] transition-all active:scale-95 hover:opacity-90"
+          style="background:#25D366;color:#fff;box-shadow:0 6px 20px rgba(37,211,102,0.35)">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.122 1.528 5.855L.057 23.882a.75.75 0 0 0 .923.923l6.042-1.464A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.524-5.225-1.435l-.374-.223-3.878.94.965-3.87-.245-.385A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+          </svg>
+          Escribinos por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: Form -->
+    <div class="md:col-span-7 p-8 md:p-12" style="background:rgba(255,255,255,0.025)">
+
+      <!-- Success State -->
+      <div id="successState">
+        <div class="w-20 h-20 rounded-full flex items-center justify-center mb-2"
+          style="background:rgba(74,222,128,0.12);border:2px solid rgba(74,222,128,0.3)">
+          <span class="material-symbols-outlined text-[38px]" style="color:#4ade80;font-variation-settings:'FILL' 1">check_circle</span>
+        </div>
+        <h3 class="font-bold text-[24px] mb-2">¡Mensaje enviado!</h3>
+        <p class="text-[15px] max-w-xs mx-auto" style="color:rgba(255,255,255,0.55)">
+          Gracias por escribirnos. Un asesor de Corradi Viajes te va a responder muy pronto.
+        </p>
+        <button onclick="resetForm()"
+          class="mt-6 flex items-center gap-2 font-semibold text-sm px-6 py-3 rounded-full transition-all hover:opacity-90 active:scale-95"
+          style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.8)">
+          <span class="material-symbols-outlined text-[16px]">refresh</span>
+          Enviar otra consulta
+        </button>
+      </div>
+
+      <!-- Form State -->
+      <div id="formState">
+        <h3 class="font-bold text-[20px] mb-1">Envianos tu consulta</h3>
+        <p class="text-[14px] mb-7" style="color:rgba(255,255,255,0.4)">Completá los datos y te respondemos a la brevedad.</p>
+
+        <form id="contactForm" class="flex flex-col gap-5" novalidate>
+
+          <!-- Row 1: Nombre + Email -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="fl">Nombre *</label>
+              <input type="text" name="name" id="fName" required class="fi" placeholder="Tu nombre completo">
+            </div>
+            <div>
+              <label class="fl">Email *</label>
+              <input type="email" name="email" id="fEmail" required class="fi" placeholder="tu@email.com">
+            </div>
+          </div>
+
+          <!-- Row 2: Teléfono + Personas -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="fl">Teléfono</label>
+              <input type="tel" name="phone" id="fPhone" class="fi" placeholder="+54 9 341 ...">
+            </div>
+            <div>
+              <label class="fl">Personas</label>
+              <select name="people" id="fPeople" class="fi">
+                <option value="">¿Cuántos viajan?</option>
+                <option value="1">Solo (1 persona)</option>
+                <option value="2">En pareja (2)</option>
+                <option value="3-4">Grupo pequeño (3–4)</option>
+                <option value="5-8">Grupo mediano (5–8)</option>
+                <option value="9+">Grupo grande (9+)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Row 3: Destino + Fecha tentativa -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="fl">Destino soñado</label>
+              <input type="text" name="destination" id="fDestination" class="fi" placeholder="Ej: Europa, Caribe, Japón…">
+            </div>
+            <div>
+              <label class="fl">Fecha tentativa</label>
+              <input type="text" name="departure_date" id="fDate" class="fi" placeholder="Ej: Julio 2025">
+            </div>
+          </div>
+
+          <!-- Row 4: Mensaje -->
+          <div>
+            <label class="fl">Mensaje *</label>
+            <textarea name="message" id="fMessage" rows="5" required class="fi" style="resize:none;min-height:120px;line-height:1.6"
+              placeholder="Contanos más sobre el viaje que tenés en mente…"></textarea>
+          </div>
+
+          <!-- Error message -->
+          <div id="formError" class="hidden text-[13px] font-medium px-4 py-3 rounded-[10px]"
+            style="background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.2);color:#f87171"></div>
+
+          <!-- Submit -->
+          <div class="flex items-center justify-between gap-4 flex-wrap pt-1">
+            <p class="text-[12px]" style="color:rgba(255,255,255,0.3)">* Campos obligatorios</p>
+            <button type="submit" id="btnSubmit"
+              class="flex items-center gap-2 font-semibold text-sm px-8 py-3.5 rounded-full transition-all active:scale-95 hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
+              style="background:linear-gradient(135deg,#2563eb,#3778b8);color:#fff;box-shadow:0 4px 18px rgba(37,99,235,0.35)">
+              <span id="btnIcon" class="material-symbols-outlined text-[16px]" style="font-variation-settings:'FILL' 1">send</span>
+              <span id="btnText">Enviar mensaje</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── FAQ SECTION ── -->
+  <div class="mb-4 text-center">
+    <h2 class="font-bold text-[28px] md:text-[34px] mb-2">Preguntas frecuentes</h2>
+    <p class="text-[16px]" style="color:rgba(255,255,255,0.5)">Respuestas rápidas a las consultas más comunes.</p>
+  </div>
+
+  <div class="max-w-3xl mx-auto mt-10 flex flex-col gap-3">
+
+    <div class="faq-item" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09)">
+      <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between font-bold text-[16px]">
+        ¿Cuánto tardan en responder?
+        <span class="material-symbols-outlined text-[22px] faq-icon" style="color:rgba(255,255,255,0.4)">expand_more</span>
+      </button>
+      <div class="faq-body">
+        <div class="px-6 pb-5 text-[15px] leading-relaxed" style="color:rgba(255,255,255,0.55)">
+          En horario de oficina respondemos en menos de 2 horas. Si nos escribís fuera del horario, te respondemos a primera hora del día siguiente.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09)">
+      <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between font-bold text-[16px]">
+        ¿Tienen consultas sin cargo?
+        <span class="material-symbols-outlined text-[22px] faq-icon" style="color:rgba(255,255,255,0.4)">expand_more</span>
+      </button>
+      <div class="faq-body">
+        <div class="px-6 pb-5 text-[15px] leading-relaxed" style="color:rgba(255,255,255,0.55)">
+          Sí. La consulta inicial es completamente gratuita y sin compromiso. Te ayudamos a armar un presupuesto personalizado sin ningún costo.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09)">
+      <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between font-bold text-[16px]">
+        ¿Puedo cambiar el itinerario después?
+        <span class="material-symbols-outlined text-[22px] faq-icon" style="color:rgba(255,255,255,0.4)">expand_more</span>
+      </button>
+      <div class="faq-body">
+        <div class="px-6 pb-5 text-[15px] leading-relaxed" style="color:rgba(255,255,255,0.55)">
+          Absolutamente. Trabajamos de manera iterativa: te presentamos una propuesta inicial y hacemos todos los ajustes necesarios hasta que el viaje sea exactamente lo que buscás.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09)">
+      <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between font-bold text-[16px]">
+        ¿Tienen opciones de financiación?
+        <span class="material-symbols-outlined text-[22px] faq-icon" style="color:rgba(255,255,255,0.4)">expand_more</span>
+      </button>
+      <div class="faq-body">
+        <div class="px-6 pb-5 text-[15px] leading-relaxed" style="color:rgba(255,255,255,0.55)">
+          Sí. Aceptamos tarjetas de crédito, débito y transferencia en pesos o dólares. Contamos con planes de cuotas según las promociones bancarias vigentes al momento de la compra.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<app-bottom-nav></app-bottom-nav>
+<app-footer></app-footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/components.js"></script>
+<script>
+// Supabase client
+const { createClient } = supabase;
+const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Set WhatsApp link from config
+document.getElementById('ctcWaBtn').href = typeof whatsappLink === 'function' ? whatsappLink() : `https://wa.me/${WHATSAPP_NUMBER}`;
+
+// Form submission
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const name    = document.getElementById('fName').value.trim();
+  const email   = document.getElementById('fEmail').value.trim();
+  const message = document.getElementById('fMessage').value.trim();
+
+  const errEl = document.getElementById('formError');
+  errEl.classList.add('hidden');
+
+  if (!name || !email || !message) {
+    errEl.textContent = 'Por favor completá nombre, email y mensaje.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRe.test(email)) {
+    errEl.textContent = 'El email ingresado no parece válido.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  const btn      = document.getElementById('btnSubmit');
+  const btnText  = document.getElementById('btnText');
+  const btnIcon  = document.getElementById('btnIcon');
+
+  btn.disabled = true;
+  btnIcon.outerHTML = '<div class="spinner" id="btnIcon"></div>';
+  btnText.textContent = 'Enviando…';
+
+  const payload = {
+    name,
+    email,
+    phone:          document.getElementById('fPhone').value.trim() || null,
+    people:         document.getElementById('fPeople').value || null,
+    destination:    document.getElementById('fDestination').value.trim() || null,
+    departure_date: document.getElementById('fDate').value.trim() || null,
+    message,
+    read: false,
+  };
+
+  const { error } = await db.from('corradi_contacts').insert(payload);
+
+  // Restore button
+  btn.disabled = false;
+  document.getElementById('btnIcon').outerHTML = '<span id="btnIcon" class="material-symbols-outlined text-[16px]" style="font-variation-settings:\'FILL\' 1">send</span>';
+  document.getElementById('btnText').textContent = 'Enviar mensaje';
+
+  if (error) {
+    errEl.textContent = 'Hubo un error al enviar el mensaje. Por favor intentá de nuevo.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  // Show success
+  document.getElementById('formState').classList.add('hidden-form');
+  document.getElementById('successState').classList.add('show');
+});
+
+function resetForm() {
+  document.getElementById('contactForm').reset();
+  document.getElementById('formError').classList.add('hidden');
+  document.getElementById('formState').classList.remove('hidden-form');
+  document.getElementById('successState').classList.remove('show');
+}
+
+// FAQ accordion
+document.querySelectorAll('.faq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const body = item.querySelector('.faq-body');
+    const isOpen = item.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-body').classList.remove('open');
+    });
+
+    if (!isOpen) {
+      item.classList.add('open');
+      body.classList.add('open');
+    }
+  });
+});
+</script>
+<script src="js/theme.js"></script>
+</body>
+</html>

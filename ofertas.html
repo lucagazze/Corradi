@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script>!function(){var t=localStorage.getItem('corradiTheme')||'dark';document.documentElement.setAttribute('data-theme',t)}()</script>
+<link rel="stylesheet" href="css/theme.css">
+<title>Ofertas - Corradi Viajes</title>
+<meta name="description" content="Descubre las mejores ofertas de viajes de Corradi Viajes. Paquetes turísticos con descuentos exclusivos a destinos increíbles. ¡Aprovecha nuestras promociones!">
+<meta name="keywords" content="ofertas, descuentos, paquetes turísticos, viajes baratos, promociones, Rosario, Argentina">
+<meta name="author" content="Corradi Viajes">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="revisit-after" content="7 days">
+<link rel="canonical" href="https://corradi.vercel.app/ofertas.html">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corradi.vercel.app/ofertas.html">
+<meta property="og:title" content="Ofertas - Corradi Viajes">
+<meta property="og:description" content="Descubre las mejores ofertas de viajes con descuentos exclusivos.">
+<meta property="og:image" content="https://corradi.vercel.app/assets/logo.png">
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://corradi.vercel.app/ofertas.html">
+<meta property="twitter:title" content="Ofertas - Corradi Viajes">
+<meta property="twitter:description" content="Descubre las mejores ofertas de viajes con descuentos exclusivos.">
+<meta property="twitter:image" content="https://corradi.vercel.app/assets/logo.png">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  @font-face { font-family:'Geomanist'; src:url('geomanist-regular-webfont.woff2') format('woff2'),url('geomanist-regular-webfont.woff') format('woff'); font-weight:400; font-style:normal; }
+  @font-face { font-family:'Geomanist'; src:url('geomanist-medium.woff') format('woff'); font-weight:500; font-style:normal; }
+  @font-face { font-family:'Geomanist'; src:url('geomanist-medium.woff') format('woff'); font-weight:600; font-style:normal; }
+  @font-face { font-family:'Geomanist'; src:url('geomanist-medium.woff') format('woff'); font-weight:700; font-style:normal; }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+  body { min-height: 100dvh; }
+  ::-webkit-scrollbar { width:0; height:0; }
+  select option { background:#0d1b2e; color:#fff; }
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
+</style>
+</head>
+<body style="background:#0d1b2e;color:#fff" class="antialiased overflow-x-hidden min-h-screen pb-[72px] md:pb-0 font-['Geomanist','Plus_Jakarta_Sans',sans-serif]">
+
+<app-navbar></app-navbar>
+
+<main class="w-full max-w-[1400px] mx-auto px-5 md:px-16">
+
+  <!-- Page Header -->
+  <div class="pt-[110px] pb-8 md:pt-[120px] md:pb-10">
+    <h1 class="font-bold text-[36px] md:text-[48px] leading-tight mb-2">Ofertas</h1>
+    <p class="text-[17px]" style="color:rgba(255,255,255,0.55)">Descuentos exclusivos para escapadas espontáneas. ¡Reservá antes de que se agoten!</p>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="flex gap-3 mb-6">
+    <div class="flex items-center gap-3 flex-1 max-w-xl rounded-[14px] px-4 py-3 transition-all" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12)">
+      <span class="material-symbols-outlined text-[20px]" style="color:rgba(255,255,255,0.5)">search</span>
+      <input type="text" id="searchInput"
+        class="flex-1 bg-transparent border-none outline-none text-white placeholder:text-white/40 font-medium text-[15px] focus:ring-0"
+        placeholder="Buscar oferta…"/>
+    </div>
+  </div>
+
+  <!-- Sort + Price Filter Row -->
+  <div class="flex flex-col sm:flex-row gap-3 mb-6">
+    <div class="relative">
+      <select id="sortSelect"
+        onchange="sortBy=this.value;renderResults()"
+        class="w-full sm:w-auto rounded-[12px] pl-4 pr-9 py-2.5 text-sm font-medium outline-none cursor-pointer appearance-none"
+        style="background:#1a2d45;color:#fff;border:1px solid rgba(255,255,255,0.15)">
+        <option value="relevance">Ordenar: Relevancia</option>
+        <option value="price_asc" selected>Precio: menor a mayor</option>
+        <option value="price_desc">Precio: mayor a menor</option>
+        <option value="az">Nombre: A → Z</option>
+        <option value="za">Nombre: Z → A</option>
+        <option value="newest">Más recientes</option>
+      </select>
+      <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-[16px]" style="color:rgba(255,255,255,0.45)">expand_more</span>
+    </div>
+    <div class="flex items-center gap-2 flex-1 sm:flex-none">
+      <div class="relative flex-1 sm:flex-none">
+        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[11px] font-semibold" style="color:rgba(255,255,255,0.4)">USD</span>
+        <input type="number" id="priceMin" placeholder="Mín" min="0"
+          oninput="priceMin=this.value?Number(this.value):null;renderResults()"
+          class="w-full sm:w-28 rounded-[12px] pl-10 pr-3 py-2.5 text-sm font-medium outline-none"
+          style="background:#1a2d45;color:#fff;border:1px solid rgba(255,255,255,0.15)"/>
+      </div>
+      <span style="color:rgba(255,255,255,0.3)" class="text-sm shrink-0">—</span>
+      <div class="relative flex-1 sm:flex-none">
+        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[11px] font-semibold" style="color:rgba(255,255,255,0.4)">USD</span>
+        <input type="number" id="priceMax" placeholder="Máx" min="0"
+          oninput="priceMax=this.value?Number(this.value):null;renderResults()"
+          class="w-full sm:w-28 rounded-[12px] pl-10 pr-3 py-2.5 text-sm font-medium outline-none"
+          style="background:#1a2d45;color:#fff;border:1px solid rgba(255,255,255,0.15)"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results count -->
+  <div id="resultsInfo" class="text-sm mb-5 hidden" style="color:rgba(255,255,255,0.4)"></div>
+
+  <!-- Results Grid -->
+  <section id="searchResultsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-16">
+    <div class="col-span-full text-center py-16" style="color:rgba(255,255,255,0.4)">
+      <span class="material-symbols-outlined text-5xl mb-3 block opacity-30">local_offer</span>
+      Cargando ofertas…
+    </div>
+  </section>
+
+</main>
+
+<app-bottom-nav></app-bottom-nav>
+<app-footer></app-footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/components.js"></script>
+<script src="js/ofertas.js"></script>
+<script src="js/theme.js"></script>
+</body>
+</html>

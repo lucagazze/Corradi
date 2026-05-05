@@ -1,0 +1,314 @@
+/* ═══════════════════════════════════════════
+   Corradi Viajes — Light / Dark Theme Toggle
+   Regla principal: fondo imagen/color → letra blanca
+                    fondo blanco → letra azul oscuro
+   ═══════════════════════════════════════════ */
+
+/* ── LIGHT MODE ────────────────────────────── */
+
+html[data-theme="light"] body {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* ── Navbar ──────────────────────────────────── */
+header {
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+header.is-scrolled {
+  background: rgba(13,27,46,0.92) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] header {
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] header.is-scrolled {
+  background: rgba(255,255,255,0.92) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: none !important;
+}
+
+/* Toggle Logo in Light Mode */
+html[data-theme="light"] header .dark-logo,
+html[data-theme="light"] footer .dark-logo { display: none !important; }
+
+html[data-theme="light"] header .light-logo,
+html[data-theme="light"] footer .light-logo { display: block !important; }
+html[data-theme="light"] header a:not([class*="bg-"]) { color: #334155 !important; }
+html[data-theme="light"] header a.text-blue-400 { color: #3778b8 !important; }
+html[data-theme="light"] #mobileMenuBtn { background: rgba(0,0,0,0.07) !important; }
+html[data-theme="light"] #mobileMenuIcon { color: #1e293b !important; }
+html[data-theme="light"] #mobileDropdown {
+  background: #ffffff !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12) !important;
+}
+/* Excluir el botón de WhatsApp (tiene inline background:#25D366) */
+html[data-theme="light"] #mobileDropdown a:not([style*="background:#25D366"]) { color: #334155 !important; }
+html[data-theme="light"] #mobileDropdown a:hover,
+html[data-theme="light"] #mobileDropdown a.bg-white\/10 {
+  background: rgba(0,0,0,0.05) !important;
+  color: #0f172a !important;
+}
+
+/* ── Bottom nav ──────────────────────────────── */
+html[data-theme="light"] app-bottom-nav nav {
+  background: #ffffff !important;
+  border-color: rgba(0,0,0,0.08) !important;
+}
+html[data-theme="light"] app-bottom-nav nav a { color: #94a3b8 !important; }
+html[data-theme="light"] app-bottom-nav nav a.text-blue-400 { color: #3778b8 !important; }
+
+/* ── Footer ──────────────────────────────────── */
+html[data-theme="light"] footer {
+  background: #e2e8f0 !important;
+  border-color: rgba(0,0,0,0.08) !important;
+}
+html[data-theme="light"] footer p,
+html[data-theme="light"] footer a { color: #64748b !important; }
+html[data-theme="light"] footer a:hover { color: #3778b8 !important; }
+
+/* ── Secciones: fondo por defecto claro ──────────────────
+   IMPORTANTE: usar background-color (no background shorthand)
+   para NO matar background-image de secciones con foto    */
+html[data-theme="light"] section { background-color: #ffffff !important; }
+html[data-theme="light"] main { background: transparent !important; }
+
+/* ══════════════════════════════════════════════════════
+   SECCIONES CON FONDO IMAGEN → texto blanco (se preserva)
+   ══════════════════════════════════════════════════════ */
+
+/* Banner/hero con background-image en style → mantener imagen + texto blanco */
+html[data-theme="light"] section[style*="background-image"] {
+  background-color: transparent !important;
+}
+html[data-theme="light"] section[style*="background-image"] *,
+html[data-theme="light"] section[style*="background-image"] h1,
+html[data-theme="light"] section[style*="background-image"] h2,
+html[data-theme="light"] section[style*="background-image"] p {
+  color: #ffffff !important;
+}
+
+/* Sección video cinematic → solo video, sin fondo */
+html[data-theme="light"] section.relative:has(video) {
+  background-color: transparent !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   SECCIONES CON FONDO OSCURO QUE SE CONVIERTEN A CLARO
+   → TEXTO AZUL OSCURO (automático por reglas globales)
+   ══════════════════════════════════════════════════════ */
+
+/* Fondos oscuros inline → claro */
+html[data-theme="light"] [style*="background:#0d1b2e"],
+html[data-theme="light"] [style*="background:#111c2d"],
+html[data-theme="light"] [style*="background:#0a1525"],
+html[data-theme="light"] [style*="background:#111827"] {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+}
+html[data-theme="light"] [style*="background:#1a2d45"]:not(.faq-item) {
+  background: #ffffff !important;
+}
+
+/* ── Textos globales (fondo blanco/claro) ────── */
+
+html[data-theme="light"] .text-white:not(.faq-item *):not(section[style*="background-image"] *):not(.video-hero *):not(.cta-dark-card *):not([class*="bg-gradient"]):not([class*="from-blue"]):not([class*="bg-blue-"]):not([style*="background:#3778b8"]):not([style*="background:#ef4444"]):not([style*="background:#25D366"]):not([style*="background:rgba(55,120,184"]):not(#contactInfoLeft *):not(.photo-counter):not(.photo-counter *) { color: #0f172a !important; }
+
+html[data-theme="light"] h1, html[data-theme="light"] h2,
+html[data-theme="light"] h3, html[data-theme="light"] h4 { color: #0f172a !important; }
+
+html[data-theme="light"] .text-white\/30,
+html[data-theme="light"] .text-white\/40,
+html[data-theme="light"] .text-white\/50,
+html[data-theme="light"] .text-white\/55,
+html[data-theme="light"] .text-white\/60,
+html[data-theme="light"] .text-white\/65,
+html[data-theme="light"] .text-white\/70,
+html[data-theme="light"] .text-white\/75,
+html[data-theme="light"] .text-white\/80,
+html[data-theme="light"] .text-white\/90 { color: #475569 !important; }
+
+/* Inline color rgba blanco → oscuro
+   Excluir: badges con fondo de color, gradientes, secciones oscuras preservadas */
+html[data-theme="light"] [style*="color:rgba(255,255,255"]:not([style*="background:#3778b8"]):not([style*="background:#ef4444"]):not([style*="background:#25D366"]):not([style*="background:rgba(55,120,184"]):not([style*="background:rgba(239,68,68"]):not([style*="background:rgba(37,211"]):not([style*="background:#3b82f6"]):not([style*="background:linear-gradient"]):not(section[style*="background-image"] *):not(.faq-item *):not(.video-hero *):not(.cta-dark-card *):not(#contactInfoLeft *):not(.photo-counter):not(.photo-counter *) { color: #475569 !important; }
+
+html[data-theme="light"] [style*="color:#fff"]:not([style*="background:#3778b8"]):not([style*="background:#ef4444"]):not([style*="background:#25D366"]):not([style*="background:rgba(55,120,184"]):not([style*="background:rgba(239,68,68"]):not([style*="background:rgba(37,211"]):not([class*="bg-gradient"]):not([class*="from-blue"]):not([style*="background:linear-gradient"]):not(section[style*="background-image"] *):not(.faq-item *):not(.video-hero *):not(.cta-dark-card *):not(#contactInfoLeft *):not(.photo-counter):not(.photo-counter *) { color: #1e293b !important; }
+
+/* ── Cards y paneles (fondo blanco en light) ─── */
+
+html[data-theme="light"] [style*="background:rgba(255,255,255,0.04)"],
+html[data-theme="light"] [style*="background:rgba(255,255,255,0.05)"],
+html[data-theme="light"] [style*="background:rgba(255,255,255,0.06)"],
+html[data-theme="light"] [style*="background:rgba(255,255,255,0.07)"],
+html[data-theme="light"] [style*="background:rgba(255,255,255,0.08)"],
+html[data-theme="light"] [style*="background:rgba(255,255,255,0.09)"],
+html[data-theme="light"] [style*="background:rgba(255,255,255,0.1)"] {
+  background: #ffffff !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
+}
+
+/* Tailwind bg-white opacity → fondo blanco suave en light */
+html[data-theme="light"] .bg-white\/5 { background-color: rgba(255,255,255,0.7) !important; }
+html[data-theme="light"] .bg-white\/4 { background-color: rgba(255,255,255,0.6) !important; }
+
+/* ── Bordes ──────────────────────────────────── */
+
+html[data-theme="light"] [style*="border:1px solid rgba(255,255,255"],
+html[data-theme="light"] [style*="border-top:1px solid rgba(255,255,255"],
+html[data-theme="light"] [style*="border-bottom:1px solid rgba(255,255,255"] {
+  border-color: rgba(0,0,0,0.1) !important;
+}
+html[data-theme="light"] .border-white\/10 { border-color: rgba(0,0,0,0.08) !important; }
+html[data-theme="light"] .border-white\/20 { border-color: rgba(0,0,0,0.12) !important; }
+html[data-theme="light"] [style*="border-top:1px solid rgba(255,255,255,0.07)"],
+html[data-theme="light"] [style*="border-top:1px solid rgba(255,255,255,0.08)"] {
+  border-top-color: rgba(0,0,0,0.1) !important;
+}
+
+/* ── Inputs y selects ────────────────────────── */
+
+html[data-theme="light"] input[type="text"]:not(#searchDest):not(#searchMonthDisplay):not(#searchPriceDisplay),
+html[data-theme="light"] input[type="number"],
+html[data-theme="light"] input[type="search"],
+html[data-theme="light"] input[type="email"],
+html[data-theme="light"] input[type="tel"],
+html[data-theme="light"] textarea,
+html[data-theme="light"] select {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border-color: rgba(0,0,0,0.15) !important;
+}
+html[data-theme="light"] input::placeholder,
+html[data-theme="light"] textarea::placeholder { color: #94a3b8 !important; }
+html[data-theme="light"] select option { background: #ffffff; color: #1e293b; }
+
+/* Etiquetas de formulario (.fl) en el formulario de contacto */
+html[data-theme="light"] #formState .fl { color: rgba(0,0,0,0.45) !important; }
+
+/* ── Itinerario (paquete.html) ───────────────── */
+
+html[data-theme="light"] .itinerary-html p,
+html[data-theme="light"] .itinerary-html ul,
+html[data-theme="light"] .itinerary-html ol,
+html[data-theme="light"] .itinerary-html li { color: #334155 !important; }
+html[data-theme="light"] .itinerary-html h1,
+html[data-theme="light"] .itinerary-html h2,
+html[data-theme="light"] .itinerary-html h3,
+html[data-theme="light"] .itinerary-html strong,
+html[data-theme="light"] .itinerary-html em { color: #0f172a !important; }
+
+/* ── Botón toggle tema ───────────────────────── */
+
+#themeToggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+#themeToggleBtn:hover { background: rgba(255,255,255,0.18); transform: scale(1.08); }
+#themeToggleBtn:active { transform: scale(0.94); }
+
+html[data-theme="light"] #themeToggleBtn {
+  background: rgba(0,0,0,0.07) !important;
+  color: #1e293b !important;
+}
+html[data-theme="light"] #themeToggleBtn:hover { background: rgba(0,0,0,0.12) !important; }
+
+/* ══════════════════════════════════════════════════════
+   SECCIONES/ELEMENTOS CON FONDO OSCURO FIJO → TEXTO BLANCO
+   (Estas reglas van AL FINAL para tener prioridad de orden)
+   ══════════════════════════════════════════════════════ */
+
+/* Cards con imágenes de fondo → texto blanco preservado (Alta especificidad para vencer reglas globales) */
+html[data-theme="light"] #pkgGrid#pkgGrid#pkgGrid .group h3,
+html[data-theme="light"] #pkgGrid#pkgGrid#pkgGrid .group span,
+html[data-theme="light"] #pkgGrid#pkgGrid#pkgGrid .group p,
+html[data-theme="light"] #pkgGrid#pkgGrid#pkgGrid .group div,
+html[data-theme="light"] #destinosTrackMobile#destinosTrackMobile#destinosTrackMobile .group h3,
+html[data-theme="light"] #destinosTrackMobile#destinosTrackMobile#destinosTrackMobile .group span,
+html[data-theme="light"] #destinosTrackMobile#destinosTrackMobile#destinosTrackMobile .group p,
+html[data-theme="light"] #destinosTrackMobile#destinosTrackMobile#destinosTrackMobile .group div,
+html[data-theme="light"] #offersTrackMobile#offersTrackMobile#offersTrackMobile .group h3,
+html[data-theme="light"] #offersTrackMobile#offersTrackMobile#offersTrackMobile .group span,
+html[data-theme="light"] #offersTrackMobile#offersTrackMobile#offersTrackMobile .group p,
+html[data-theme="light"] #offersTrackMobile#offersTrackMobile#offersTrackMobile .group div {
+  color: #ffffff !important;
+}
+html[data-theme="light"] .photo-counter, html[data-theme="light"] .photo-counter * { color: #ffffff !important; }
+html[data-theme="light"] #pkgCategory { color: #3778b8 !important; }
+/* Forzar fondos semitransparentes en etiquetas de país dentro de cards */
+html[data-theme="light"] #pkgGrid#pkgGrid#pkgGrid .group .bg-white\/20,
+html[data-theme="light"] #destinosTrackMobile#destinosTrackMobile#destinosTrackMobile .group .bg-white\/20 {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Carousel de ofertas — zona de imagen → texto blanco */
+html[data-theme="light"] .offer-card .relative span[class*="absolute"]:not(.bg-white\/90),
+html[data-theme="light"] .offer-card .relative .absolute:not(.bg-white\/90) { color: #ffffff !important; }
+
+/* FAQ accordion items (bg-[#1a2d45]) → mantener fondo oscuro + texto blanco */
+html[data-theme="light"] .faq-item {
+  background-color: #1a2d45 !important;
+  border-color: rgba(255,255,255,0.1) !important;
+}
+html[data-theme="light"] .faq-item .faq-btn,
+html[data-theme="light"] .faq-item .text-white,
+html[data-theme="light"] .faq-item button { color: #ffffff !important; }
+html[data-theme="light"] .faq-item .text-white\/60,
+html[data-theme="light"] .faq-item .faq-content div { color: rgba(255,255,255,0.72) !important; }
+html[data-theme="light"] .faq-item .text-slate-400 { color: rgba(255,255,255,0.5) !important; }
+
+/* Panel izquierdo oscuro de contacto.html → mantener texto blanco */
+html[data-theme="light"] #contactInfoLeft { color: rgba(255,255,255,0.85) !important; }
+html[data-theme="light"] #contactInfoLeft h2 { color: #ffffff !important; }
+html[data-theme="light"] #contactInfoLeft .fl { color: rgba(255,255,255,0.45) !important; }
+html[data-theme="light"] #contactInfoLeft [style*="color:rgba(255,255,255"] { color: rgba(255,255,255,0.7) !important; }
+
+/* Video Hero (index.html) → h1 y p blanco sobre el video */
+html[data-theme="light"] .video-hero h1 { color: #ffffff !important; }
+html[data-theme="light"] .video-hero h2 { color: #ffffff !important; }
+html[data-theme="light"] .video-hero > div > p,
+html[data-theme="light"] .video-hero .hero-text { color: rgba(255,255,255,0.9) !important; }
+
+/* CTA Dark Card (index.html — sección WhatsApp con imagen de fondo) → todo blanco */
+html[data-theme="light"] .cta-dark-card,
+html[data-theme="light"] .cta-dark-card * { color: rgba(255,255,255,0.9) !important; }
+html[data-theme="light"] .cta-dark-card h2 { color: #ffffff !important; }
+html[data-theme="light"] .cta-dark-card h3 { color: #ffffff !important; }
+
+/* Testimonial section: gradientes de fade en bordes → adaptados a fondo claro */
+html[data-theme="light"] .testimonial-fade-left {
+  background: linear-gradient(to right, #ffffff, transparent) !important;
+}
+html[data-theme="light"] .testimonial-fade-right {
+  background: linear-gradient(to left, #ffffff, transparent) !important;
+}
+
+/* Color para flechas de paginación y links de "Ver Todos" en modo claro */
+html[data-theme="light"] #destinosPrev,
+html[data-theme="light"] #destinosNext,
+html[data-theme="light"] #offersPrev,
+html[data-theme="light"] #offersNext,
+html[data-theme="light"] #bentoNext {
+  color: #3778b8 !important;
+}
+
+html[data-theme="light"] a[href="busqueda.html"],
+html[data-theme="light"] a[href="ofertas.html"] {
+  color: #3778b8 !important;
+}

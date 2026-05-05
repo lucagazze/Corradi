@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script>!function(){var t=localStorage.getItem('corradiTheme')||'dark';document.documentElement.setAttribute('data-theme',t)}()</script>
+<link rel="stylesheet" href="css/theme.css">
+<title>Detalle del Paquete - Corradi Viajes</title>
+<meta name="description" content="Detalles completos del paquete turístico seleccionado. Información sobre itinerario, precios, duración y todo lo que necesitas saber para tu viaje.">
+<meta name="keywords" content="detalle paquete, itinerario, precio viaje, duración, información turística, Rosario, Argentina">
+<meta name="author" content="Corradi Viajes">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="revisit-after" content="7 days">
+<link rel="canonical" href="https://corradi.vercel.app/paquete.html">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corradi.vercel.app/paquete.html">
+<meta property="og:title" content="Detalle del Paquete - Corradi Viajes">
+<meta property="og:description" content="Detalles completos del paquete turístico con itinerario y precios.">
+<meta property="og:image" content="https://corradi.vercel.app/assets/logo.png">
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://corradi.vercel.app/paquete.html">
+<meta property="twitter:title" content="Detalle del Paquete - Corradi Viajes">
+<meta property="twitter:description" content="Detalles completos del paquete turístico con itinerario y precios.">
+<meta property="twitter:image" content="https://corradi.vercel.app/assets/logo.png">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  @font-face { font-family:'Geomanist'; src:url('geomanist-regular-webfont.woff2') format('woff2'),url('geomanist-regular-webfont.woff') format('woff'); font-weight:400; font-style:normal; }
+  @font-face { font-family:'Geomanist'; src:url('geomanist-medium.woff') format('woff'); font-weight:500; font-style:normal; }
+  @font-face { font-family:'Geomanist'; src:url('geomanist-medium.woff') format('woff'); font-weight:600; font-style:normal; }
+  @font-face { font-family:'Geomanist'; src:url('geomanist-medium.woff') format('woff'); font-weight:700; font-style:normal; }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+  body { min-height: 100dvh; }
+  .dark-input {
+    width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+    border-radius:10px; padding:10px 14px; color:#fff; font-size:14px; outline:none;
+    transition:border-color .2s;
+    font-family:'Geomanist','Plus Jakarta Sans',sans-serif;
+  }
+  .dark-input::placeholder { color:rgba(255,255,255,0.35); }
+  .dark-input:focus { border-color:rgba(55,120,184,0.7); }
+  .itinerary-html h1,.itinerary-html h2,.itinerary-html h3 { font-weight:bold; margin-top:1.4rem; margin-bottom:.6rem; }
+  .itinerary-html h1 { font-size:1.4rem; color:#fff; }
+  .itinerary-html h2 { font-size:1.2rem; color:#7ab3e0; }
+  .itinerary-html h3 { font-size:1rem; color:#fff; text-transform:uppercase; letter-spacing:.04em; }
+  .itinerary-html p { margin-bottom:.9rem; color:rgba(255,255,255,0.92); line-height:1.85; font-size:1rem; }
+  .itinerary-html ul { list-style-type:disc; margin-left:1.5rem; margin-bottom:1rem; color:rgba(255,255,255,0.92); }
+  .itinerary-html ol { list-style-type:decimal; margin-left:1.5rem; margin-bottom:1rem; color:rgba(255,255,255,0.92); }
+  .itinerary-html li { margin-bottom:.4rem; line-height:1.75; }
+  .itinerary-html strong { color:#fff; font-weight:700; }
+  .itinerary-html em { color:#fff; font-style:italic; }
+  .itinerary-html [style*="background-color"] { padding:2px 4px; border-radius:3px; }
+  .itinerary-html br { display:block; margin:2px 0; }
+
+  .package-hero{position:relative;overflow:hidden;border-radius:32px;min-height:480px;max-height:720px;box-shadow:0 30px 80px rgba(0,0,0,0.25);width:100%;}
+  .package-hero img.package-hero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.75) saturate(1.08);transition:transform .7s ease;}
+  .package-hero:hover img.package-hero__bg{transform:scale(1.04);}
+  .gallery-navigation{position:absolute;top:50%;left:0;right:0;display:flex;justify-content:space-between;transform:translateY(-50%);pointer-events:none;padding:0 24px;z-index:3;}
+  .gallery-navigation button{pointer-events:auto;width:50px;height:50px;border-radius:999px;border:none;background:rgba(255,255,255,.88);color:#0b172d;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 38px rgba(0,0,0,.18);transition:transform .2s ease;}
+  .gallery-navigation button:hover{transform:scale(1.05);}
+  @media(max-width:900px){
+    .package-hero{min-height:380px;max-height:580px;}
+    .gallery-navigation{padding:0 12px;}
+    .gallery-navigation button { width: 36px; height: 36px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+    .gallery-navigation button span { font-size: 20px; }
+  }
+</style>
+</head>
+<body style="background:#0d1b2e;color:#fff" class="antialiased overflow-x-hidden min-h-screen font-['Geomanist','Plus_Jakarta_Sans',sans-serif]">
+
+<app-navbar></app-navbar>
+
+<!-- Lightbox -->
+<div id="lightbox" class="fixed inset-0 z-[999] flex-col items-center justify-center hidden"
+  style="background:rgba(0,0,0,0.96);backdrop-filter:blur(8px)"
+  onclick="closeLightboxIfBg(event)">
+  <div class="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-4 z-10">
+    <span id="lbCounter" class="text-sm font-medium" style="color:rgba(255,255,255,0.5)">1 / 1</span>
+    <button onclick="closeLightbox()" class="w-10 h-10 rounded-full flex items-center justify-center transition-colors" style="background:rgba(255,255,255,0.1)">
+      <span class="material-symbols-outlined text-white text-[22px]">close</span>
+    </button>
+  </div>
+  <div class="relative w-full max-w-5xl px-16 flex items-center justify-center">
+    <button onclick="lbPrev()" class="absolute left-2 w-12 h-12 rounded-full flex items-center justify-center transition-colors z-10" style="background:rgba(255,255,255,0.1)">
+      <span class="material-symbols-outlined text-white text-[28px]">chevron_left</span>
+    </button>
+    <img id="lbImg" src="" alt="" class="max-h-[75vh] max-w-full object-contain rounded-xl transition-opacity duration-200" style="box-shadow:0 30px 60px rgba(0,0,0,0.5)"/>
+    <button onclick="lbNext()" class="absolute right-2 w-12 h-12 rounded-full flex items-center justify-center transition-colors z-10" style="background:rgba(255,255,255,0.1)">
+      <span class="material-symbols-outlined text-white text-[28px]">chevron_right</span>
+    </button>
+  </div>
+  <div id="lbThumbs" class="flex gap-2 mt-4 px-4 overflow-x-auto pb-2 max-w-full"></div>
+</div>
+
+<!-- Loading / Error States -->
+<div id="loadingState" class="flex flex-col items-center justify-center min-h-screen" style="padding-top:73px">
+  <div class="w-10 h-10 rounded-full border-2 border-blue-500 border-t-transparent animate-spin mb-4"></div>
+  <p style="color:rgba(255,255,255,0.5)">Cargando destino…</p>
+</div>
+
+<div id="errorState" class="hidden flex-col items-center justify-center min-h-screen text-center px-5" style="padding-top:73px">
+  <span class="material-symbols-outlined text-[48px] mb-4 opacity-30">travel_off</span>
+  <h2 class="font-bold text-[24px] mb-2">Destino no encontrado</h2>
+  <p class="mb-6" style="color:rgba(255,255,255,0.5)">El paquete que buscás no existe o fue eliminado.</p>
+  <a href="busqueda.html" class="font-medium text-sm px-6 py-3 rounded-full transition-all" style="background:#3778b8;color:#fff">Ver todos los destinos</a>
+</div>
+
+<!-- Main Content -->
+<main id="mainContainer" class="hidden w-full">
+
+  <!-- Back button -->
+  <div class="w-full max-w-[1300px] mx-auto px-5 md:px-10 pt-[90px] pb-4">
+    <button onclick="history.back()" class="inline-flex items-center gap-1.5 font-medium text-sm transition-colors hover:text-white" style="color:rgba(255,255,255,0.55)">
+      <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+      Volver
+    </button>
+  </div>
+
+  <!-- Hero + Gallery -->
+  <section class="w-full max-w-[1300px] mx-auto px-5 md:px-10 mb-10">
+    <div id="galleryGrid"></div>
+    <div id="galleryPager" class="hidden mt-4 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-slate-300"></div>
+    <div id="galleryThumbs" class="hidden mt-4 flex gap-2 overflow-x-auto pb-1" style="scrollbar-width:thin;scrollbar-color:#cbd5e1 transparent;"></div>
+  </section>
+
+  <!-- Content Grid -->
+  <div class="w-full max-w-[1300px] mx-auto px-5 md:px-10 grid grid-cols-1 lg:grid-cols-12 gap-10 pb-20">
+
+    <!-- Left Column -->
+    <div class="lg:col-span-8">
+
+      <!-- Header Info -->
+      <div class="mb-8">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="material-symbols-outlined text-[18px]" style="color:#7ab3e0;font-variation-settings:'FILL' 1">location_on</span>
+          <span id="pkgLocation" class="text-sm font-medium" style="color:rgba(255,255,255,0.85)">Ubicación</span>
+        </div>
+        <h1 id="pkgTitle" class="font-bold text-[32px] md:text-[42px] leading-tight mb-3">Cargando…</h1>
+        <div class="flex flex-wrap gap-3 items-center">
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-yellow-400 text-[18px]" style="font-variation-settings:'FILL' 1">star</span>
+            <span class="font-semibold text-[15px]">5.0</span>
+            <span class="text-sm" style="color:rgba(255,255,255,0.75)">(Opiniones verificadas)</span>
+          </div>
+          <span style="color:rgba(255,255,255,0.35)">•</span>
+          <span id="pkgCategory" class="text-sm font-medium px-3 py-1 rounded-full" style="background:rgba(55,120,184,0.25);color:#a8d0f0;border:1px solid rgba(55,120,184,0.4)">Categoría</span>
+          <span id="pkgDays" class="hidden text-sm font-medium px-3 py-1 rounded-full" style="background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.18)">
+            <span class="material-symbols-outlined text-[14px] align-middle" style="vertical-align:-2px">schedule</span>
+            <span id="pkgDaysText"></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <section class="mb-10">
+        <h2 class="font-bold text-[20px] mb-4">Sobre este destino</h2>
+        <div id="pkgDesc" class="text-[17px] leading-[1.85]" style="color:rgba(255,255,255,0.92)">
+          Descripción del paquete.
+        </div>
+      </section>
+
+      <!-- Includes / Excludes -->
+      <section id="pkgIncludesBlock" class="hidden mb-10">
+        <h2 class="font-bold text-[20px] mb-4">¿Qué incluye?</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="rounded-[16px] p-5" style="background:rgba(74,222,128,0.05);border:1px solid rgba(74,222,128,0.15)">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="material-symbols-outlined text-[18px]" style="color:#4ade80;font-variation-settings:'FILL' 1">check_circle</span>
+              <span class="font-semibold text-[14px]" style="color:#4ade80">Incluye</span>
+            </div>
+            <div id="pkgIncludes" class="flex flex-col gap-2"></div>
+          </div>
+          <div id="pkgExcludesWrapper" class="hidden rounded-[16px] p-5" style="background:rgba(248,113,113,0.05);border:1px solid rgba(248,113,113,0.15)">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="material-symbols-outlined text-[18px]" style="color:#f87171;font-variation-settings:'FILL' 1">cancel</span>
+              <span class="font-semibold text-[14px]" style="color:#f87171">No incluye</span>
+            </div>
+            <div id="pkgExcludes" class="flex flex-col gap-2"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Itinerary -->
+      <section id="pkgItineraryBlock" class="hidden mb-10">
+        <h2 class="font-bold text-[20px] mb-4">Itinerario del Viaje</h2>
+        <div class="rounded-[16px] p-6" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)">
+          <div id="pkgItinerary" class="itinerary-html"></div>
+        </div>
+      </section>
+
+      <!-- Highlights -->
+      <section class="mb-10">
+        <h2 class="font-bold text-[20px] mb-4">Lo más destacado</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex items-start gap-4 rounded-[14px] p-4" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)">
+            <div class="w-10 h-10 rounded-[10px] flex items-center justify-center shrink-0" style="background:rgba(55,120,184,0.2)">
+              <span class="material-symbols-outlined text-[20px]" style="color:#7ab3e0;font-variation-settings:'FILL' 1">verified</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-[14px] mb-0.5">Calidad Garantizada</h4>
+              <p class="text-[13px]" style="color:rgba(255,255,255,0.82)">Selección premium de servicios</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 rounded-[14px] p-4" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)">
+            <div class="w-10 h-10 rounded-[10px] flex items-center justify-center shrink-0" style="background:rgba(55,120,184,0.2)">
+              <span class="material-symbols-outlined text-[20px]" style="color:#7ab3e0;font-variation-settings:'FILL' 1">support_agent</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-[14px] mb-0.5">Atención Personalizada</h4>
+              <p class="text-[13px]" style="color:rgba(255,255,255,0.82)">Acompañamiento antes y durante</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 rounded-[14px] p-4" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)">
+            <div class="w-10 h-10 rounded-[10px] flex items-center justify-center shrink-0" style="background:rgba(55,120,184,0.2)">
+              <span class="material-symbols-outlined text-[20px]" style="color:#7ab3e0;font-variation-settings:'FILL' 1">luggage</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-[14px] mb-0.5">Todo Incluido</h4>
+              <p class="text-[13px]" style="color:rgba(255,255,255,0.82)">Vuelos, alojamiento y traslados</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 rounded-[14px] p-4" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08)">
+            <div class="w-10 h-10 rounded-[10px] flex items-center justify-center shrink-0" style="background:rgba(55,120,184,0.2)">
+              <span class="material-symbols-outlined text-[20px]" style="color:#7ab3e0;font-variation-settings:'FILL' 1">security</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-[14px] mb-0.5">Viaje Seguro</h4>
+              <p class="text-[13px]" style="color:rgba(255,255,255,0.82)">Documentación y asistencia completa</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Right Column: Sticky Widget -->
+    <div class="hidden lg:block lg:col-span-4">
+      <div class="sticky top-[90px] rounded-[20px] p-6" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 50px rgba(0,0,0,0.3)">
+        <div class="mb-5">
+          <div class="text-[11px] font-semibold uppercase tracking-wider mb-1" style="color:rgba(255,255,255,0.65)">Desde</div>
+          <div id="pkgPrice" class="font-bold text-[34px] leading-none" style="color:#3778b8">USD 0</div>
+          <div id="pkgPriceOrig" class="hidden font-medium text-[16px] line-through mt-1" style="color:rgba(255,255,255,0.45)"></div>
+        </div>
+
+        <!-- WhatsApp CTA -->
+        <a id="waConsultBtn" href="#" target="_blank" rel="noopener"
+          class="flex items-center justify-center gap-2 w-full font-semibold text-sm px-4 py-3.5 rounded-[12px] mb-4 transition-all hover:opacity-90 active:scale-95"
+          style="background:#25D366;color:#fff;box-shadow:0 4px 14px rgba(37,211,102,0.3)">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.122 1.528 5.855L.057 23.882a.75.75 0 0 0 .923.923l6.042-1.464A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.524-5.225-1.435l-.374-.223-3.878.94.965-3.87-.245-.385A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+          </svg>
+          Consultar por WhatsApp
+        </a>
+
+        <p class="text-center text-[12px] mb-5" style="color:rgba(255,255,255,0.4)">
+          Respondemos en menos de 1 hora · Lun–Sáb
+        </p>
+
+        <!-- Meta badges -->
+        <div id="pkgMetaBadges" class="flex flex-wrap gap-2 mb-5"></div>
+
+        <!-- Includes preview -->
+        <div id="pkgIncludesWidget" class="hidden mb-5 pt-5" style="border-top:1px solid rgba(255,255,255,0.08)">
+          <div class="text-[10px] font-semibold uppercase tracking-wider mb-2.5" style="color:rgba(255,255,255,0.4)">Incluye</div>
+          <ul id="pkgIncludesList" class="flex flex-col gap-1.5"></ul>
+        </div>
+
+        <!-- Trust -->
+        <div class="flex flex-col gap-2 pt-4" style="border-top:1px solid rgba(255,255,255,0.07)">
+          <div class="flex items-center gap-2 text-[12px]" style="color:rgba(255,255,255,0.85)">
+            <span class="material-symbols-outlined text-[15px]" style="color:#4ade80;font-variation-settings:'FILL' 1">verified</span>
+            Agencia matriculada · IATA
+          </div>
+          <div class="flex items-center gap-2 text-[12px]" style="color:rgba(255,255,255,0.85)">
+            <span class="material-symbols-outlined text-[15px]" style="color:#7ab3e0;font-variation-settings:'FILL' 1">support_agent</span>
+            Asesoramiento personalizado y gratuito
+          </div>
+          <div class="flex items-center gap-2 text-[12px]" style="color:rgba(255,255,255,0.85)">
+            <span class="material-symbols-outlined text-[15px]" style="color:#fbbf24;font-variation-settings:'FILL' 1">lock</span>
+            Reserva segura y garantizada
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<app-bottom-nav></app-bottom-nav>
+<app-footer></app-footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/components.js"></script>
+<script>
+// ── Lightbox ──────────────────────────────────────
+let lbImages = [], lbIdx = 0;
+
+function openLightbox(i) {
+  lbIdx = i;
+  updateLightbox();
+  const lb = document.getElementById('lightbox');
+  lb.classList.remove('hidden');
+  lb.style.display = 'flex';
+}
+function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  lb.classList.add('hidden');
+  lb.style.display = '';
+}
+function closeLightboxIfBg(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+function lbPrev() { lbIdx = (lbIdx - 1 + lbImages.length) % lbImages.length; updateLightbox(); }
+function lbNext() { lbIdx = (lbIdx + 1) % lbImages.length; updateLightbox(); }
+function setHeroImage(index) {
+  if (!lbImages.length) return;
+  lbIdx = (index + lbImages.length) % lbImages.length;
+  const heroImg = document.querySelector('.package-hero__bg');
+  if (!heroImg) return;
+  heroImg.style.opacity = '0.35';
+  setTimeout(() => {
+    heroImg.src = lbImages[lbIdx];
+    heroImg.style.opacity = '1';
+  }, 120);
+  renderThumbs();
+}
+function prevImg() { setHeroImage(lbIdx - 1); }
+function nextImg() { setHeroImage(lbIdx + 1); }
+
+function renderThumbs() {
+  const el = document.getElementById('galleryThumbs');
+  if (!el || lbImages.length <= 1) return;
+  el.innerHTML = lbImages.map((src, i) => `
+    <img src="${src}" alt="" onclick="setHeroImage(${i})"
+      class="flex-shrink-0 object-cover rounded-[10px] cursor-pointer transition-all duration-200"
+      style="height:70px;width:100px;${i === lbIdx
+        ? 'outline:2px solid #3778b8;outline-offset:2px;opacity:1'
+        : 'opacity:0.45;outline:none'}"
+    />`).join('');
+}
+
+function updateLightbox() {
+  document.getElementById('lbImg').src = lbImages[lbIdx];
+  document.getElementById('lbCounter').textContent = `${lbIdx + 1} / ${lbImages.length}`;
+  const thumbs = document.getElementById('lbThumbs');
+  thumbs.innerHTML = lbImages.map((src, i) => `
+    <img src="${src}" onclick="lbIdx=${i};updateLightbox()" alt=""
+      class="h-14 w-20 object-cover rounded-lg cursor-pointer transition-all"
+      style="${i === lbIdx ? 'opacity:1;outline:2px solid #3778b8' : 'opacity:0.4'}"/>`
+  ).join('');
+}
+
+document.addEventListener('keydown', e => {
+  if (document.getElementById('lightbox').style.display === 'flex') {
+    if (e.key === 'ArrowLeft') lbPrev();
+    if (e.key === 'ArrowRight') lbNext();
+    if (e.key === 'Escape') closeLightbox();
+  }
+});
+
+// ── Gallery Builder ───────────────────────────────
+function buildGallery(images, pkg) {
+  lbImages = images;
+  lbIdx = 0;
+  const grid = document.getElementById('galleryGrid');
+  if (!images.length) return;
+
+  const sanitize = text => String(text || '').replace(/`/g, '');
+  const titleText = pkg ? sanitize(pkg.name) : 'Paquete destacado';
+
+  grid.innerHTML = `
+    <div class="package-hero" style="cursor:${images.length > 1 ? 'pointer' : 'default'}" onclick="openLightbox(lbIdx)">
+      <img src="${images[0]}" alt="${titleText}" class="package-hero__bg" style="transition:opacity .15s ease,transform .7s ease"/>
+      ${images.length > 1 ? `
+      <div class="gallery-navigation">
+        <button type="button" onclick="event.stopPropagation();prevImg()"><span class="material-symbols-outlined">chevron_left</span></button>
+        <button type="button" onclick="event.stopPropagation();nextImg()"><span class="material-symbols-outlined">chevron_right</span></button>
+      </div>` : ''}
+      ${images.length > 1 ? `<span class="photo-counter absolute bottom-4 left-4 text-[12px] font-medium px-3 py-1 rounded-full" style="background:rgba(0,0,0,0.45);color:#ffffff;backdrop-filter:blur(6px)"><span class="material-symbols-outlined text-[14px] align-middle" style="vertical-align:-2px">photo_library</span> ${images.length} fotos</span>` : ''}
+    </div>`;
+
+  // Mostrar miniaturas si hay más de 1 imagen
+  if (images.length > 1) {
+    const thumbsEl = document.getElementById('galleryThumbs');
+    if (thumbsEl) {
+      thumbsEl.classList.remove('hidden');
+      renderThumbs();
+    }
+  }
+}
+
+
+// ── Package Detail Loader ─────────────────────────
+(async function() {
+  const { createClient } = supabase;
+  const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const USE_LOCAL = SUPABASE_ANON_KEY.includes('REEMPLAZAR');
+
+  const id = new URLSearchParams(window.location.search).get('id');
+  const loadingEl = document.getElementById('loadingState');
+  const errorEl = document.getElementById('errorState');
+  const mainEl = document.getElementById('mainContainer');
+
+  if (!id) { showError(); return; }
+
+  function showError() {
+    loadingEl.classList.add('hidden');
+    errorEl.classList.remove('hidden');
+    errorEl.style.display = 'flex';
+  }
+
+  try {
+    let pkg;
+    if (USE_LOCAL) {
+      const res = await fetch(`http://localhost:5000/api/packages/${id}`);
+      if (!res.ok) { showError(); return; }
+      pkg = await res.json();
+    } else {
+      const { data, error } = await db
+        .from('corradi_packages')
+        .select('*')
+        .eq('id', id)
+        .single();
+      if (error || !data) { showError(); return; }
+      pkg = data;
+    }
+
+    // Update page title
+    document.title = `${pkg.name} - Corradi Viajes`;
+
+    // Populate fields
+    document.getElementById('pkgTitle').textContent = pkg.name;
+    document.getElementById('pkgLocation').textContent = `${pkg.destination || pkg.country}`;
+    function formatCategory(cat) {
+      if (!cat) return '';
+      const map = {
+        'europa': 'Europa',
+        'caribe': 'Caribe',
+        'america_del_sur': 'América del Sur',
+        'sudamerica': 'Sudamérica',
+        'argentina': 'Argentina',
+        'asia': 'Asia',
+        'africa': 'África',
+        'oceania': 'Oceanía',
+        'norte_america': 'América del Norte',
+        'medio_oriente': 'Medio Oriente',
+        'crucero': 'Crucero',
+        'nacional': 'Nacional'
+      };
+      return map[cat.toLowerCase()] || cat.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    }
+    document.getElementById('pkgCategory').textContent = formatCategory(pkg.category) || pkg.country;
+    document.getElementById('pkgDesc').textContent = pkg.description || 'Descripción no disponible.';
+
+    const priceStr = `USD ${Number(pkg.price_usd).toLocaleString('es-AR')}`;
+    document.getElementById('pkgPrice').textContent = priceStr;
+
+    if (pkg.price_original_usd && pkg.price_original_usd > pkg.price_usd) {
+      const origStr = `USD ${Number(pkg.price_original_usd).toLocaleString('es-AR')}`;
+      document.getElementById('pkgPriceOrig').textContent = origStr;
+      document.getElementById('pkgPriceOrig').classList.remove('hidden');
+    } else {
+      document.getElementById('pkgPriceOrig').classList.add('hidden');
+    }
+
+    // Days
+    if (pkg.days) {
+      document.getElementById('pkgDays').classList.remove('hidden');
+      document.getElementById('pkgDaysText').textContent = `${pkg.days} días`;
+    }
+
+    // Includes / Excludes
+    function parseLines(str) {
+      if (!str) return [];
+      return str.split('\n').map(l => l.replace(/^[•\-\*]\s*/, '').trim()).filter(Boolean);
+    }
+    const includesLines = parseLines(pkg.includes);
+    const excludesLines = parseLines(pkg.excludes);
+    if (includesLines.length) {
+      document.getElementById('pkgIncludesBlock').classList.remove('hidden');
+      document.getElementById('pkgIncludes').innerHTML = includesLines.map(l =>
+        `<div class="flex items-start gap-2 text-[14px]" style="color:#fff">
+          <span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5" style="color:#4ade80">check</span>${l}
+        </div>`).join('');
+      if (excludesLines.length) {
+        document.getElementById('pkgExcludesWrapper').classList.remove('hidden');
+        document.getElementById('pkgExcludes').innerHTML = excludesLines.map(l =>
+          `<div class="flex items-start gap-2 text-[14px]" style="color:#fff">
+            <span class="material-symbols-outlined text-[16px] shrink-0 mt-0.5" style="color:#f87171">close</span>${l}
+          </div>`).join('');
+      }
+    }
+
+    // Itinerary
+    if (pkg.itinerary) {
+      const itBlock = document.getElementById('pkgItineraryBlock');
+      const itContent = document.getElementById('pkgItinerary');
+      itBlock.classList.remove('hidden');
+      itBlock.style.display = '';
+      const itin = pkg.itinerary;
+      // HTML content (from rich editor) — use directly
+      if (itin.includes('<') && itin.includes('>')) {
+        itContent.innerHTML = itin;
+      } else if (typeof marked !== 'undefined') {
+        itContent.innerHTML = marked.parse(itin);
+      } else {
+        itContent.innerHTML = `<p>${itin.replace(/\n/g, '<br>')}</p>`;
+      }
+    }
+
+    // Gallery
+    const images = [];
+    if (pkg.image_url) images.push(pkg.image_url);
+    if (pkg.gallery && Array.isArray(pkg.gallery)) images.push(...pkg.gallery);
+    if (pkg.images) {
+      const imgs = Array.isArray(pkg.images) ? pkg.images : (() => { try { return JSON.parse(pkg.images); } catch(e) { return []; } })();
+      images.push(...imgs.filter(u => u && !images.includes(u)));
+    }
+    buildGallery(images.length ? images : ['https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1200&q=80'], pkg);
+
+    // WhatsApp links
+    const waLink = typeof whatsappLink === 'function' ? whatsappLink(pkg.name) : `https://wa.me/${WHATSAPP_NUMBER}`;
+    document.getElementById('waConsultBtn').href = waLink;
+    if (typeof setWAFabPackage === 'function') setWAFabPackage(pkg.name);
+
+    // Meta badges (days, departure city, custom badge)
+    const metaBadges = [];
+    if (pkg.days) metaBadges.push(`<span class="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.65)"><span class="material-symbols-outlined text-[13px]">schedule</span>${pkg.days} días</span>`);
+    if (pkg.departure_city) metaBadges.push(`<span class="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.65)"><span class="material-symbols-outlined text-[13px]">flight_takeoff</span>${pkg.departure_city}</span>`);
+    if (pkg.badge) metaBadges.push(`<span class="inline-flex items-center text-[11px] font-bold px-2.5 py-1 rounded-full" style="background:#ef4444;color:#fff">${pkg.badge}</span>`);
+    const badgesEl = document.getElementById('pkgMetaBadges');
+    if (badgesEl) badgesEl.innerHTML = metaBadges.join('');
+
+    // Includes preview in right sidebar
+    if (includesLines.length) {
+      const widget = document.getElementById('pkgIncludesWidget');
+      const list = document.getElementById('pkgIncludesList');
+      if (widget && list) {
+        widget.classList.remove('hidden');
+        const show = includesLines.slice(0, 5);
+        list.innerHTML = show.map(l => `<li class="flex items-start gap-2 text-[12px]" style="color:rgba(255,255,255,0.9)"><span class="material-symbols-outlined text-[13px] shrink-0 mt-0.5" style="color:#4ade80">check</span>${l}</li>`).join('');
+        if (includesLines.length > 5) list.innerHTML += `<li class="text-[12px] mt-1" style="color:rgba(255,255,255,0.6)">+${includesLines.length - 5} más</li>`;
+      }
+    }
+
+    // Show content
+    loadingEl.classList.add('hidden');
+    mainEl.classList.remove('hidden');
+    mainEl.style.display = '';
+
+  } catch(e) {
+    console.error(e);
+    showError();
+  }
+})();
+
+</script>
+<script src="js/theme.js"></script>
+</body>
+</html>

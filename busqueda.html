@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script>!function(){var t=localStorage.getItem('corradiTheme')||'dark';document.documentElement.setAttribute('data-theme',t)}()</script>
+<link rel="stylesheet" href="css/theme.css">
+<title>Destinos - Corradi Viajes</title>
+<meta name="description" content="Explora todos nuestros destinos turísticos. Busca y filtra paquetes de viajes a América, Europa, Caribe y más. Encuentra tu próximo viaje perfecto.">
+<meta name="keywords" content="destinos, búsqueda viajes, paquetes turísticos, América, Europa, Caribe, filtrar viajes, Rosario, Argentina">
+<meta name="author" content="Corradi Viajes">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="revisit-after" content="7 days">
+<link rel="canonical" href="https://corradi.vercel.app/busqueda.html">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corradi.vercel.app/busqueda.html">
+<meta property="og:title" content="Destinos - Corradi Viajes">
+<meta property="og:description" content="Explora todos nuestros destinos turísticos y encuentra tu viaje perfecto.">
+<meta property="og:image" content="https://corradi.vercel.app/assets/logo.png">
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://corradi.vercel.app/busqueda.html">
+<meta property="twitter:title" content="Destinos - Corradi Viajes">
+<meta property="twitter:description" content="Explora todos nuestros destinos turísticos y encuentra tu viaje perfecto.">
+<meta property="twitter:image" content="https://corradi.vercel.app/assets/logo.png">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  @font-face { font-family:'Geomanist'; src:url('geomanist-regular-webfont.woff2') format('woff2'),url('geomanist-regular-webfont.woff') format('woff'); font-weight:400; font-style:normal; }
+  @font-face { font-family:'Geomanist'; src:url('geomanist-medium.woff') format('woff'); font-weight:500; font-style:normal; }
+  @font-face { font-family:'Geomanist'; src:url('geomanist-medium.woff') format('woff'); font-weight:600; font-style:normal; }
+  @font-face { font-family:'Geomanist'; src:url('geomanist-medium.woff') format('woff'); font-weight:700; font-style:normal; }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+  body { min-height: 100dvh; }
+  ::-webkit-scrollbar { width:0; height:0; }
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
+
+  /* ── Custom Dropdown ── */
+  .cdd { position:relative; }
+  .cdd-trigger {
+    display:flex; align-items:center; gap:8px;
+    width:100%; padding:9px 13px;
+    border-radius:12px;
+    cursor:pointer; user-select:none;
+    transition:border-color .2s, background .2s, box-shadow .2s;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+  }
+  .cdd-trigger:hover { border-color:rgba(255,255,255,0.3); background:rgba(255,255,255,0.12); }
+  .cdd-trigger.open { border-color:rgba(55,120,184,0.7); background:rgba(55,120,184,0.1); }
+  .cdd-label { font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,0.45); white-space:nowrap; }
+  .cdd-value { font-size:14px; font-weight:500; color:#fff; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .cdd-chevron { font-size:16px; color:rgba(255,255,255,0.45); transition:transform .25s; flex-shrink:0; }
+  .cdd-trigger.open .cdd-chevron { transform:rotate(180deg); }
+
+  .cdd-panel {
+    position:absolute; top:calc(100% + 6px); left:0; right:0; min-width:180px;
+    border-radius:14px; overflow:hidden;
+    background:#0d1b2e;
+    border:1px solid rgba(255,255,255,0.13);
+    box-shadow:0 16px 40px rgba(0,0,0,0.5);
+    backdrop-filter:blur(20px);
+    z-index:200;
+    opacity:0; transform:translateY(-6px) scale(0.98);
+    pointer-events:none;
+    transition:opacity .18s ease, transform .18s ease;
+    max-height:260px; overflow-y:auto;
+  }
+  .cdd-panel.open { opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+
+  .cdd-option {
+    display:flex; align-items:center; gap:8px;
+    padding:9px 14px;
+    font-size:13px; font-weight:500; color:rgba(255,255,255,0.8);
+    cursor:pointer; transition:background .15s, color .15s;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+  }
+  .cdd-option:last-child { border-bottom:none; }
+  .cdd-option:hover { background:rgba(55,120,184,0.18); color:#fff; }
+  .cdd-option.selected { background:rgba(55,120,184,0.22); color:#7ab3e0; }
+  .cdd-option .cdd-check { font-size:14px; color:#3778b8; opacity:0; flex-shrink:0; margin-left:auto; }
+  .cdd-option.selected .cdd-check { opacity:1; }
+  .cdd-flag { font-size:16px; flex-shrink:0; line-height:1; }
+
+  /* Light mode — white card style */
+  html[data-theme="light"] .cdd-trigger {
+    background:#ffffff;
+    border-color:rgba(0,0,0,0.13);
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+  }
+  html[data-theme="light"] .cdd-trigger:hover { background:#f8fafc; border-color:rgba(0,0,0,0.22); box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+  html[data-theme="light"] .cdd-trigger.open { border-color:#3778b8; background:#fff; box-shadow:0 0 0 3px rgba(55,120,184,0.15); }
+  html[data-theme="light"] .cdd-label { color:rgba(0,0,0,0.38); }
+  html[data-theme="light"] .cdd-value { color:#1e293b; }
+  html[data-theme="light"] .cdd-chevron { color:rgba(0,0,0,0.3); }
+  html[data-theme="light"] .cdd-panel { background:#fff; border-color:rgba(0,0,0,0.1); box-shadow:0 16px 40px rgba(0,0,0,0.12); }
+  html[data-theme="light"] .cdd-option { color:#334155; border-bottom-color:rgba(0,0,0,0.05); }
+  html[data-theme="light"] .cdd-option:hover { background:rgba(55,120,184,0.08); color:#1e293b; }
+  html[data-theme="light"] .cdd-option.selected { background:rgba(55,120,184,0.1); color:#3778b8; }
+</style>
+</head>
+<body style="background:#0d1b2e;color:#fff" class="antialiased overflow-x-hidden min-h-screen pb-[72px] md:pb-0 font-['Geomanist','Plus_Jakarta_Sans',sans-serif]">
+
+<app-navbar></app-navbar>
+
+<main class="w-full max-w-[1400px] mx-auto px-5 md:px-16">
+
+  <!-- Page Header -->
+  <div class="pt-[100px] pb-4 md:pt-[110px] md:pb-5 flex items-baseline gap-4">
+    <h1 class="font-bold text-[26px] md:text-[34px] leading-tight">Destinos</h1>
+    <p class="hidden md:block text-[15px]" style="color:rgba(255,255,255,0.45)">Encontrá tu próxima aventura.</p>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="flex gap-3 mb-3">
+    <div class="flex items-center gap-2 flex-1 max-w-xl rounded-[12px] px-3 py-2.5 transition-all" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12)">
+      <span class="material-symbols-outlined text-[18px]" style="color:rgba(255,255,255,0.5)">search</span>
+      <input type="text" id="searchInput"
+        class="flex-1 bg-transparent border-none outline-none text-white placeholder:text-white/40 font-medium text-[14px] focus:ring-0"
+        placeholder="Buscar destino…"/>
+    </div>
+  </div>
+
+  <!-- Main Filters Row -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
+
+    <!-- Country Custom Dropdown -->
+    <div class="cdd" id="cddCountry">
+      <div class="cdd-trigger" id="cddCountryTrigger">
+        <span class="cdd-label">País</span>
+        <span class="cdd-value" id="cddCountryValue">Todos los destinos</span>
+        <span class="material-symbols-outlined cdd-chevron">expand_more</span>
+      </div>
+      <div class="cdd-panel" id="cddCountryPanel">
+        <div class="cdd-option selected" data-value="all">
+          <span class="material-symbols-outlined cdd-check">check</span>
+          Todos los destinos
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature Custom Dropdown -->
+    <div class="cdd" id="cddFeature">
+      <div class="cdd-trigger" id="cddFeatureTrigger">
+        <span class="cdd-label">Mostrar</span>
+        <span class="cdd-value" id="cddFeatureValue">Todos los tipos</span>
+        <span class="material-symbols-outlined cdd-chevron">expand_more</span>
+      </div>
+      <div class="cdd-panel" id="cddFeaturePanel">
+        <div class="cdd-option selected" data-value="all">
+          <span class="material-symbols-outlined cdd-check">check</span>
+          Todos los tipos
+        </div>
+        <div class="cdd-option" data-value="destacados">
+          <span class="material-symbols-outlined cdd-check">check</span>
+          Destacados
+        </div>
+        <div class="cdd-option" data-value="oferta">
+          <span class="material-symbols-outlined cdd-check">check</span>
+          Con oferta
+        </div>
+      </div>
+    </div>
+
+    <!-- Price Filter -->
+    <div class="flex items-center gap-2">
+      <div class="relative flex-1">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-[11px] font-bold" style="color:rgba(255,255,255,0.4)">USD</span>
+        <input type="number" id="priceMin" placeholder="Mín" min="0"
+          oninput="priceMin=this.value?Number(this.value):null;renderResults()"
+          class="w-full rounded-[12px] pl-[48px] pr-3 py-2.5 text-[14px] font-medium outline-none transition-all"
+          style="background:rgba(255,255,255,0.07);color:#fff;border:1px solid rgba(255,255,255,0.12)"/>
+      </div>
+      <span style="color:rgba(255,255,255,0.3)" class="text-[15px] shrink-0 font-light">—</span>
+      <div class="relative flex-1">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-[11px] font-bold" style="color:rgba(255,255,255,0.4)">USD</span>
+        <input type="number" id="priceMax" placeholder="Máx" min="0"
+          oninput="priceMax=this.value?Number(this.value):null;renderResults()"
+          class="w-full rounded-[12px] pl-[48px] pr-3 py-2.5 text-[14px] font-medium outline-none transition-all"
+          style="background:rgba(255,255,255,0.07);color:#fff;border:1px solid rgba(255,255,255,0.12)"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sort Row -->
+  <div class="flex mt-2 mb-5">
+    <div class="cdd w-full md:w-[320px]" id="cddSort">
+      <div class="cdd-trigger" id="cddSortTrigger">
+        <span class="cdd-value" id="cddSortValue">Ordenar: Relevancia</span>
+        <span class="material-symbols-outlined cdd-chevron">expand_more</span>
+      </div>
+      <div class="cdd-panel" id="cddSortPanel">
+        <div class="cdd-option selected" data-value="relevance">
+          <span class="material-symbols-outlined cdd-check">check</span>Relevancia
+        </div>
+        <div class="cdd-option" data-value="price_asc">
+          <span class="material-symbols-outlined cdd-check">check</span>Precio: menor a mayor
+        </div>
+        <div class="cdd-option" data-value="price_desc">
+          <span class="material-symbols-outlined cdd-check">check</span>Precio: mayor a menor
+        </div>
+        <div class="cdd-option" data-value="az">
+          <span class="material-symbols-outlined cdd-check">check</span>Nombre: A → Z
+        </div>
+        <div class="cdd-option" data-value="za">
+          <span class="material-symbols-outlined cdd-check">check</span>Nombre: Z → A
+        </div>
+        <div class="cdd-option" data-value="newest">
+          <span class="material-symbols-outlined cdd-check">check</span>Más recientes
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results count -->
+  <div id="resultsInfo" class="text-[13px] mb-3 hidden" style="color:rgba(255,255,255,0.4)"></div>
+
+  <!-- Results Grid -->
+  <section id="searchResultsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-16">
+    <div class="col-span-full text-center py-16" style="color:rgba(255,255,255,0.4)">
+      <span class="material-symbols-outlined text-5xl mb-3 block opacity-30">travel_explore</span>
+      Cargando destinos…
+    </div>
+  </section>
+
+</main>
+
+<app-bottom-nav></app-bottom-nav>
+<app-footer></app-footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/components.js"></script>
+<script src="js/busqueda.js"></script>
+<script>
+// ── Custom Dropdowns ────────────────────────────
+function initCDD(triggerId, panelId, valueId, onChange) {
+  const trigger = document.getElementById(triggerId);
+  const panel   = document.getElementById(panelId);
+  const valueEl = document.getElementById(valueId);
+  if (!trigger || !panel) return;
+
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = panel.classList.contains('open');
+    // Close all panels first
+    document.querySelectorAll('.cdd-panel').forEach(p => p.classList.remove('open'));
+    document.querySelectorAll('.cdd-trigger').forEach(t => t.classList.remove('open'));
+    if (!isOpen) {
+      panel.classList.add('open');
+      trigger.classList.add('open');
+    }
+  });
+
+  panel.addEventListener('click', (e) => {
+    const opt = e.target.closest('.cdd-option');
+    if (!opt) return;
+    const val = opt.dataset.value;
+    const label = opt.textContent.trim();
+    // Update selected state
+    panel.querySelectorAll('.cdd-option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    // Update display
+    if (valueEl) valueEl.textContent = label;
+    // Close
+    panel.classList.remove('open');
+    trigger.classList.remove('open');
+    // Fire callback
+    if (onChange) onChange(val);
+  });
+}
+
+document.addEventListener('click', () => {
+  document.querySelectorAll('.cdd-panel').forEach(p => p.classList.remove('open'));
+  document.querySelectorAll('.cdd-trigger').forEach(t => t.classList.remove('open'));
+});
+
+// Init each dropdown
+initCDD('cddCountryTrigger', 'cddCountryPanel', 'cddCountryValue', (val) => {
+  activeCategory = val; renderResults();
+});
+initCDD('cddFeatureTrigger', 'cddFeaturePanel', 'cddFeatureValue', (val) => {
+  activeFeature = val; renderResults();
+});
+initCDD('cddSortTrigger', 'cddSortPanel', 'cddSortValue', (val) => {
+  sortBy = val; renderResults();
+});
+
+// Override populateCountrySelect to use custom dropdown with flags
+const COUNTRY_FLAGS = {
+  'argentina': '🇦🇷', 'brasil': '🇧🇷', 'chile': '🇨🇱', 'peru': '🇵🇪',
+  'perú': '🇵🇪', 'colombia': '🇨🇴', 'uruguay': '🇺🇾', 'bolivia': '🇧🇴',
+  'paraguay': '🇵🇾', 'ecuador': '🇪🇨', 'venezuela': '🇻🇪',
+  'mexico': '🇲🇽', 'méxico': '🇲🇽', 'cuba': '🇨🇺', 'jamaica': '🇯🇲',
+  'república dominicana': '🇩🇴', 'costa rica': '🇨🇷', 'panamá': '🇵🇦', 'panama': '🇵🇦',
+  'estados unidos': '🇺🇸', 'canadá': '🇨🇦', 'canada': '🇨🇦',
+  'españa': '🇪🇸', 'espana': '🇪🇸', 'francia': '🇫🇷', 'italia': '🇮🇹',
+  'grecia': '🇬🇷', 'portugal': '🇵🇹', 'alemania': '🇩🇪', 'suiza': '🇨🇭',
+  'austria': '🇦🇹', 'holanda': '🇳🇱', 'países bajos': '🇳🇱',
+  'reino unido': '🇬🇧', 'inglaterr': '🇬🇧', 'irlanda': '🇮🇪',
+  'croacia': '🇭🇷', 'turquía': '🇹🇷', 'turquia': '🇹🇷',
+  'noruega': '🇳🇴', 'suecia': '🇸🇪', 'dinamarca': '🇩🇰', 'finlandia': '🇫🇮',
+  'egipto': '🇪🇬', 'marruecos': '🇲🇦', 'sudáfrica': '🇿🇦', 'kenia': '🇰🇪',
+  'japón': '🇯🇵', 'japon': '🇯🇵', 'china': '🇨🇳', 'tailandia': '🇹🇭',
+  'indonesia': '🇮🇩', 'india': '🇮🇳', 'vietnam': '🇻🇳', 'cambodia': '🇰🇭',
+  'emiratos árabes': '🇦🇪', 'dubai': '🇦🇪', 'israel': '🇮🇱',
+  'maldivas': '🇲🇻', 'australia': '🇦🇺', 'nueva zelanda': '🇳🇿',
+};
+function getFlag(country) {
+  const key = (country || '').toLowerCase().trim();
+  return COUNTRY_FLAGS[key] || '🌍';
+}
+
+window.populateCountrySelect = function() {
+  const panel = document.getElementById('cddCountryPanel');
+  if (!panel || !allPackages) return;
+  const countries = [...new Set(
+    allPackages.map(p => (p.country || '').trim()).filter(Boolean)
+  )].sort((a, b) => a.localeCompare(b, 'es'));
+  const first = panel.querySelector('.cdd-option[data-value="all"]');
+  panel.innerHTML = '';
+  if (first) panel.appendChild(first);
+  countries.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'cdd-option';
+    div.dataset.value = c;
+    div.innerHTML = `<span class="cdd-flag">${getFlag(c)}</span>${c}<span class="material-symbols-outlined cdd-check">check</span>`;
+    panel.appendChild(div);
+  });
+};
+</script>
+<script src="js/theme.js"></script>
+</body>
+</html>

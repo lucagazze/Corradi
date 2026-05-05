@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Admin — Corradi Viajes</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/webp" href="../img/logocorradi.webp">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+@font-face{font-family:'Geomanist';src:url('../geomanist-regular-webfont.woff2') format('woff2'),url('../geomanist-regular-webfont.woff') format('woff');font-weight:400}
+@font-face{font-family:'Geomanist';src:url('../geomanist-medium.woff') format('woff');font-weight:500}
+@font-face{font-family:'Geomanist';src:url('../geomanist-medium.woff') format('woff');font-weight:600}
+@font-face{font-family:'Geomanist';src:url('../geomanist-medium.woff') format('woff');font-weight:700}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Geomanist','Plus Jakarta Sans',sans-serif;background:#0b1525;color:#fff;min-height:100vh;overflow-x:hidden}
+img{display:block;max-width:100%}
+button,input,select,textarea{font-family:inherit}
+textarea{resize:vertical}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:3px}
+input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+
+/* ── LOGIN ── */
+#loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 0%,#1a3a6b 0%,#0b1525 65%)}
+.login-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:48px 44px;width:100%;max-width:400px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,0.4)}
+.login-logo{height:52px;margin:0 auto 24px;object-fit:contain}
+.login-card h1{font-size:22px;font-weight:700;margin-bottom:6px}
+.login-card p{color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:28px}
+.login-input{width:100%;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.12);border-radius:12px;padding:12px 16px;color:#fff;font-size:15px;outline:none;transition:border-color .2s;display:block;margin-bottom:12px}
+.login-input::placeholder{color:rgba(255,255,255,0.35)}
+.login-input:focus{border-color:#3778b8}
+.login-btn{width:100%;padding:14px;background:linear-gradient(135deg,#2563eb,#3778b8);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;transition:opacity .2s,transform .1s;box-shadow:0 4px 14px rgba(37,99,235,0.35)}
+.login-btn:hover{opacity:.9}
+.login-btn:active{transform:scale(.98)}
+.login-err{color:#f87171;font-size:13px;margin-top:10px;min-height:20px}
+
+/* ── APP LAYOUT ── */
+#app{display:none;min-height:100vh}
+#app.on{display:flex}
+
+/* ── SIDEBAR ── */
+.sidebar{width:240px;height:100vh;background:#071221;border-right:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;flex-shrink:0;position:sticky;top:0;overflow-y:auto}
+.sb-brand{padding:20px 18px 16px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.sb-logo{height:36px;object-fit:contain}
+.sb-nav{flex:1;padding:14px 8px}
+.sb-section{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,0.25);padding:10px 14px 6px;margin-top:6px}
+.sb-item{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:12px;cursor:pointer;color:rgba(255,255,255,0.5);font-size:13.5px;font-weight:500;transition:all .15s;margin-bottom:2px}
+.sb-item:hover{background:rgba(255,255,255,0.07);color:#fff}
+.sb-item.active{background:rgba(55,120,184,0.18);color:#7ab3e0}
+.sb-item .ms{font-size:19px;flex-shrink:0}
+.sb-badge{margin-left:auto;background:#ef4444;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:20px;min-width:18px;text-align:center}
+.sb-divider{height:1px;background:rgba(255,255,255,0.05);margin:8px 8px}
+.sb-bottom{padding:10px 8px 20px}
+.sb-version{padding:8px 14px;font-size:11px;color:rgba(255,255,255,0.2)}
+/* Sidebar sub-items */
+.sb-sub{margin-top:2px;margin-bottom:4px}
+.sb-sub-item{display:flex;align-items:center;gap:9px;padding:7px 12px 7px 34px;border-radius:10px;cursor:pointer;color:rgba(255,255,255,0.38);font-size:12.5px;font-weight:500;transition:all .15s;margin-bottom:1px}
+.sb-sub-item:hover{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.75)}
+.sb-sub-item.active{background:rgba(55,120,184,0.15);color:#7ab3e0}
+.sb-sub-item .ms{font-size:15px;flex-shrink:0}
+.sb-sub-count{margin-left:auto;font-size:10px;font-weight:700;padding:1px 7px;border-radius:20px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.35);min-width:20px;text-align:center}
+.sb-item-parent{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:12px;cursor:pointer;color:rgba(255,255,255,0.5);font-size:13.5px;font-weight:500;transition:all .15s;margin-bottom:2px}
+.sb-item-parent:hover{background:rgba(255,255,255,0.07);color:#fff}
+.sb-item-parent.active{background:rgba(55,120,184,0.18);color:#7ab3e0}
+.sb-item-parent .ms{font-size:19px;flex-shrink:0}
+.sb-item-parent .ms-arrow{font-size:16px;margin-left:auto;color:rgba(255,255,255,0.25)}
+
+/* ── MAIN ── */
+.main-wrap{flex:1;display:flex;flex-direction:column;min-height:100vh;overflow:hidden}
+
+/* ── VIEWS ── */
+.view{display:none;flex-direction:column;padding:28px 28px 60px;flex:1;overflow-y:auto;height:100vh}
+.view.active{display:flex}
+.view-header{display:flex;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap;flex-shrink:0}
+.view-header h1{font-size:24px;font-weight:700}
+.spacer{flex:1}
+
+/* ── STATS ── */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:18px;flex-shrink:0}
+.stat-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 16px;transition:border-color .15s}
+.stat-card:hover{border-color:rgba(55,120,184,0.3)}
+.stat-num{font-size:24px;font-weight:700;line-height:1;margin-bottom:4px}
+.stat-label{font-size:11px;font-weight:600;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.05em}
+
+/* ── FILTER BAR ── */
+.filter-bar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center;flex-shrink:0}
+.search-box{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:8px 13px;flex:1;max-width:280px}
+.search-box input{background:transparent;border:none;outline:none;color:#fff;font-size:14px;flex:1;font-family:inherit}
+.search-box input::placeholder{color:rgba(255,255,255,0.3)}
+.select-filter{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:7px 12px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.7);cursor:pointer;outline:none;font-family:inherit;appearance:none;padding-right:28px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(255,255,255,0.4)'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center;background-size:18px}
+.select-filter option{background:#0b1525;color:#fff}
+.select-filter:focus{border-color:#3778b8}
+.chip{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:6px 13px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;white-space:nowrap}
+.chip:hover{background:rgba(255,255,255,0.1);color:#fff}
+.chip.active{background:#3778b8;color:#fff;border-color:transparent}
+
+/* ── CONTINENT SECTIONS ── */
+.cont-section{margin-bottom:28px}
+.cont-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.cont-header h2{font-size:15px;font-weight:700;color:rgba(255,255,255,0.8)}
+.cont-count{font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.4)}
+
+/* ── PACKAGE GRID ── */
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.pkg-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .18s;position:relative;user-select:none}
+.pkg-card:hover{border-color:rgba(55,120,184,0.4);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,0.3)}
+.pkg-card.context-open{border-color:#3778b8}
+.pkg-img{width:100%;height:140px;object-fit:cover;display:block;background:rgba(255,255,255,0.04)}
+.pkg-img-placeholder{width:100%;height:140px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.03)}
+.pkg-body{padding:11px 13px}
+.pkg-name{font-size:13px;font-weight:600;margin-bottom:2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.pkg-sub{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:8px}
+.pkg-footer{display:flex;align-items:center;justify-content:space-between}
+.pkg-price{font-size:14px;font-weight:700;color:#3778b8}
+.pill{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em}
+.pill-active{background:rgba(74,222,128,0.12);color:#4ade80;border:1px solid rgba(74,222,128,0.2)}
+.pill-inactive{background:rgba(239,68,68,0.1);color:#f87171;border:1px solid rgba(239,68,68,0.18)}
+.pill-featured{background:rgba(251,191,36,0.1);color:#fbbf24;border:1px solid rgba(251,191,36,0.18)}
+.pill-badge{background:#ef4444;color:#fff}
+
+/* Quick actions on card hover */
+.pkg-quick{position:absolute;top:8px;right:8px;display:flex;gap:5px;opacity:0;transition:opacity .15s}
+.pkg-card:hover .pkg-quick{opacity:1}
+.pkg-qbtn{width:28px;height:28px;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;backdrop-filter:blur(8px)}
+.pkg-qbtn:hover{transform:scale(1.1)}
+.pkg-qbtn .ms{font-size:15px}
+
+/* ── CONTEXT MENU ── */
+#ctxMenu{position:fixed;z-index:9999;background:#112240;border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:6px;min-width:200px;box-shadow:0 12px 40px rgba(0,0,0,0.5);display:none}
+.ctx-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:500;color:rgba(255,255,255,0.8);transition:background .12s}
+.ctx-item:hover{background:rgba(255,255,255,0.08);color:#fff}
+.ctx-item .ms{font-size:17px;flex-shrink:0}
+.ctx-item.danger{color:#f87171}
+.ctx-item.danger:hover{background:rgba(239,68,68,0.1)}
+.ctx-sep{height:1px;background:rgba(255,255,255,0.07);margin:4px 0}
+
+/* ── EDITOR PANEL ── */
+#editorPanel{position:fixed;top:0;right:0;bottom:0;width:calc(100% - 240px);background:#0b1525;overflow-y:auto;z-index:200;transform:translateX(100%);transition:transform .32s cubic-bezier(.25,.46,.45,.94);display:flex;flex-direction:column}
+#editorPanel.open{transform:translateX(0)}
+.ed-header{position:sticky;top:0;z-index:10;background:#071221;border-bottom:1px solid rgba(255,255,255,0.07);padding:14px 26px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.ed-header h2{font-size:17px;font-weight:700;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ed-body{padding:24px 26px 80px;flex:1}
+.ed-tabs{display:flex;gap:2px;padding:0 26px;background:#071221;border-bottom:1px solid rgba(255,255,255,0.07);position:sticky;top:53px;z-index:9}
+.ed-tab{padding:12px 18px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.45);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.ed-tab.active{color:#7ab3e0;border-bottom-color:#3778b8}
+.ed-tab:hover:not(.active){color:rgba(255,255,255,0.7)}
+.ed-panel{display:none}
+.ed-panel.active{display:block}
+
+/* ── FORM ── */
+.form-section{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:18px 20px;margin-bottom:16px}
+.form-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,0.35);margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.form-section-title .ms{font-size:14px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,0.38)}
+.fi,.fs,.ft{background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;padding:9px 13px;color:#fff;font-size:14px;outline:none;transition:border-color .2s;width:100%;font-family:inherit}
+.fi::placeholder,.ft::placeholder{color:rgba(255,255,255,0.28)}
+.fi:focus,.fs:focus,.ft:focus{border-color:#3778b8;background:rgba(255,255,255,0.08)}
+.fs{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(255,255,255,0.4)'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:20px;padding-right:36px}
+.fs option{background:#0b1525;color:#fff}
+.ft{min-height:90px;line-height:1.6}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.grid1{display:grid;grid-template-columns:1fr;gap:12px}
+
+/* Toggle */
+.tgl-row{display:flex;align-items:center;gap:12px;padding:3px 0}
+.tgl-info{flex:1}
+.tgl-name{font-size:14px;font-weight:500}
+.tgl-desc{font-size:12px;color:rgba(255,255,255,0.38);margin-top:2px}
+.tgl{position:relative;width:42px;height:23px;flex-shrink:0}
+.tgl input{opacity:0;width:0;height:0;position:absolute}
+.tgl-s{position:absolute;inset:0;border-radius:23px;cursor:pointer;background:rgba(255,255,255,0.1);transition:background .2s}
+.tgl-s::before{content:'';position:absolute;height:17px;width:17px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:transform .2s}
+.tgl input:checked+.tgl-s{background:#3778b8}
+.tgl input:checked+.tgl-s::before{transform:translateX(19px)}
+
+/* Drop zone */
+.drop-zone{width:100%;min-height:160px;border:2px dashed rgba(255,255,255,0.15);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;position:relative;gap:8px;color:rgba(255,255,255,0.35)}
+.drop-zone.drag-over{border-color:#3778b8;background:rgba(55,120,184,0.08);color:#7ab3e0}
+.drop-zone:hover{border-color:rgba(255,255,255,0.25)}
+.drop-zone .ms{font-size:36px;opacity:.5}
+.drop-zone p{font-size:13px;font-weight:500}
+.drop-zone span{font-size:11px;opacity:.6}
+.drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+
+/* Image preview */
+.img-preview{width:100%;height:170px;border-radius:12px;object-fit:cover;display:block}
+.img-ph{width:100%;height:170px;border-radius:12px;background:rgba(255,255,255,0.03);border:2px dashed rgba(255,255,255,0.1);display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.25);font-size:13px;gap:7px}
+
+/* Gallery */
+.gal-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.gal-item{display:flex;align-items:center;gap:9px}
+.gal-thumb{width:44px;height:34px;object-fit:cover;border-radius:7px;flex-shrink:0;background:rgba(255,255,255,0.05)}
+.gal-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:7px 11px;color:#fff;font-size:13px;outline:none;font-family:inherit}
+.gal-inp:focus{border-color:#3778b8}
+.gal-inp::placeholder{color:rgba(255,255,255,0.28)}
+.gal-rm{width:28px;height:28px;border-radius:7px;background:rgba(239,68,68,0.1);border:none;color:#f87171;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0}
+.gal-rm:hover{background:rgba(239,68,68,0.22)}
+.add-gal{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.05);border:1.5px dashed rgba(255,255,255,0.12);border-radius:10px;padding:9px 14px;color:rgba(255,255,255,0.45);cursor:pointer;font-size:13px;font-weight:500;transition:all .15s;width:100%;font-family:inherit}
+.add-gal:hover{background:rgba(255,255,255,0.08);color:#fff}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:13px;font-weight:600;padding:9px 18px;border-radius:10px;border:none;cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn .ms{font-size:17px}
+.btn-primary{background:linear-gradient(135deg,#2563eb,#3778b8);color:#fff;box-shadow:0 3px 12px rgba(37,99,235,0.25)}
+.btn-primary:hover{opacity:.9}
+.btn-danger{background:rgba(239,68,68,0.1);color:#f87171;border:1px solid rgba(239,68,68,0.2)}
+.btn-danger:hover{background:rgba(239,68,68,0.2)}
+.btn-ghost{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.1)}
+.btn-ghost:hover{background:rgba(255,255,255,0.12);color:#fff}
+.btn-green{background:rgba(74,222,128,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.2)}
+.btn-green:hover{background:rgba(74,222,128,0.2)}
+.btn-sm{padding:6px 13px;font-size:12px;border-radius:8px}
+.btn-icon{padding:7px;width:34px;height:34px;justify-content:center}
+
+/* Contacts */
+.contact-list{display:flex;flex-direction:column;gap:9px}
+.cc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 18px;cursor:pointer;transition:border-color .15s}
+.cc:hover{border-color:rgba(55,120,184,0.3)}
+.cc.unread{border-left:3px solid #3778b8}
+.cc-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cc-name{font-size:14px;font-weight:600}
+.cc-email{font-size:12px;color:rgba(255,255,255,0.45);margin-left:4px}
+.cc-date{font-size:11px;color:rgba(255,255,255,0.35);margin-left:auto}
+.cc-body{margin-top:12px;border-top:1px solid rgba(255,255,255,0.07);padding-top:12px;display:none}
+.cc-body.open{display:block}
+.cc-row{display:flex;gap:8px;margin-bottom:7px;font-size:13px;flex-wrap:wrap}
+.cc-lbl{color:rgba(255,255,255,0.4);min-width:90px;flex-shrink:0}
+.cc-val{color:rgba(255,255,255,0.85)}
+
+/* Dashboard */
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:24px}
+.dash-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:18px 20px}
+.dash-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.dash-num{font-size:28px;font-weight:700;line-height:1;margin-bottom:4px}
+.dash-label{font-size:12px;color:rgba(255,255,255,0.45);font-weight:500}
+.dash-trend{font-size:11px;font-weight:600;margin-top:6px}
+
+/* Toast */
+#toast{position:fixed;bottom:22px;right:22px;z-index:9999;transform:translateY(80px);opacity:0;transition:all .28s;pointer-events:none}
+#toast.show{transform:translateY(0);opacity:1}
+.toast-inner{display:flex;align-items:center;gap:9px;background:#112240;border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:11px 16px;font-size:13px;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,0.35)}
+.toast-inner.success{color:#4ade80;border-color:rgba(74,222,128,0.25)}
+.toast-inner.error{color:#f87171;border-color:rgba(248,113,113,0.25)}
+.toast-inner .ms{font-size:17px}
+
+/* Confirm */
+#confirmDlg{position:fixed;inset:0;z-index:9998;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.65);backdrop-filter:blur(4px)}
+#confirmDlg.show{display:flex}
+.confirm-card{background:#111c2d;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:28px;max-width:360px;width:90%;text-align:center;box-shadow:0 30px 60px rgba(0,0,0,0.5)}
+.confirm-card h3{font-size:19px;font-weight:700;margin-bottom:8px}
+.confirm-card p{color:rgba(255,255,255,0.55);font-size:13px;margin-bottom:22px;line-height:1.6}
+.confirm-actions{display:flex;gap:10px;justify-content:center}
+
+/* Empty / Spinner */
+.empty{text-align:center;padding:50px 20px;color:rgba(255,255,255,0.3)}
+.empty .ms{font-size:44px;display:block;margin-bottom:10px;opacity:.35}
+.empty p{font-size:13px}
+.spinner{width:20px;height:20px;border:2px solid rgba(255,255,255,0.12);border-top-color:#fff;border-radius:50%;animation:spin .65s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── DRAG & DROP ── */
+.pkg-card[draggable=true],.pkg-list-item[draggable=true]{cursor:grab}
+.pkg-card.dragging,.pkg-list-item.dragging{opacity:.3;transform:scale(.96)}
+.pkg-card.drag-over,.pkg-list-item.drag-over{outline:none !important;background:rgba(255,255,255,0.04) !important;border-color:rgba(255,255,255,0.08) !important}
+.pkg-card.drag-over::before,.pkg-list-item.drag-over::before{content:'';position:absolute;left:0;right:0;top:-3px;height:3px;background:#3778b8;border-radius:3px;z-index:10;box-shadow:0 0 10px rgba(55,120,184,0.8)}
+.pkg-drag-handle{position:absolute;top:8px;left:8px;width:22px;height:22px;border-radius:6px;background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s;cursor:grab;z-index:1}
+.pkg-card:hover .pkg-drag-handle{opacity:1}
+.pkg-drag-handle .ms{font-size:14px;color:rgba(255,255,255,0.8)}
+.drag-list-handle{display:flex;align-items:center;justify-content:center;padding:0 4px;color:rgba(255,255,255,0.2);cursor:grab;flex-shrink:0;transition:color .15s}
+.drag-list-handle:hover{color:rgba(255,255,255,0.6)}
+.drag-list-handle .ms{font-size:18px}
+
+/* ── LIST VIEW ── */
+.pkg-list{display:flex;flex-direction:column;gap:5px}
+.pkg-list-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:7px 12px 7px 6px;transition:all .15s;position:relative;user-select:none}
+.pkg-list-item:hover{border-color:rgba(55,120,184,0.35);background:rgba(255,255,255,0.06)}
+.pkg-list-item.context-open{border-color:#3778b8}
+.pkg-list-thumb{width:60px;height:44px;border-radius:7px;object-fit:cover;flex-shrink:0;background:rgba(255,255,255,0.04)}
+.pkg-list-thumb-ph{width:60px;height:44px;border-radius:7px;background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pkg-list-info{flex:1;min-width:0;overflow:hidden}
+.pkg-list-name{font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pkg-list-sub{font-size:11px;color:rgba(255,255,255,0.4);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pkg-list-price{font-size:13px;font-weight:700;color:#3778b8;flex-shrink:0;min-width:96px;text-align:right}
+.pkg-list-pills{display:flex;gap:4px;flex-shrink:0;flex-wrap:wrap;min-width:80px;justify-content:flex-end}
+.pkg-list-actions{display:flex;gap:4px;flex-shrink:0}
+
+/* ── BULLET LISTS ── */
+.bullet-list{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.bullet-item{display:flex;align-items:center;gap:7px}
+.bullet-dot{width:20px;flex-shrink:0;text-align:center;font-size:14px;opacity:.75}
+.bullet-inp{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:7px 11px;color:#fff;font-size:13px;outline:none;font-family:inherit;transition:border-color .2s}
+.bullet-inp:focus{border-color:#3778b8;background:rgba(255,255,255,0.08)}
+.bullet-inp::placeholder{color:rgba(255,255,255,0.28)}
+.bullet-rm{width:26px;height:26px;border-radius:7px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.15);color:#f87171;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0}
+.bullet-rm:hover{background:rgba(239,68,68,0.22)}
+.bullet-rm .ms{font-size:14px}
+
+/* ── RICH TEXT EDITOR ── */
+.rich-toolbar{display:flex;flex-wrap:wrap;gap:3px;padding:8px 10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px 10px 0 0;border-bottom:1px solid rgba(255,255,255,0.07);user-select:none}
+.tb-btn{min-width:30px;height:30px;border-radius:7px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.75);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;font-family:inherit;transition:all .15s;padding:0 6px;white-space:nowrap}
+.tb-btn:hover{background:rgba(255,255,255,0.12);color:#fff;border-color:rgba(255,255,255,0.18)}
+.tb-btn:active{transform:scale(.95)}
+.tb-sep{width:1px;background:rgba(255,255,255,0.1);margin:3px 4px;align-self:stretch;flex-shrink:0}
+.rich-editor{background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:0 0 10px 10px;border-top:none;padding:16px 18px;color:#fff;font-size:14px;min-height:360px;max-height:600px;overflow-y:auto;outline:none;line-height:1.75;font-family:'Geomanist','Plus Jakarta Sans',sans-serif;transition:border-color .2s;word-break:break-word}
+.rich-editor:focus{border-color:#3778b8;background:rgba(255,255,255,0.08)}
+.rich-editor:empty:before{content:attr(data-placeholder);color:rgba(255,255,255,0.25);pointer-events:none;display:block}
+.rich-editor h1{font-size:22px;font-weight:700;margin:16px 0 6px;color:#fff;line-height:1.3}
+.rich-editor h2{font-size:17px;font-weight:700;margin:14px 0 5px;color:#7ab3e0;line-height:1.3}
+.rich-editor h3{font-size:14px;font-weight:600;margin:10px 0 4px;color:rgba(255,255,255,0.75);text-transform:uppercase;letter-spacing:.04em}
+.rich-editor p{margin:3px 0;min-height:1.4em}
+.rich-editor ul{padding-left:22px;margin:5px 0;list-style:disc}
+.rich-editor ol{padding-left:22px;margin:5px 0;list-style:decimal}
+.rich-editor li{margin-bottom:3px}
+.rich-editor strong{font-weight:700;color:#fff}
+.rich-editor em{font-style:italic;color:rgba(255,255,255,0.85)}
+.rich-editor u{text-decoration:underline}
+.rich-editor mark,.rich-editor [style*="background-color"]{padding:1px 3px;border-radius:3px}
+/* Emoji picker */
+.emoji-popup{position:absolute;top:calc(100% + 6px);left:0;background:#112240;border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:10px;display:none;z-index:10000;width:260px;box-shadow:0 12px 40px rgba(0,0,0,0.5)}
+.emoji-popup.show{display:block}
+.emoji-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:3px}
+.emoji-btn{background:none;border:none;cursor:pointer;font-size:18px;padding:4px;border-radius:6px;text-align:center;transition:background .1s;line-height:1}
+.emoji-btn:hover{background:rgba(255,255,255,0.1)}
+
+/* Mobile */
+.mobile-topbar{display:none;align-items:center;gap:12px;position:sticky;top:0;z-index:200;background:#071221;border-bottom:1px solid rgba(255,255,255,0.07);padding:12px 16px;flex-shrink:0}
+.mob-menu-btn{width:36px;height:36px;border-radius:9px;border:none;cursor:pointer;background:rgba(255,255,255,0.07);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mob-logo{height:28px;object-fit:contain}
+.sb-overlay{display:none;position:fixed;inset:0;z-index:299;background:rgba(0,0,0,0.5)}
+.sb-overlay.show{display:block}
+@media(max-width:900px){
+  .sidebar{position:fixed;left:-240px;z-index:300;transition:left .28s}
+  .sidebar.open{left:0}
+  .main-wrap{width:100%}
+  #editorPanel{width:100%}
+  .grid2,.grid3{grid-template-columns:1fr}
+  .view{padding:20px 16px 60px}
+  .ed-header,.ed-body{padding:14px 16px}
+  .ed-body{padding-bottom:60px}
+  .mobile-topbar{display:flex}
+  .dash-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-card">
+    <img src="../img/logo%20corradiestirado.webp" alt="Corradi Viajes" class="login-logo">
+    <h1>Panel de Administración</h1>
+    <p>Ingresá tu contraseña para continuar</p>
+    <input type="password" id="passInput" class="login-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Ingresar</button>
+    <div class="login-err" id="loginErr"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-brand">
+      <img src="../img/logo%20corradiestirado.webp" alt="Corradi Viajes" class="sb-logo">
+    </div>
+    <nav class="sb-nav">
+      <div class="sb-section">Principal</div>
+      <div class="sb-item active" id="navDash" onclick="switchView('dashboard')">
+        <span class="ms material-symbols-outlined">dashboard</span>Dashboard
+      </div>
+      <div class="sb-section">Contenido</div>
+      <div class="sb-item-parent" id="navPkg" onclick="switchPkgFilter('all','all')">
+        <span class="ms material-symbols-outlined">travel_explore</span>Paquetes
+        <span class="ms material-symbols-outlined ms-arrow">expand_more</span>
+      </div>
+      <div class="sb-sub" id="sbPkgSub">
+        <div class="sb-sub-item active" id="sbFilterAll" onclick="switchPkgFilter('all','all')">
+          <span class="ms material-symbols-outlined">apps</span>Todos
+          <span class="sb-sub-count" id="sbCountAll">—</span>
+        </div>
+        <div class="sb-sub-item" id="sbFilterFeatured" onclick="switchPkgFilter('featured','all')">
+          <span class="ms material-symbols-outlined" style="color:#fbbf24">star</span>Destacados
+          <span class="sb-sub-count" id="sbCountFeatured" style="color:#fbbf24;background:rgba(251,191,36,0.1)">—</span>
+        </div>
+        <div class="sb-sub-item" id="sbFilterOffer" onclick="switchPkgFilter('offer','all')">
+          <span class="ms material-symbols-outlined" style="color:#f87171">local_offer</span>En oferta
+          <span class="sb-sub-count" id="sbCountOffer" style="color:#f87171;background:rgba(239,68,68,0.08)">—</span>
+        </div>
+        <div class="sb-sub-item" id="sbFilterActive" onclick="switchPkgFilter('active','all')">
+          <span class="ms material-symbols-outlined" style="color:#4ade80">check_circle</span>Activos
+          <span class="sb-sub-count" id="sbCountActive" style="color:#4ade80;background:rgba(74,222,128,0.08)">—</span>
+        </div>
+        <div class="sb-sub-item" id="sbFilterInactive" onclick="switchPkgFilter('inactive','all')">
+          <span class="ms material-symbols-outlined" style="color:rgba(255,255,255,0.3)">cancel</span>Inactivos
+          <span class="sb-sub-count" id="sbCountInactive">—</span>
+        </div>
+      </div>
+    </nav>
+    <div class="sb-divider"></div>
+    <div class="sb-bottom">
+      <a class="sb-item" href="../index.html" target="_blank">
+        <span class="ms material-symbols-outlined">open_in_new</span>Ver sitio
+      </a>
+      <div class="sb-item" onclick="doLogout()">
+        <span class="ms material-symbols-outlined">logout</span>Cerrar sesión
+      </div>
+    </div>
+    <div class="sb-version">v2.0 · Corradi Admin</div>
+  </aside>
+
+  <div class="main-wrap">
+    <div class="mobile-topbar">
+      <button class="mob-menu-btn" onclick="openSidebar()">
+        <span class="material-symbols-outlined" style="font-size:20px">menu</span>
+      </button>
+      <img src="../img/logo%20corradiestirado.webp" alt="Corradi Viajes" class="mob-logo">
+    </div>
+
+    <!-- ── DASHBOARD VIEW ── -->
+    <div class="view active" id="viewDashboard">
+      <div class="view-header">
+        <div>
+          <h1>Dashboard</h1>
+          <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:2px">Resumen del sitio</p>
+        </div>
+        <div class="spacer"></div>
+        <button class="btn btn-primary" onclick="openEditor(null)">
+          <span class="ms material-symbols-outlined">add</span>Nuevo Paquete
+        </button>
+      </div>
+
+      <div class="dash-grid" id="dashGrid">
+        <div class="dash-card">
+          <div class="dash-icon" style="background:rgba(55,120,184,0.15)"><span class="material-symbols-outlined" style="color:#7ab3e0;font-size:22px">travel_explore</span></div>
+          <div class="dash-num" id="dTotal" style="color:#7ab3e0">—</div>
+          <div class="dash-label">Paquetes totales</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-icon" style="background:rgba(74,222,128,0.12)"><span class="material-symbols-outlined" style="color:#4ade80;font-size:22px">check_circle</span></div>
+          <div class="dash-num" id="dActive" style="color:#4ade80">—</div>
+          <div class="dash-label">Paquetes activos</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-icon" style="background:rgba(251,191,36,0.12)"><span class="material-symbols-outlined" style="color:#fbbf24;font-size:22px">star</span></div>
+          <div class="dash-num" id="dFeatured" style="color:#fbbf24">—</div>
+          <div class="dash-label">Destacados</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-icon" style="background:rgba(248,113,113,0.12)"><span class="material-symbols-outlined" style="color:#f87171;font-size:22px">local_offer</span></div>
+          <div class="dash-num" id="dOffers" style="color:#f87171">—</div>
+          <div class="dash-label">Con badge/oferta</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-icon" style="background:rgba(239,68,68,0.12)"><span class="material-symbols-outlined" style="color:#f87171;font-size:22px">cancel</span></div>
+          <div class="dash-num" id="dInactive" style="color:#f87171">—</div>
+          <div class="dash-label">Inactivos</div>
+        </div>
+      </div>
+
+      <!-- Quick actions -->
+      <div class="form-section">
+        <div class="form-section-title"><span class="ms material-symbols-outlined">bolt</span>Acciones rápidas</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="switchView('packages');openEditor(null)">
+            <span class="ms material-symbols-outlined">add_circle</span>Crear paquete
+          </button>
+          <a href="../index.html" target="_blank" class="btn btn-ghost">
+            <span class="ms material-symbols-outlined">open_in_new</span>Ver sitio web
+          </a>
+        </div>
+      </div>
+
+      <!-- Recent packages -->
+      <div class="form-section" style="margin-top:20px">
+        <div class="form-section-title" style="margin-bottom:16px"><span class="ms material-symbols-outlined">schedule</span>Últimos paquetes agregados</div>
+        <div id="recentPkgs" class="pkg-grid"></div>
+      </div>
+    </div>
+
+    <!-- ── PACKAGES VIEW ── -->
+    <div class="view" id="viewPackages">
+      <div class="view-header">
+        <h1>Paquetes</h1>
+        <div class="spacer"></div>
+        <button class="btn btn-ghost btn-sm" onclick="loadPackages()">
+          <span class="ms material-symbols-outlined">refresh</span>
+        </button>
+        <button class="btn btn-primary" onclick="openEditor(null)">
+          <span class="ms material-symbols-outlined">add</span>Nuevo Paquete
+        </button>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-num" id="sTotal">—</div><div class="stat-label">Total</div></div>
+        <div class="stat-card"><div class="stat-num" id="sActive" style="color:#4ade80">—</div><div class="stat-label">Activos</div></div>
+        <div class="stat-card"><div class="stat-num" id="sInactive" style="color:#f87171">—</div><div class="stat-label">Inactivos</div></div>
+        <div class="stat-card"><div class="stat-num" id="sFeatured" style="color:#fbbf24">—</div><div class="stat-label">Destacados</div></div>
+        <div class="stat-card"><div class="stat-num" id="sOffers" style="color:#ef4444">—</div><div class="stat-label">En oferta</div></div>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <div class="search-box">
+          <span class="material-symbols-outlined" style="color:rgba(255,255,255,0.35);font-size:18px">search</span>
+          <input type="text" id="pkgSearch" placeholder="Buscar paquete…" oninput="renderPkgView()">
+        </div>
+        <select class="select-filter" id="filterStatus" onchange="renderPkgView()">
+          <option value="all">Todos los estados</option>
+          <option value="active">Activos</option>
+          <option value="inactive">Inactivos</option>
+          <option value="featured">Destacados</option>
+          <option value="offer">Con oferta</option>
+        </select>
+        <select class="select-filter" id="filterContinent" onchange="renderPkgView()">
+          <option value="all">Todos los continentes</option>
+          <option value="europa">🏰 Europa</option>
+          <option value="caribe">🏝️ Caribe & México</option>
+          <option value="america_del_sur">🌎 Sudamérica</option>
+          <option value="asia">⛩️ Asia & Pacífico</option>
+          <option value="africa">🦁 África</option>
+          <option value="oceania">🦘 Oceanía</option>
+          <option value="general">General</option>
+        </select>
+        <select class="select-filter" id="filterSort" onchange="renderPkgView()">
+          <option value="manual">Orden manual ↕</option>
+          <option value="newest">Más nuevos</option>
+          <option value="oldest">Más antiguos</option>
+          <option value="price_asc">Precio ↑</option>
+          <option value="price_desc">Precio ↓</option>
+          <option value="name_az">Nombre A–Z</option>
+          <option value="featured_first">Destacados primero</option>
+        </select>
+        <button id="viewToggleBtn" onclick="toggleViewMode()" class="btn btn-ghost btn-icon" title="Cambiar vista (cuadrícula / lista)">
+          <span class="ms material-symbols-outlined" id="viewToggleIcon">view_list</span>
+        </button>
+      </div>
+      <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:16px;margin-top:-8px">
+        Click derecho para opciones rápidas · Arrastrá para reordenar · Hover para acciones
+      </p>
+
+      <div id="pkgViewContainer"></div>
+    </div>
+
+  </div><!-- /main-wrap -->
+
+  <!-- ── EDITOR PANEL ── -->
+  <div id="editorPanel">
+    <div class="ed-header">
+      <button class="btn btn-ghost btn-icon" onclick="closeEditor()"><span class="ms material-symbols-outlined">arrow_back</span></button>
+      <h2 id="edTitle">Nuevo Paquete</h2>
+      <div class="spacer"></div>
+      <button class="btn btn-ghost btn-sm" id="btnDuplicate" onclick="duplicatePackage()" style="display:none">
+        <span class="ms material-symbols-outlined">content_copy</span>Duplicar
+      </button>
+      <button class="btn btn-danger btn-sm" id="btnDelete" onclick="confirmDelete()" style="display:none">
+        <span class="ms material-symbols-outlined">delete</span>Eliminar
+      </button>
+      <button class="btn btn-primary" id="btnSave" onclick="savePackage()">
+        <span class="ms material-symbols-outlined">save</span>Guardar
+      </button>
+    </div>
+
+    <div class="ed-tabs">
+      <div class="ed-tab active" onclick="switchEdTab('info',this)">📋 Información</div>
+      <div class="ed-tab" onclick="switchEdTab('media',this)">🖼️ Imágenes</div>
+      <div class="ed-tab" onclick="switchEdTab('details',this)">📝 Descripción</div>
+      <div class="ed-tab" onclick="switchEdTab('itinerary',this)">🗺️ Itinerario</div>
+    </div>
+
+    <div class="ed-body">
+      <input type="hidden" id="editId">
+
+      <!-- TAB: Información -->
+      <div class="ed-panel active" id="tab-info">
+
+        <!-- Estado rápido -->
+        <div class="form-section">
+          <div class="form-section-title"><span class="ms material-symbols-outlined">toggle_on</span>Estado y visibilidad</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div class="tgl-row">
+              <div class="tgl-info"><div class="tgl-name">Activo</div><div class="tgl-desc">El paquete se muestra en el sitio</div></div>
+              <label class="tgl"><input type="checkbox" id="fActive" checked><span class="tgl-s"></span></label>
+            </div>
+            <div class="tgl-row">
+              <div class="tgl-info"><div class="tgl-name">Destacado ★</div><div class="tgl-desc">Aparece primero con badge especial</div></div>
+              <label class="tgl"><input type="checkbox" id="fFeatured"><span class="tgl-s"></span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info principal -->
+        <div class="form-section">
+          <div class="form-section-title"><span class="ms material-symbols-outlined">info</span>Información principal</div>
+          <div class="grid2" style="margin-bottom:12px">
+            <div class="fg"><label class="fl">Nombre del Paquete *</label><input type="text" id="fName" class="fi" placeholder="Ej: Europa Clásica 10 días"></div>
+            <div class="fg"><label class="fl">Ciudad de salida</label><input type="text" id="fDeptCity" class="fi" placeholder="Rosario"></div>
+          </div>
+          <div class="grid2" style="margin-bottom:12px">
+            <div class="fg"><label class="fl">Destino *</label><input type="text" id="fDest" class="fi" placeholder="Ej: París, Italia del Sur"></div>
+            <div class="fg"><label class="fl">País *</label><input type="text" id="fCountry" class="fi" placeholder="Ej: Francia"></div>
+          </div>
+          <div class="grid3">
+            <div class="fg"><label class="fl">Días *</label><input type="number" id="fDays" class="fi" placeholder="10" min="1"></div>
+            <div class="fg">
+              <label class="fl">Continente / Categoría</label>
+              <select id="fCat" class="fs">
+                <option value="general">General</option>
+                <option value="europa">🏰 Europa</option>
+                <option value="caribe">🏝️ Caribe & México</option>
+                <option value="america_del_sur">🌎 Sudamérica</option>
+                <option value="asia">⛩️ Asia & Pacífico</option>
+                <option value="africa">🦁 África</option>
+                <option value="oceania">🦘 Oceanía</option>
+                <option value="argentina">🇦🇷 Argentina</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label class="fl">Dificultad</label>
+              <select id="fDiff" class="fs">
+                <option value="fácil">Fácil</option>
+                <option value="moderado">Moderado</option>
+                <option value="difícil">Difícil</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Precios -->
+        <div class="form-section">
+          <div class="form-section-title"><span class="ms material-symbols-outlined">payments</span>Precios & Badge</div>
+          <div class="grid3">
+            <div class="fg"><label class="fl">Precio USD *</label><input type="number" id="fPrice" class="fi" placeholder="1500" min="0" step="0.01"></div>
+            <div class="fg"><label class="fl">Precio original (tachado)</label><input type="number" id="fPriceOrig" class="fi" placeholder="1800" min="0" step="0.01"></div>
+            <div class="fg"><label class="fl">Badge</label><input type="text" id="fBadge" class="fi" placeholder="OFERTA / NUEVO / HOT"></div>
+          </div>
+        </div>
+
+      </div><!-- /tab-info -->
+
+      <!-- TAB: Imágenes -->
+      <div class="ed-panel" id="tab-media">
+
+        <div class="form-section">
+          <div class="form-section-title"><span class="ms material-symbols-outlined">photo</span>Imagen principal</div>
+          <div class="fg" style="margin-bottom:12px">
+            <label class="fl">URL de imagen</label>
+            <input type="text" id="fImgUrl" class="fi" placeholder="https://…" oninput="previewMain(this.value)">
+          </div>
+          <!-- Drop zone -->
+          <div class="drop-zone" id="mainDropZone" ondragover="handleDragOver(event,'mainDropZone')" ondragleave="handleDragLeave('mainDropZone')" ondrop="handleDrop(event,'main')">
+            <input type="file" id="mainFileInput" accept="image/*" onchange="handleFileSelect(event,'main')" style="opacity:0;position:absolute;inset:0;cursor:pointer">
+            <span class="ms material-symbols-outlined">upload_file</span>
+            <p>Arrastrá una imagen aquí</p>
+            <span>o hacé click para seleccionar</span>
+          </div>
+          <div id="mainImgWrap" style="margin-top:12px">
+            <div class="img-ph"><span class="ms material-symbols-outlined" style="font-size:30px">image</span><span>Sin imagen</span></div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title"><span class="ms material-symbols-outlined">photo_library</span>Galería</div>
+          <!-- Gallery drop zone -->
+          <div class="drop-zone" id="galDropZone" style="min-height:100px;margin-bottom:12px" ondragover="handleDragOver(event,'galDropZone')" ondragleave="handleDragLeave('galDropZone')" ondrop="handleDrop(event,'gallery')">
+            <input type="file" accept="image/*" multiple onchange="handleFileSelect(event,'gallery')" style="opacity:0;position:absolute;inset:0;cursor:pointer">
+            <span class="ms material-symbols-outlined" style="font-size:28px">add_photo_alternate</span>
+            <p style="font-size:12px">Arrastrá imágenes para la galería</p>
+            <span style="font-size:11px">Podés subir múltiples a la vez</span>
+          </div>
+          <div id="galList" class="gal-list"></div>
+          <button type="button" class="add-gal" onclick="addGalItem()">
+            <span class="ms material-symbols-outlined" style="font-size:17px">add_link</span>Agregar por URL
+          </button>
+        </div>
+
+      </div><!-- /tab-media -->
+
+      <!-- TAB: Descripción -->
+      <div class="ed-panel" id="tab-details">
+
+        <div class="form-section">
+          <div class="form-section-title"><span class="ms material-symbols-outlined">description</span>Texto</div>
+          <div class="grid1" style="gap:12px">
+            <div class="fg"><label class="fl">Descripción</label><textarea id="fDesc" class="ft" style="min-height:100px" placeholder="Descripción completa del paquete…"></textarea></div>
+            <div class="fg"><label class="fl">Highlights</label><textarea id="fHighlights" class="ft" style="min-height:80px" placeholder="Puntos clave del viaje…"></textarea></div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title"><span class="ms material-symbols-outlined">checklist</span>Incluye / No incluye</div>
+          <div class="grid2">
+            <div class="fg">
+              <label class="fl" style="color:rgba(74,222,128,0.65);margin-bottom:6px">✓ Incluye</label>
+              <div id="includesList" class="bullet-list"></div>
+              <button type="button" class="add-gal" onclick="addBullet('includes')">
+                <span class="ms material-symbols-outlined" style="font-size:16px">add</span>Agregar ítem
+              </button>
+            </div>
+            <div class="fg">
+              <label class="fl" style="color:rgba(248,113,113,0.65);margin-bottom:6px">✗ No Incluye</label>
+              <div id="excludesList" class="bullet-list"></div>
+              <button type="button" class="add-gal" onclick="addBullet('excludes')">
+                <span class="ms material-symbols-outlined" style="font-size:16px">add</span>Agregar ítem
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /tab-details -->
+
+      <!-- TAB: Itinerario -->
+      <div class="ed-panel" id="tab-itinerary">
+        <div class="form-section">
+          <div class="form-section-title"><span class="ms material-symbols-outlined">route</span>Itinerario</div>
+          <!-- Toolbar -->
+          <div class="rich-toolbar" id="richToolbar">
+            <button class="tb-btn" style="font-size:13px;font-weight:700;min-width:34px" onclick="execFmt('formatBlock','h1')" title="Título grande">H1</button>
+            <button class="tb-btn" style="font-size:12px;font-weight:700;min-width:34px" onclick="execFmt('formatBlock','h2')" title="Título de día">H2</button>
+            <button class="tb-btn" style="font-size:11px;font-weight:700;min-width:34px" onclick="execFmt('formatBlock','h3')" title="Subtítulo">H3</button>
+            <div class="tb-sep"></div>
+            <button class="tb-btn" onclick="execFmt('bold')" title="Negrita"><b>B</b></button>
+            <button class="tb-btn" onclick="execFmt('italic')" title="Cursiva"><i style="font-size:13px">I</i></button>
+            <button class="tb-btn" onclick="execFmt('underline')" title="Subrayado"><u style="font-size:12px">U</u></button>
+            <button class="tb-btn" onclick="execFmt('hiliteColor','#3778b8')" title="Resaltar azul" style="font-size:11px;background:rgba(55,120,184,0.25)">▌Az</button>
+            <button class="tb-btn" onclick="execFmt('hiliteColor','#d97706')" title="Resaltar naranja" style="font-size:11px;background:rgba(217,119,6,0.2)">▌Or</button>
+            <button class="tb-btn" onclick="execFmt('hiliteColor','transparent')" title="Quitar resaltado" style="font-size:11px">✕▌</button>
+            <div class="tb-sep"></div>
+            <button class="tb-btn" onclick="execFmt('insertUnorderedList')" title="Lista con puntos">
+              <span class="material-symbols-outlined" style="font-size:16px">format_list_bulleted</span>
+            </button>
+            <button class="tb-btn" onclick="execFmt('insertOrderedList')" title="Lista numerada">
+              <span class="material-symbols-outlined" style="font-size:16px">format_list_numbered</span>
+            </button>
+            <button class="tb-btn" onclick="execFmt('outdent')" title="Menos sangría">
+              <span class="material-symbols-outlined" style="font-size:16px">format_indent_decrease</span>
+            </button>
+            <button class="tb-btn" onclick="execFmt('indent')" title="Más sangría">
+              <span class="material-symbols-outlined" style="font-size:16px">format_indent_increase</span>
+            </button>
+            <div class="tb-sep"></div>
+            <button class="tb-btn" onclick="execFmt('fontSize','4')" title="Texto grande" style="font-size:14px;font-weight:600">A+</button>
+            <button class="tb-btn" onclick="execFmt('fontSize','3')" title="Texto normal" style="font-size:12px;font-weight:500">A</button>
+            <button class="tb-btn" onclick="execFmt('fontSize','2')" title="Texto pequeño" style="font-size:10px;font-weight:500">A−</button>
+            <div class="tb-sep"></div>
+            <button class="tb-btn" onclick="insertRichText('─────────────<br>')" title="Separador" style="font-size:13px;min-width:32px">───</button>
+            <div class="tb-sep"></div>
+            <div style="position:relative">
+              <button class="tb-btn" id="emojiTrigger" onclick="toggleEmojiPicker(event)" title="Insertar emoji" style="font-size:16px;min-width:36px">😊</button>
+              <div class="emoji-popup" id="emojiPopup">
+                <div class="emoji-grid" id="emojiGrid"></div>
+              </div>
+            </div>
+            <div class="tb-sep"></div>
+            <button class="tb-btn" onclick="execFmt('undo')" title="Deshacer">
+              <span class="material-symbols-outlined" style="font-size:15px">undo</span>
+            </button>
+            <button class="tb-btn" onclick="execFmt('redo')" title="Rehacer">
+              <span class="material-symbols-outlined" style="font-size:15px">redo</span>
+            </button>
+            <button class="tb-btn" onclick="execFmt('removeFormat')" title="Quitar formato">
+              <span class="material-symbols-outlined" style="font-size:15px">format_clear</span>
+            </button>
+          </div>
+          <!-- Contenteditable editor -->
+          <div id="richItinerary" class="rich-editor" contenteditable="true"
+            data-placeholder="Escribí el itinerario día a día. Usá H2 para cada día, negrita para lugares destacados, listas para actividades…"
+            spellcheck="false"
+            onkeydown="richEditorKeydown(event)"></div>
+        </div>
+      </div><!-- /tab-itinerary -->
+
+    </div><!-- /ed-body -->
+  </div><!-- /editorPanel -->
+
+</div><!-- /app -->
+
+<!-- Context Menu -->
+<div id="ctxMenu">
+  <div class="ctx-item" id="ctxEdit" onclick="ctxAction('edit')"><span class="ms material-symbols-outlined">edit</span>Editar paquete</div>
+  <div class="ctx-item" id="ctxToggle" onclick="ctxAction('toggle')"><span class="ms material-symbols-outlined" id="ctxToggleIcon">toggle_on</span><span id="ctxToggleLabel">Activar</span></div>
+  <div class="ctx-item" id="ctxFeatured" onclick="ctxAction('featured')"><span class="ms material-symbols-outlined" id="ctxFeaturedIcon">star</span><span id="ctxFeaturedLabel">Marcar destacado</span></div>
+  <div class="ctx-item" onclick="ctxAction('duplicate')"><span class="ms material-symbols-outlined">content_copy</span>Duplicar</div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item danger" onclick="ctxAction('delete')"><span class="ms material-symbols-outlined">delete</span>Eliminar</div>
+</div>
+
+<!-- Toast -->
+<div id="toast"><div id="toastInner" class="toast-inner"></div></div>
+
+<!-- Confirm Dialog -->
+<div id="confirmDlg">
+  <div class="confirm-card">
+    <h3 id="confirmTitle">¿Eliminar paquete?</h3>
+    <p id="confirmMsg">Esta acción no se puede deshacer.</p>
+    <div class="confirm-actions">
+      <button class="btn btn-ghost" onclick="closeConfirm()">Cancelar</button>
+      <button class="btn btn-danger" id="confirmOk">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ═══════════════ CONFIG ═══════════════
+const SUPABASE_URL  = 'https://czocbnyoenjbpxmcqobn.supabase.co';
+const SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN6b2NibnlvZW5qYnB4bWNxb2JuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI4NDI5MTMsImV4cCI6MjA2ODQxODkxM30.pNgJnwAY8uxb6yCQilJfD92VNwsCkntr4Ie_os2lI44';
+const ADMIN_PASS    = 'corradi2026';
+
+const { createClient } = supabase;
+const db = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ═══════════════ STATE ════════════════
+let packages = [];
+let activeContactFilter = 'all';
+let editingId = null;
+let galUrls = [];
+let confirmCb = null;
+let toastTimer;
+let viewMode = 'grid'; // 'grid' | 'list'
+let ctxPackageId = null;
+let includesItems = [];
+let excludesItems = [];
+let emojiSavedRange = null;
+let dragSrcId = null;
+let isSavingOrder = false;
+
+// ═══════════════ AUTH ═════════════════
+let isAuth = sessionStorage.getItem('corradi_adm') === '1';
+
+function doLogin() {
+  const v = document.getElementById('passInput').value;
+  if (v === ADMIN_PASS) {
+    sessionStorage.setItem('corradi_adm','1');
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').classList.add('on');
+    initApp();
+  } else {
+    document.getElementById('loginErr').textContent = 'Contraseña incorrecta';
+    document.getElementById('passInput').select();
+  }
+}
+function doLogout() { sessionStorage.removeItem('corradi_adm'); location.reload(); }
+
+// ═══════════════ INIT ═════════════════
+function init() {
+  if (isAuth) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').classList.add('on');
+    initApp();
+  }
+}
+async function initApp() {
+  await loadPackages();
+}
+
+// ═══════════════ SIDEBAR ══════════════
+function openSidebar() {
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sbOverlay').classList.add('show');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sbOverlay').classList.remove('show');
+}
+
+// ═══════════════ VIEWS ════════════════
+const VIEWS = ['dashboard','packages'];
+
+function switchView(v) {
+  VIEWS.forEach(id => {
+    document.getElementById('view'+capitalize(id))?.classList.toggle('active', id===v);
+  });
+  document.getElementById('navDash')?.classList.toggle('active', v==='dashboard');
+  document.getElementById('navPkg')?.classList.toggle('active', v==='packages');
+  closeSidebar();
+}
+function capitalize(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+
+// ── Sidebar quick filters ──
+let activeSbFilter = 'all';
+function switchPkgFilter(status, cont) {
+  switchView('packages');
+  const statusEl = document.getElementById('filterStatus');
+  const contEl   = document.getElementById('filterContinent');
+  if (statusEl) statusEl.value = status;
+  if (contEl)   contEl.value   = cont || 'all';
+  activeSbFilter = status;
+  document.querySelectorAll('.sb-sub-item').forEach(el => el.classList.remove('active'));
+  const map = { all:'sbFilterAll', featured:'sbFilterFeatured', offer:'sbFilterOffer', active:'sbFilterActive', inactive:'sbFilterInactive' };
+  document.getElementById(map[status])?.classList.add('active');
+  renderPkgView();
+}
+function updateSbCounts() {
+  const tot  = packages.length;
+  const act  = packages.filter(p=>p.active).length;
+  const feat = packages.filter(p=>p.featured).length;
+  const offs = packages.filter(p=>p.badge||(p.price_original_usd&&p.price_original_usd>p.price_usd)).length;
+  const inact= tot - act;
+  document.getElementById('sbCountAll').textContent      = tot;
+  document.getElementById('sbCountFeatured').textContent = feat;
+  document.getElementById('sbCountOffer').textContent    = offs;
+  document.getElementById('sbCountActive').textContent   = act;
+  document.getElementById('sbCountInactive').textContent = inact;
+}
+
+// ═══════════════ PACKAGES ═════════════
+async function loadPackages() {
+  const { data, error } = await db.from('corradi_packages').select('*').order('id', {ascending:false});
+  if (error) { showToast('Error al cargar paquetes','error'); return; }
+  packages = data || [];
+  updateStats();
+  renderPkgView();
+  renderDashboard();
+}
+
+function updateStats() {
+  const tot  = packages.length;
+  const act  = packages.filter(p=>p.active).length;
+  const feat = packages.filter(p=>p.featured).length;
+  const offs = packages.filter(p=>p.badge||(p.price_original_usd&&p.price_original_usd>p.price_usd)).length;
+  document.getElementById('sTotal').textContent    = tot;
+  document.getElementById('sActive').textContent   = act;
+  document.getElementById('sInactive').textContent = tot-act;
+  document.getElementById('sFeatured').textContent = feat;
+  document.getElementById('sOffers').textContent   = offs;
+  updateSbCounts();
+}
+
+function renderDashboard() {
+  const tot   = packages.length;
+  const act   = packages.filter(p=>p.active).length;
+  const feat  = packages.filter(p=>p.featured).length;
+  const offs  = packages.filter(p=>p.badge||( p.price_original_usd&&p.price_original_usd>p.price_usd)).length;
+  const inact = tot - act;
+  document.getElementById('dTotal').textContent    = tot;
+  document.getElementById('dActive').textContent   = act;
+  document.getElementById('dFeatured').textContent = feat;
+  document.getElementById('dOffers').textContent   = offs;
+  document.getElementById('dInactive').textContent = inact;
+  // Recent 4 packages
+  const recent = packages.slice(0,4);
+  document.getElementById('recentPkgs').innerHTML = recent.map(p => renderPkgCard(p)).join('');
+  bindCardEvents();
+}
+
+function getFilteredPackages() {
+  const q    = (document.getElementById('pkgSearch')?.value||'').toLowerCase().trim();
+  const stat = document.getElementById('filterStatus')?.value || 'all';
+  const cont = document.getElementById('filterContinent')?.value || 'all';
+  const sort = document.getElementById('filterSort')?.value || 'newest';
+
+  let list = [...packages];
+  if (q) list = list.filter(p =>
+    p.name?.toLowerCase().includes(q)||
+    p.destination?.toLowerCase().includes(q)||
+    p.country?.toLowerCase().includes(q)
+  );
+  if (stat==='active')   list = list.filter(p=>p.active);
+  if (stat==='inactive') list = list.filter(p=>!p.active);
+  if (stat==='featured') list = list.filter(p=>p.featured);
+  if (stat==='offer')    list = list.filter(p=>p.badge||(p.price_original_usd&&p.price_original_usd>p.price_usd));
+  if (cont!=='all')      list = list.filter(p=>p.category===cont);
+
+  switch(sort) {
+    case 'manual':        list.sort((a,b)=>(a.sort_order??99999)-(b.sort_order??99999)); break;
+    case 'oldest':        list.sort((a,b)=>a.id-b.id); break;
+    case 'price_asc':     list.sort((a,b)=>a.price_usd-b.price_usd); break;
+    case 'price_desc':    list.sort((a,b)=>b.price_usd-a.price_usd); break;
+    case 'name_az':       list.sort((a,b)=>a.name?.localeCompare(b.name)); break;
+    case 'featured_first':list.sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)); break;
+    default:              list.sort((a,b)=>b.id-a.id);
+  }
+  return list;
+}
+
+const CAT_META = {
+  europa:         { label:'Europa',          emoji:'🏰' },
+  caribe:         { label:'Caribe & México', emoji:'🏝️' },
+  america_del_sur:{ label:'Sudamérica',       emoji:'🌎' },
+  asia:           { label:'Asia & Pacífico',  emoji:'⛩️' },
+  africa:         { label:'África',           emoji:'🦁' },
+  oceania:        { label:'Oceanía',          emoji:'🦘' },
+  argentina:      { label:'Argentina',        emoji:'🇦🇷' },
+  general:        { label:'General',          emoji:'🌍' },
+};
+
+function renderPkgView() {
+  const container = document.getElementById('pkgViewContainer');
+  if (!container) return;
+  const list = getFilteredPackages();
+  if (!list.length) {
+    container.innerHTML = `<div class="empty"><span class="ms material-symbols-outlined">travel_off</span><p>No se encontraron paquetes con esos filtros</p></div>`;
+    return;
+  }
+  const isList = viewMode === 'list';
+  const renderFn = isList ? renderPkgListItem : renderPkgCard;
+  const wrapClass = isList ? 'pkg-list' : 'pkg-grid';
+  container.innerHTML = `<div class="${wrapClass}">${list.map(p=>renderFn(p)).join('')}</div>`;
+  bindCardEvents();
+}
+
+function renderPkgCard(p) {
+  const img = p.image_url
+    ? `<img class="pkg-img" src="${p.image_url}" alt="${p.name}" onerror="this.style.display='none'">`
+    : `<div class="pkg-img-placeholder"><span class="ms material-symbols-outlined" style="font-size:30px;opacity:.2">image</span></div>`;
+  return `
+  <div class="pkg-card" data-id="${p.id}" draggable="true"
+    onclick="openEditor(${p.id})" oncontextmenu="showCtxMenu(event,${p.id})"
+    ondragstart="onDragStart(event,${p.id})" ondragover="onDragOver(event,${p.id})"
+    ondragleave="onDragLeave(event)" ondrop="onDrop(event,${p.id})" ondragend="onDragEnd(event)">
+    ${img}
+    <div class="pkg-drag-handle" title="Arrastrar para reordenar"><span class="ms material-symbols-outlined">drag_indicator</span></div>
+    <div class="pkg-quick">
+      <button class="pkg-qbtn" style="background:${p.featured?'rgba(251,191,36,0.3)':'rgba(0,0,0,0.5)'}" onclick="event.stopPropagation();quickToggleFeatured(${p.id})" title="${p.featured?'Quitar destacado':'Marcar destacado'}">
+        <span class="ms material-symbols-outlined" style="color:${p.featured?'#fbbf24':'rgba(255,255,255,0.7)'};font-variation-settings:'FILL' ${p.featured?'1':'0'}">star</span>
+      </button>
+      <button class="pkg-qbtn" style="background:${p.active?'rgba(74,222,128,0.2)':'rgba(239,68,68,0.2)'}" onclick="event.stopPropagation();quickToggleActive(${p.id})" title="${p.active?'Desactivar':'Activar'}">
+        <span class="ms material-symbols-outlined" style="color:${p.active?'#4ade80':'#f87171'}">power_settings_new</span>
+      </button>
+    </div>
+    <div class="pkg-body">
+      <div class="pkg-name">${p.name}</div>
+      <div class="pkg-sub">${p.destination||''} · ${p.days} días</div>
+      <div class="pkg-footer">
+        <div>
+          <div class="pkg-price">USD ${Number(p.price_usd).toLocaleString('es-AR')}</div>
+          ${p.price_original_usd&&p.price_original_usd>p.price_usd?`<div style="font-size:10px;color:rgba(255,255,255,0.33);text-decoration:line-through;margin-top:1px">USD ${Number(p.price_original_usd).toLocaleString('es-AR')}</div>`:''}
+        </div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap">
+          ${p.active?'<span class="pill pill-active">Activo</span>':'<span class="pill pill-inactive">Inactivo</span>'}
+          ${p.featured?'<span class="pill pill-featured">★</span>':''}
+          ${p.badge?`<span class="pill pill-badge">${p.badge}</span>`:''}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderPkgListItem(p) {
+  const thumb = p.image_url
+    ? `<img class="pkg-list-thumb" src="${p.image_url}" alt="${p.name}" onerror="this.style.display='none'">`
+    : `<div class="pkg-list-thumb-ph"><span class="ms material-symbols-outlined" style="font-size:18px;opacity:.2">image</span></div>`;
+  return `
+  <div class="pkg-list-item" data-id="${p.id}" draggable="true"
+    onclick="openEditor(${p.id})" oncontextmenu="showCtxMenu(event,${p.id})"
+    ondragstart="onDragStart(event,${p.id})" ondragover="onDragOver(event,${p.id})"
+    ondragleave="onDragLeave(event)" ondrop="onDrop(event,${p.id})" ondragend="onDragEnd(event)">
+    <div class="drag-list-handle" title="Arrastrar para reordenar"><span class="ms material-symbols-outlined">drag_indicator</span></div>
+    ${thumb}
+    <div class="pkg-list-info">
+      <div class="pkg-list-name">${p.name}</div>
+      <div class="pkg-list-sub">${p.destination||''}${p.country?' · '+p.country:''} · ${p.days} días</div>
+    </div>
+    <div class="pkg-list-price">
+      USD ${Number(p.price_usd).toLocaleString('es-AR')}
+      ${p.price_original_usd&&p.price_original_usd>p.price_usd?`<div style="font-size:10px;color:rgba(255,255,255,0.3);text-decoration:line-through;font-weight:500">USD ${Number(p.price_original_usd).toLocaleString('es-AR')}</div>`:''}
+    </div>
+    <div class="pkg-list-pills">
+      ${p.active?'<span class="pill pill-active">Activo</span>':'<span class="pill pill-inactive">Inactivo</span>'}
+      ${p.featured?'<span class="pill pill-featured">★</span>':''}
+      ${p.badge?`<span class="pill pill-badge">${p.badge}</span>`:''}
+    </div>
+    <div class="pkg-list-actions" onclick="event.stopPropagation()">
+      <button class="pkg-qbtn" style="background:${p.featured?'rgba(251,191,36,0.2)':'rgba(255,255,255,0.05)'};width:30px;height:30px" onclick="quickToggleFeatured(${p.id})" title="${p.featured?'Quitar destacado':'Destacar'}">
+        <span class="ms material-symbols-outlined" style="color:${p.featured?'#fbbf24':'rgba(255,255,255,0.4)'};font-size:15px;font-variation-settings:'FILL' ${p.featured?'1':'0'}">star</span>
+      </button>
+      <button class="pkg-qbtn" style="background:${p.active?'rgba(74,222,128,0.1)':'rgba(239,68,68,0.1)'};width:30px;height:30px" onclick="quickToggleActive(${p.id})" title="${p.active?'Desactivar':'Activar'}">
+        <span class="ms material-symbols-outlined" style="color:${p.active?'#4ade80':'#f87171'};font-size:15px">power_settings_new</span>
+      </button>
+      <button class="pkg-qbtn" style="background:rgba(55,120,184,0.1);width:30px;height:30px" onclick="openEditor(${p.id})" title="Editar">
+        <span class="ms material-symbols-outlined" style="color:#7ab3e0;font-size:15px">edit</span>
+      </button>
+    </div>
+  </div>`;
+}
+
+function bindCardEvents() {
+  document.querySelectorAll('.pkg-card,.pkg-list-item').forEach(card => {
+    card.addEventListener('contextmenu', e => e.preventDefault());
+  });
+}
+
+// ── Quick toggles ──
+async function quickToggleFeatured(id) {
+  const p = packages.find(x=>x.id===id);
+  if (!p) return;
+  const { error } = await db.from('corradi_packages').update({featured:!p.featured}).eq('id',id);
+  if (error) { showToast('Error','error'); return; }
+  p.featured = !p.featured;
+  showToast(p.featured?'Marcado como destacado ★':'Quitado de destacados','success');
+  updateStats();
+  renderPkgView();
+  renderDashboard();
+}
+
+async function quickToggleActive(id) {
+  const p = packages.find(x=>x.id===id);
+  if (!p) return;
+  const { error } = await db.from('corradi_packages').update({active:!p.active}).eq('id',id);
+  if (error) { showToast('Error','error'); return; }
+  p.active = !p.active;
+  showToast(p.active?'Paquete activado ✓':'Paquete desactivado','success');
+  updateStats();
+  renderPkgView();
+  renderDashboard();
+}
+
+// ── Context menu ──
+function showCtxMenu(e, id) {
+  e.preventDefault();
+  e.stopPropagation();
+  ctxPackageId = id;
+  const p = packages.find(x=>x.id===id);
+  if (!p) return;
+
+  document.getElementById('ctxToggleIcon').textContent = p.active ? 'toggle_off' : 'toggle_on';
+  document.getElementById('ctxToggleLabel').textContent = p.active ? 'Desactivar paquete' : 'Activar paquete';
+  document.getElementById('ctxFeaturedIcon').textContent = p.featured ? 'star_border' : 'star';
+  document.getElementById('ctxFeaturedLabel').textContent = p.featured ? 'Quitar destacado' : 'Marcar destacado';
+
+  const menu = document.getElementById('ctxMenu');
+  menu.style.display = 'block';
+  const mx = e.clientX, my = e.clientY;
+  const mw = menu.offsetWidth, mh = menu.offsetHeight;
+  menu.style.left = (mx + mw > window.innerWidth ? mx - mw : mx) + 'px';
+  menu.style.top  = (my + mh > window.innerHeight ? my - mh : my) + 'px';
+
+  // Highlight card
+  document.querySelectorAll('.pkg-card.context-open').forEach(c=>c.classList.remove('context-open'));
+  document.querySelector(`.pkg-card[data-id="${id}"]`)?.classList.add('context-open');
+}
+
+function hideCtxMenu() {
+  document.getElementById('ctxMenu').style.display = 'none';
+  document.querySelectorAll('.pkg-card.context-open').forEach(c=>c.classList.remove('context-open'));
+  ctxPackageId = null;
+}
+
+async function ctxAction(action) {
+  const id = ctxPackageId;
+  hideCtxMenu();
+  if (!id) return;
+  switch(action) {
+    case 'edit':     openEditor(id); break;
+    case 'toggle':   await quickToggleActive(id); break;
+    case 'featured': await quickToggleFeatured(id); break;
+    case 'duplicate':await duplicatePackageById(id); break;
+    case 'delete':
+      editingId = id;
+      const p = packages.find(x=>x.id===id);
+      document.getElementById('confirmTitle').textContent = '¿Eliminar paquete?';
+      document.getElementById('confirmMsg').textContent = `"${p?.name}" será eliminado permanentemente.`;
+      confirmCb = doDeletePackage;
+      document.getElementById('confirmDlg').classList.add('show');
+      break;
+  }
+}
+
+document.addEventListener('keydown', e => { if (e.key==='Escape') { hideCtxMenu(); closeEditor(); closeConfirm(); } });
+
+// ── Editor tabs ──
+function switchEdTab(id, el) {
+  document.querySelectorAll('.ed-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.ed-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+// ── Editor ──
+function openEditor(pkgId) {
+  editingId = pkgId;
+  const p = pkgId ? packages.find(x=>x.id===pkgId) : null;
+  document.getElementById('edTitle').textContent = p ? `Editar: ${p.name}` : 'Nuevo Paquete';
+  document.getElementById('btnDelete').style.display    = p ? 'inline-flex' : 'none';
+  document.getElementById('btnDuplicate').style.display = p ? 'inline-flex' : 'none';
+  document.getElementById('editId').value = p?.id || '';
+
+  document.getElementById('fName').value       = p?.name || '';
+  document.getElementById('fDest').value       = p?.destination || '';
+  document.getElementById('fCountry').value    = p?.country || '';
+  document.getElementById('fDeptCity').value   = p?.departure_city || 'Rosario';
+  document.getElementById('fDays').value       = p?.days || '';
+  document.getElementById('fCat').value        = p?.category || 'general';
+  document.getElementById('fDiff').value       = p?.difficulty || 'fácil';
+  document.getElementById('fPrice').value      = p?.price_usd || '';
+  document.getElementById('fPriceOrig').value  = p?.price_original_usd || '';
+  document.getElementById('fBadge').value      = p?.badge || '';
+  document.getElementById('fActive').checked   = p ? p.active : true;
+  document.getElementById('fFeatured').checked = p?.featured || false;
+  document.getElementById('fImgUrl').value     = p?.image_url || '';
+  document.getElementById('fDesc').value       = p?.description || '';
+  document.getElementById('fHighlights').value = p?.highlights || '';
+
+  // Bullet lists
+  includesItems = parseBullets(p?.includes || '');
+  excludesItems = parseBullets(p?.excludes || '');
+  renderBullets('includes');
+  renderBullets('excludes');
+
+  // Rich itinerary
+  const itin = p?.itinerary;
+  let itinHtml = '';
+  if (typeof itin === 'string' && itin.trim()) {
+    if (itin.includes('<') && itin.includes('>')) itinHtml = itin;
+    else itinHtml = markdownToHtml(itin);
+  } else if (Array.isArray(itin) && itin.length) {
+    itinHtml = markdownToHtml(itin.map(d=>`## ${d.title||'Día'}\n${d.description||''}`).join('\n\n'));
+  }
+  const richEl = document.getElementById('richItinerary');
+  if (richEl) richEl.innerHTML = itinHtml;
+
+  previewMain(p?.image_url||'');
+  let imgs = [];
+  if (p?.images) {
+    if (Array.isArray(p.images)) imgs = p.images.filter(x=>typeof x==='string'&&x);
+    else { try { imgs = JSON.parse(p.images); } catch(e){} }
+  }
+  galUrls = [...imgs];
+  renderGal();
+
+  // Reset to first tab
+  document.querySelectorAll('.ed-tab').forEach((t,i)=>t.classList.toggle('active',i===0));
+  document.querySelectorAll('.ed-panel').forEach((p,i)=>p.classList.toggle('active',i===0));
+
+  document.getElementById('editorPanel').classList.add('open');
+  document.getElementById('editorPanel').scrollTop = 0;
+}
+
+function closeEditor() {
+  document.getElementById('editorPanel').classList.remove('open');
+  editingId = null;
+}
+
+function previewMain(url) {
+  const w = document.getElementById('mainImgWrap');
+  if (!w) return;
+  if (url?.trim()) {
+    w.innerHTML = `<img class="img-preview" src="${url}" alt="Preview" onerror="this.parentElement.innerHTML='<div class=img-ph><span class=ms style=font-size:28px>broken_image</span><span>URL inválida</span></div>'">`;
+  } else {
+    w.innerHTML = `<div class="img-ph"><span class="ms material-symbols-outlined" style="font-size:28px">image</span><span>Sin imagen</span></div>`;
+  }
+}
+
+// ── Gallery ──
+function renderGal() {
+  const list = document.getElementById('galList');
+  if (!list) return;
+  list.innerHTML = galUrls.map((url,i)=>`
+  <div class="gal-item">
+    <img class="gal-thumb" src="${url}" alt="" onerror="this.style.opacity='.2'">
+    <input type="text" class="gal-inp" value="${url}" placeholder="https://…"
+      oninput="galUrls[${i}]=this.value;const t=this.closest('.gal-item').querySelector('.gal-thumb');t.src=this.value;t.style.opacity='1'">
+    <button type="button" class="gal-rm" onclick="removeGal(${i})"><span class="ms material-symbols-outlined" style="font-size:15px">close</span></button>
+  </div>`).join('');
+}
+function addGalItem() { galUrls.push(''); renderGal(); document.querySelectorAll('.gal-inp')[galUrls.length-1]?.focus(); }
+function removeGal(i) { galUrls.splice(i,1); renderGal(); }
+
+// ── Drag & Drop ──
+function handleDragOver(e, zoneId) {
+  e.preventDefault();
+  document.getElementById(zoneId)?.classList.add('drag-over');
+}
+function handleDragLeave(zoneId) {
+  document.getElementById(zoneId)?.classList.remove('drag-over');
+}
+function handleDrop(e, target) {
+  e.preventDefault();
+  const zoneId = target === 'main' ? 'mainDropZone' : 'galDropZone';
+  document.getElementById(zoneId)?.classList.remove('drag-over');
+  const files = Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith('image/'));
+  files.forEach(file => processImageFile(file, target));
+}
+function handleFileSelect(e, target) {
+  const files = Array.from(e.target.files).filter(f=>f.type.startsWith('image/'));
+  files.forEach(file => processImageFile(file, target));
+  e.target.value = '';
+}
+
+async function processImageFile(file, target) {
+  // Upload to Supabase Storage
+  const bucket = 'corradi-images';
+  const path = `packages/${Date.now()}_${file.name.replace(/[^a-z0-9.]/gi,'_')}`;
+  showToast(`Subiendo ${file.name}…`,'success');
+
+  const { data, error } = await db.storage.from(bucket).upload(path, file, { upsert:true });
+  if (error) {
+    // Fallback: use local object URL for preview
+    const url = URL.createObjectURL(file);
+    applyImageUrl(url, target);
+    showToast('Imagen lista (URL temporal) — configurá Supabase Storage para URLs permanentes','success');
+    return;
+  }
+  const { data: pub } = db.storage.from(bucket).getPublicUrl(path);
+  applyImageUrl(pub.publicUrl, target);
+  showToast('Imagen subida ✓','success');
+}
+
+function applyImageUrl(url, target) {
+  if (target === 'main') {
+    document.getElementById('fImgUrl').value = url;
+    previewMain(url);
+  } else {
+    galUrls.push(url);
+    renderGal();
+  }
+}
+
+// ── Duplicate ──
+async function duplicatePackage() { if (editingId) await duplicatePackageById(editingId); }
+async function duplicatePackageById(id) {
+  const p = packages.find(x=>x.id===id);
+  if (!p) return;
+  const payload = {...p};
+  delete payload.id;
+  delete payload.created_at;
+  payload.name = payload.name + ' (copia)';
+  payload.active = false;
+  const { data, error } = await db.from('corradi_packages').insert(payload).select().single();
+  if (error) { showToast('Error al duplicar','error'); return; }
+  showToast('Paquete duplicado ✓','success');
+  await loadPackages();
+  openEditor(data.id);
+}
+
+// ── Save ──
+async function savePackage() {
+  const name    = document.getElementById('fName').value.trim();
+  const dest    = document.getElementById('fDest').value.trim();
+  const country = document.getElementById('fCountry').value.trim();
+  const days    = parseInt(document.getElementById('fDays').value);
+  const price   = parseFloat(document.getElementById('fPrice').value);
+  if (!name || !dest || !country || !days || isNaN(price)) {
+    showToast('Completá los campos obligatorios (*)','error'); return;
+  }
+  const btn = document.getElementById('btnSave');
+  btn.innerHTML = '<div class="spinner"></div> Guardando…'; btn.disabled = true;
+
+  const payload = {
+    name, destination:dest, country,
+    departure_city: document.getElementById('fDeptCity').value.trim()||'Rosario',
+    days, category:document.getElementById('fCat').value, difficulty:document.getElementById('fDiff').value,
+    price_usd:price,
+    price_original_usd: parseFloat(document.getElementById('fPriceOrig').value)||null,
+    badge:    document.getElementById('fBadge').value.trim()||null,
+    active:   document.getElementById('fActive').checked,
+    featured: document.getElementById('fFeatured').checked,
+    image_url:document.getElementById('fImgUrl').value.trim()||null,
+    images:   galUrls.filter(u=>u.trim()),
+    description: document.getElementById('fDesc').value.trim()||null,
+    highlights:  document.getElementById('fHighlights').value.trim()||null,
+    includes:    getBulletsText('includes')||null,
+    excludes:    getBulletsText('excludes')||null,
+    itinerary:   (document.getElementById('richItinerary')?.innerHTML||'').trim()||null,
+  };
+
+  let res;
+  if (editingId) {
+    res = await db.from('corradi_packages').update(payload).eq('id',editingId).select().single();
+  } else {
+    res = await db.from('corradi_packages').insert(payload).select().single();
+  }
+
+  btn.innerHTML = '<span class="ms material-symbols-outlined">save</span> Guardar'; btn.disabled = false;
+  if (res.error) { showToast('Error: '+res.error.message,'error'); return; }
+  showToast(editingId?'Paquete actualizado ✓':'Paquete creado ✓','success');
+  await loadPackages();
+  closeEditor();
+}
+
+// ── Delete ──
+function confirmDelete() {
+  const p = packages.find(x=>x.id===editingId);
+  document.getElementById('confirmTitle').textContent = '¿Eliminar paquete?';
+  document.getElementById('confirmMsg').textContent = `"${p?.name}" será eliminado permanentemente.`;
+  confirmCb = doDeletePackage;
+  document.getElementById('confirmDlg').classList.add('show');
+}
+async function doDeletePackage() {
+  const { error } = await db.from('corradi_packages').delete().eq('id',editingId);
+  if (error) { showToast('Error al eliminar','error'); return; }
+  showToast('Paquete eliminado','success');
+  await loadPackages();
+  closeEditor();
+}
+function closeConfirm() { document.getElementById('confirmDlg').classList.remove('show'); confirmCb=null; }
+document.getElementById('confirmOk').onclick = () => { if (confirmCb) confirmCb(); closeConfirm(); };
+
+// ── View mode toggle ──
+function toggleViewMode() {
+  viewMode = viewMode === 'grid' ? 'list' : 'grid';
+  document.getElementById('viewToggleIcon').textContent = viewMode === 'list' ? 'grid_view' : 'view_list';
+  document.getElementById('viewToggleBtn').title = viewMode === 'list' ? 'Cambiar a cuadrícula' : 'Cambiar a lista';
+  renderPkgView();
+}
+
+
+// ═══════════════ TOAST ════════════════
+function showToast(msg, type='success') {
+  const inner = document.getElementById('toastInner');
+  inner.className = `toast-inner ${type}`;
+  inner.innerHTML = `<span class="ms material-symbols-outlined">${type==='success'?'check_circle':'error'}</span>${msg}`;
+  document.getElementById('toast').classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>document.getElementById('toast').classList.remove('show'), 3500);
+}
+
+// ═══════════════ DRAG & DROP ORDER ════
+function onDragStart(e, id) {
+  dragSrcId = id;
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', id);
+  setTimeout(() => {
+    const el = document.querySelector(`[data-id="${id}"]`);
+    el?.classList.add('dragging');
+  }, 0);
+}
+
+function onDragOver(e, id) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  if (dragSrcId === id) return;
+  document.querySelectorAll('.pkg-card.drag-over,.pkg-list-item.drag-over').forEach(c=>c.classList.remove('drag-over'));
+  document.querySelector(`[data-id="${id}"]`)?.classList.add('drag-over');
+}
+
+function onDragLeave(e) {
+  e.currentTarget.classList.remove('drag-over');
+}
+
+function onDragEnd(e) {
+  document.querySelectorAll('.pkg-card,.pkg-list-item').forEach(c=>{
+    c.classList.remove('dragging','drag-over');
+  });
+  dragSrcId = null;
+}
+
+async function onDrop(e, destId) {
+  e.preventDefault();
+  document.querySelectorAll('.pkg-card,.pkg-list-item').forEach(c=>c.classList.remove('drag-over','dragging'));
+  const srcId = dragSrcId;
+  dragSrcId = null;
+  if (!srcId || srcId === destId) return;
+
+  // Get current visible list (respects all active filters)
+  const list = getFilteredPackages();
+  const srcIdx  = list.findIndex(p=>p.id===srcId);
+  const destIdx = list.findIndex(p=>p.id===destId);
+  if (srcIdx === -1 || destIdx === -1) return;
+
+  // Reorder
+  const [moved] = list.splice(srcIdx, 1);
+  list.splice(destIdx, 0, moved);
+
+  // Assign new sort_order (1-based) to reordered list
+  list.forEach((p, i) => { p.sort_order = i + 1; });
+  // Update global packages array too
+  list.forEach(p => {
+    const g = packages.find(x=>x.id===p.id);
+    if (g) g.sort_order = p.sort_order;
+  });
+
+  // Switch to manual sort to reflect the change
+  const sortEl = document.getElementById('filterSort');
+  if (sortEl) sortEl.value = 'manual';
+
+  renderPkgView();
+
+  if (isSavingOrder) return;
+  isSavingOrder = true;
+  try {
+    await Promise.all(list.map(p=>
+      db.from('corradi_packages').update({sort_order: p.sort_order}).eq('id', p.id)
+    ));
+    showToast('Orden guardado ✓','success');
+  } catch(err) {
+    showToast('Error al guardar orden','error');
+  } finally {
+    isSavingOrder = false;
+  }
+}
+
+// ═══════════════ BULLET LISTS ═════════
+function parseBullets(text) {
+  if (!text) return [];
+  return text.split('\n')
+    .map(l => l.replace(/^[\s•\-\*✓✗✔►→]+\s*/, '').trim())
+    .filter(l => l.length > 0);
+}
+
+function renderBullets(type) {
+  const items = type === 'includes' ? includesItems : excludesItems;
+  const containerId = type === 'includes' ? 'includesList' : 'excludesList';
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const dot   = type === 'includes' ? '✓' : '✗';
+  const color = type === 'includes' ? '#4ade80' : '#f87171';
+  container.innerHTML = items.map((item, i) => `
+  <div class="bullet-item">
+    <span class="bullet-dot" style="color:${color}">${dot}</span>
+    <input type="text" class="bullet-inp" value="${escHtml(item)}"
+      placeholder="Escribí el ítem…"
+      oninput="updateBullet('${type}',${i},this.value)"
+      onkeydown="bulletKeydown(event,'${type}',${i})">
+    <button type="button" class="bullet-rm" onclick="removeBullet('${type}',${i})" title="Eliminar">
+      <span class="ms material-symbols-outlined">close</span>
+    </button>
+  </div>`).join('');
+}
+
+function addBullet(type) {
+  const items = type === 'includes' ? includesItems : excludesItems;
+  items.push('');
+  renderBullets(type);
+  const containerId = type === 'includes' ? 'includesList' : 'excludesList';
+  const inputs = document.getElementById(containerId)?.querySelectorAll('.bullet-inp');
+  inputs?.[inputs.length - 1]?.focus();
+}
+
+function removeBullet(type, i) {
+  const items = type === 'includes' ? includesItems : excludesItems;
+  items.splice(i, 1);
+  renderBullets(type);
+}
+
+function updateBullet(type, i, val) {
+  (type === 'includes' ? includesItems : excludesItems)[i] = val;
+}
+
+function bulletKeydown(e, type, i) {
+  if (e.key === 'Enter') { e.preventDefault(); addBullet(type); }
+  if (e.key === 'Backspace') {
+    const items = type === 'includes' ? includesItems : excludesItems;
+    if (!items[i]) { e.preventDefault(); removeBullet(type, i); }
+  }
+}
+
+function getBulletsText(type) {
+  return (type === 'includes' ? includesItems : excludesItems)
+    .filter(i => i.trim()).join('\n');
+}
+
+function escHtml(str) {
+  return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ═══════════════ RICH EDITOR ══════════
+function execFmt(cmd, val) {
+  const editor = document.getElementById('richItinerary');
+  if (!editor) return;
+  editor.focus();
+  try { document.execCommand(cmd, false, val ?? null); } catch(e) {}
+}
+
+function insertRichText(html) {
+  const editor = document.getElementById('richItinerary');
+  if (!editor) return;
+  editor.focus();
+  document.execCommand('insertHTML', false, html);
+}
+
+function richEditorKeydown(e) {
+  // Tab = indent
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    document.execCommand(e.shiftKey ? 'outdent' : 'indent', false);
+  }
+}
+
+function markdownToHtml(md) {
+  if (!md) return '';
+  const lines = md.split('\n');
+  const out = [];
+  for (const line of lines) {
+    if (line.startsWith('### '))       out.push(`<h3>${line.slice(4)}</h3>`);
+    else if (line.startsWith('## '))   out.push(`<h2>${line.slice(3)}</h2>`);
+    else if (line.startsWith('# '))    out.push(`<h1>${line.slice(2)}</h1>`);
+    else if (line.startsWith('- ') || line.startsWith('• ')) out.push(`<li>${line.slice(2)}</li>`);
+    else if (line.trim() === '')       out.push('<br>');
+    else out.push(`<p>${line}</p>`);
+  }
+  return out.join('');
+}
+
+// ── Emoji picker ──
+const TRAVEL_EMOJIS = [
+  '✈️','🌍','🏖️','🏔️','🗺️','🏨','🍽️','🚌','🚢','🛫',
+  '🌅','🌇','📸','🎭','🗼','🏛️','⛪','🕌','🌺','🌊',
+  '☀️','🌙','⭐','💫','🎉','🎊','✅','❌','🔹','🔸',
+  '📍','📌','🎯','💡','ℹ️','⚠️','📋','🗓️','🕐','🧳',
+  '🎒','🏅','💎','🌿','🍃','🦁','🏰','🏝️','🌎','⛩️',
+];
+
+function initEmojiGrid() {
+  const grid = document.getElementById('emojiGrid');
+  if (!grid) return;
+  grid.innerHTML = TRAVEL_EMOJIS.map(e =>
+    `<button class="emoji-btn" onmousedown="insertEmojiBtn(event,'${e}')">${e}</button>`
+  ).join('');
+}
+
+function toggleEmojiPicker(e) {
+  e.stopPropagation();
+  // Save selection before opening
+  const sel = window.getSelection();
+  if (sel.rangeCount) emojiSavedRange = sel.getRangeAt(0).cloneRange();
+  document.getElementById('emojiPopup').classList.toggle('show');
+}
+
+function insertEmojiBtn(e, emoji) {
+  e.preventDefault(); // prevent focus loss
+  const editor = document.getElementById('richItinerary');
+  editor.focus();
+  if (emojiSavedRange) {
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(emojiSavedRange);
+  }
+  document.execCommand('insertText', false, emoji);
+  document.getElementById('emojiPopup').classList.remove('show');
+  emojiSavedRange = null;
+}
+
+document.addEventListener('click', e => {
+  if (!document.getElementById('emojiTrigger')?.contains(e.target)) {
+    document.getElementById('emojiPopup')?.classList.remove('show');
+  }
+  if (!document.getElementById('ctxMenu').contains(e.target)) hideCtxMenu();
+});
+
+// ═══════════════ START ════════════════
+initEmojiGrid();
+init();
+</script>
+</body>
+</html>

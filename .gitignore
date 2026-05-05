@@ -1,0 +1,10 @@
+# Videos locales — ahora alojados en Supabase Storage
+video/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.log

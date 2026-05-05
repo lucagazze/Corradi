@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script>!function(){var t=localStorage.getItem('corradiTheme')||'dark';document.documentElement.setAttribute('data-theme',t)}()</script>
+<link rel="stylesheet" href="css/theme.css">
+<title>Corradi Viajes - De Rosario al Mundo</title>
+<meta name="description" content="Agencia de viajes especializada en experiencias únicas. Viajes personalizados a destinos inolvidables en América, Europa, Caribe y más. De Rosario al mundo con sentido.">
+<meta name="keywords" content="viajes, agencia de viajes, turismo, Rosario, Argentina, paquetes turísticos, viajes personalizados, Machu Picchu, Cancún, Europa, Caribe">
+<meta name="author" content="Corradi Viajes">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="revisit-after" content="7 days">
+<link rel="canonical" href="https://corradi.vercel.app/">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://corradi.vercel.app/">
+<meta property="og:title" content="Corradi Viajes - De Rosario al Mundo">
+<meta property="og:description" content="Agencia de viajes especializada en experiencias únicas. Viajes personalizados a destinos inolvidables.">
+<meta property="og:image" content="https://corradi.vercel.app/assets/logo.png">
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://corradi.vercel.app/">
+<meta property="twitter:title" content="Corradi Viajes - De Rosario al Mundo">
+<meta property="twitter:description" content="Agencia de viajes especializada en experiencias únicas. Viajes personalizados a destinos inolvidables.">
+<meta property="twitter:image" content="https://corradi.vercel.app/assets/logo.png">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<!-- Flatpickr for Date Range -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#d7e2ff",
+                        "on-tertiary-fixed-variant": "#404751",
+                        "surface-container-low": "#f1f3ff",
+                        "surface": "#f9f9ff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#0c56d0",
+                        "on-primary-fixed": "#001848",
+                        "background": "#f9f9ff",
+                        "on-primary-container": "#c4d2ff",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#434654",
+                        "surface-bright": "#f9f9ff",
+                        "primary": "#003d9b",
+                        "secondary-fixed-dim": "#b3c5ff",
+                        "error": "#ba1a1a",
+                        "on-surface": "#041b3c",
+                        "surface-container": "#e8edff",
+                        "on-error": "#ffffff",
+                        "primary-container": "#0052cc",
+                        "on-tertiary-container": "#ccd3e0",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#545b66",
+                        "outline-variant": "#c3c6d6",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "tertiary-fixed-dim": "#c0c7d3",
+                        "inverse-primary": "#b2c5ff",
+                        "primary-fixed": "#dae2ff",
+                        "inverse-surface": "#1d3052",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "tertiary": "#3c444e",
+                        "on-secondary-fixed-variant": "#003ea6",
+                        "secondary-fixed": "#dbe1ff",
+                        "secondary": "#004dc9",
+                        "surface-container-high": "#e0e8ff",
+                        "on-background": "#041b3c",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-secondary-fixed": "#00174a",
+                        "on-tertiary-fixed": "#151c25",
+                        "secondary-container": "#0063fd",
+                        "outline": "#737685",
+                        "surface-dim": "#cadaff",
+                        "tertiary-fixed": "#dce3f0",
+                        "on-secondary-container": "#f3f3ff",
+                        "surface-variant": "#d7e2ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "sm": "12px",
+                        "lg": "48px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "margin-desktop": "64px",
+                        "xl": "80px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Geomanist", "Plus Jakarta Sans", "Inter", "sans-serif"],
+                        "label-md": ["Geomanist", "Plus Jakarta Sans", "Inter", "sans-serif"],
+                        "caption": ["Geomanist", "Plus Jakarta Sans", "Inter", "sans-serif"],
+                        "body-lg": ["Geomanist", "Plus Jakarta Sans", "Inter", "sans-serif"],
+                        "h2": ["Geomanist", "Plus Jakarta Sans", "sans-serif"],
+                        "h3": ["Geomanist", "Plus Jakarta Sans", "sans-serif"],
+                        "h1": ["Geomanist", "Plus Jakarta Sans", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "1.2", "letterSpacing": "0", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}],
+                        "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+</script>
+<style>
+  @font-face {
+    font-family: 'Geomanist';
+    src: url('geomanist-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Geomanist';
+    src: url('geomanist-medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Geomanist';
+    src: url('geomanist-medium.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Geomanist';
+    src: url('geomanist-medium.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom, 20px); }
+  body { min-height: max(884px, 100dvh); overflow-x: clip; background: #0d1b2e; }
+  html { overflow-x: clip; }
+  app-navbar { display: block; }
+
+  /* Custom Flatpickr Styling */
+  .flatpickr-calendar {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 16px !important;
+    font-family: 'Inter', sans-serif !important;
+    padding: 10px !important;
+  }
+  .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange {
+    background: #0052cc !important;
+    border-color: #0052cc !important;
+  }
+  .flatpickr-month { height: 40px !important; }
+  .flatpickr-current-month { font-size: 110% !important; padding-top: 5px !important; }
+</style>
+</head>
+<body class="text-on-background antialiased selection:bg-primary-container selection:text-on-primary font-body-md text-body-md overflow-x-hidden min-h-screen">
+<!-- Centralized Navbar -->
+<app-navbar></app-navbar>
+
+<!-- Hero Section with Search -->
+<main class="w-full pt-[90px] md:pt-[100px]">
+  <section id="heroSection" class="w-[90%] max-w-[1800px] mx-auto pt-0 pb-12 flex flex-col items-center">
+    <!-- Hero Container -->
+    <div class="video-hero relative w-full h-[75vh] min-h-[500px] max-h-[800px] flex flex-col justify-center items-center text-center rounded-[32px] overflow-hidden">
+      <!-- Hero Background Video -->
+      <div class="absolute inset-0 rounded-[32px] overflow-hidden">
+        <video autoplay muted loop playsinline
+          style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(1.05);min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;">
+          
+          <source data-src="hero" src="video/Video Project.mp4" type="video/mp4">
+
+        </video>
+        <div class="absolute inset-0 pointer-events-none" style="background:rgba(0,0,0,0.35)"></div>
+      </div>
+
+      <!-- Hero Content -->
+      <div class="relative z-10 w-full max-w-5xl flex flex-col items-center text-center px-4">
+        <h1 class="font-['Geomanist'] text-4xl md:text-[46px] font-bold text-white tracking-tight mb-4 drop-shadow-sm">
+          Viajá con sentido.
+        </h1>
+        <p class="hero-text text-white/90 text-lg md:text-xl font-light mb-10 drop-shadow-sm">
+          Experiencias que no podrías planear ni aunque quisieras.
+        </p>
+        
+        <!-- Global Search Bar -->
+        <div class="w-full bg-white/90 backdrop-blur-xl p-2 md:rounded-full rounded-[32px] flex flex-col md:flex-row items-center gap-2 transition-all border border-white/40">
+          
+          <!-- Destination Autocomplete -->
+          <div class="flex-1 flex items-center bg-transparent md:bg-surface w-full md:w-auto rounded-[32px] px-6 py-2 border-b border-black/8 md:border md:border-outline-variant md:focus-within:border-primary md:focus-within:ring-1 md:focus-within:ring-primary transition-all relative">
+            <span class="material-symbols-outlined text-outline mr-2">location_on</span>
+            <div class="flex flex-col w-full text-left">
+              <span class="font-label-md text-label-md text-on-surface-variant uppercase text-[10px]">Dónde</span>
+              <input id="searchDest" autocomplete="off" class="bg-transparent border-none p-0 focus:ring-0 text-on-surface font-body-md text-body-md w-full placeholder-outline-variant outline-none" placeholder="Buscar destinos" type="text"/>
+              <ul id="autocompleteList" class="bg-white border border-slate-100 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] hidden max-h-80 overflow-y-auto" style="position:absolute;top:calc(100% + 12px);left:0;z-index:50;width:100%;min-width:260px"></ul>
+            </div>
+          </div>
+          
+          <div class="hidden md:block w-[1px] h-10 bg-outline-variant"></div>
+          
+          <!-- Date Month Picker -->
+          <div class="flex-1 flex items-center bg-transparent md:bg-surface w-full md:w-auto rounded-[32px] px-6 py-2 border-b border-black/8 md:border md:border-outline-variant md:focus-within:border-primary md:focus-within:ring-1 md:focus-within:ring-primary transition-all relative cursor-pointer" id="monthContainer">
+            <span class="material-symbols-outlined text-outline mr-2">calendar_month</span>
+            <div class="flex flex-col w-full text-left">
+              <span class="font-label-md text-label-md text-on-surface-variant uppercase text-[10px]">Cuándo</span>
+              <input id="searchMonthDisplay" class="bg-transparent border-none p-0 focus:ring-0 text-on-surface font-body-md text-body-md w-full placeholder-outline-variant outline-none cursor-pointer pointer-events-none" placeholder="Cualquier mes" type="text" readonly value=""/>
+              <input type="hidden" id="searchMonth" value="">
+            </div>
+            
+            <!-- Popover Panel -->
+            <div id="monthPopover" class="bg-white rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] border border-slate-100 p-4 hidden cursor-default" style="position:absolute;top:calc(100% + 12px);left:0;z-index:50;min-width:320px">
+              <h4 class="font-medium text-sm text-slate-400 mb-3 ml-1 uppercase tracking-wider">Seleccionar Mes</h4>
+              <div class="grid grid-cols-3 gap-2" id="monthGrid">
+                <!-- Months populated by JS -->
+              </div>
+            </div>
+          </div>
+          
+          <div class="hidden md:block w-[1px] h-10 bg-outline-variant"></div>
+          
+          <!-- Price Filter -->
+          <div class="flex-1 flex items-center bg-transparent md:bg-surface w-full md:w-auto rounded-[32px] px-6 py-2 md:border md:border-outline-variant md:focus-within:border-primary md:focus-within:ring-1 md:focus-within:ring-primary transition-all relative cursor-pointer" id="priceContainer">
+            <span class="material-symbols-outlined text-outline mr-2">payments</span>
+            <div class="flex flex-col w-full text-left">
+              <span class="font-label-md text-label-md text-on-surface-variant uppercase text-[10px]">Presupuesto</span>
+              <input id="searchPriceDisplay" class="bg-transparent border-none p-0 focus:ring-0 text-on-surface font-body-md text-body-md w-full placeholder-outline-variant outline-none cursor-pointer pointer-events-none" placeholder="Cualquier precio" type="text" readonly value=""/>
+              <input type="hidden" id="searchPrice" value="">
+            </div>
+            
+            <!-- Price Popover -->
+            <div id="pricePopover" class="bg-white rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] border border-slate-100 p-4 hidden cursor-default" style="position:absolute;top:calc(100% + 12px);left:0;z-index:50;min-width:280px">
+              <h4 class="font-medium text-sm text-slate-400 mb-3 ml-1 uppercase tracking-wider">Rango de precio</h4>
+              <div class="flex flex-col gap-2">
+                <div class="price-option flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-blue-50 hover:text-blue-700 cursor-pointer transition-colors group" data-val="" data-label="Cualquier precio">
+                  <span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-blue-500">all_inclusive</span>
+                  <span class="text-sm font-medium">Cualquier precio</span>
+                </div>
+                <div class="price-option flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-blue-50 hover:text-blue-700 cursor-pointer transition-colors group" data-val="0-800" data-label="Económico (hasta $800)">
+                  <span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-blue-500">savings</span>
+                  <div>
+                    <span class="text-sm font-medium block">Económico</span>
+                    <span class="text-xs text-slate-400">hasta $800</span>
+                  </div>
+                </div>
+                <div class="price-option flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-blue-50 hover:text-blue-700 cursor-pointer transition-colors group" data-val="800-2000" data-label="Moderado ($800 - $2.000)">
+                  <span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-blue-500">account_balance_wallet</span>
+                  <div>
+                    <span class="text-sm font-medium block">Moderado</span>
+                    <span class="text-xs text-slate-400">$800 - $2.000</span>
+                  </div>
+                </div>
+                <div class="price-option flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-blue-50 hover:text-blue-700 cursor-pointer transition-colors group" data-val="2000-4000" data-label="Premium ($2.000 - $4.000)">
+                  <span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-blue-500">diamond</span>
+                  <div>
+                    <span class="text-sm font-medium block">Premium</span>
+                    <span class="text-xs text-slate-400">$2.000 - $4.000</span>
+                  </div>
+                </div>
+                <div class="price-option flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-blue-50 hover:text-blue-700 cursor-pointer transition-colors group" data-val="4000+" data-label="Lujo ($4.000+)">
+                  <span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-blue-500">star</span>
+                  <div>
+                    <span class="text-sm font-medium block">Lujo</span>
+                    <span class="text-xs text-slate-400">$4.000+</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <button onclick="triggerSearch()" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium font-['Geomanist'] text-sm px-7 py-3 md:rounded-full rounded-[24px] flex items-center justify-center gap-2 shadow-[0_8px_24px_rgba(37,99,235,0.4)] hover:shadow-[0_12px_28px_rgba(37,99,235,0.5)] hover:scale-105 transition-all duration-200 mt-2 md:mt-0 active:scale-95">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">search</span>
+            Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Current Offers Carousel - Full Width Infinite -->
+  <section class="w-full" style="background:#0d1b2e;padding-top:4rem;padding-bottom:4rem">
+    <div class="max-w-7xl mx-auto px-6 hidden md:block">
+      <div class="mb-10 flex flex-col md:flex-row md:justify-between md:items-end gap-4">
+        <div>
+          <h2 class="font-['Geomanist'] font-medium text-[32px] text-white mb-1">Paquetes en Oferta</h2>
+          <p class="text-white/60 font-light text-base">Descuentos exclusivos para escapadas espontáneas.</p>
+        </div>
+        <a href="ofertas.html" class="flex items-center gap-1 font-medium text-sm text-[#3778b8] hover:underline transition-colors">
+          Ver Todas <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- MOBILE header: left-aligned like Destinos Populares -->
+    <div class="md:hidden px-4 mb-8">
+      <div class="flex justify-between items-end">
+        <div>
+          <h2 class="font-['Geomanist'] font-medium text-[28px] text-white mb-1">Paquetes en Oferta</h2>
+          <p class="text-white/60 font-light text-sm">Descuentos exclusivos para escapadas espontáneas.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE: snap-scroll carousel (igual que Destinos Populares) -->
+    <div class="md:hidden flex flex-col gap-3 px-4">
+      <div id="offersTrackMobile" class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2"
+        style="scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch;"
+        onscroll="updateOffersDots()">
+        <div class="flex items-center justify-center h-72 w-[78vw] shrink-0 text-white/40">Cargando...</div>
+      </div>
+      <div id="offersDotsMobile" class="flex justify-center gap-1.5 mt-1"></div>
+      <a href="ofertas.html" class="mt-2 w-full flex items-center justify-center gap-1 font-medium text-sm text-[#3778b8] border border-[#3778b8] rounded-full py-3 transition-colors">
+        Ver Todas las Ofertas
+      </a>
+    </div>
+
+    <!-- DESKTOP: center-focused scale carousel -->
+    <div class="hidden md:block">
+    <div class="relative w-full" style="padding:20px 0 60px;">
+      <!-- Left Arrow -->
+      <button id="offersPrev" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-slate-100 flex items-center justify-center hover:border-[#3778b8] hover:text-[#3778b8] transition-all active:scale-95">
+        <span class="material-symbols-outlined text-[22px]">chevron_left</span>
+      </button>
+
+      <!-- Viewport: overflow-x:clip corta horizontal sin cortar escala vertical -->
+      <div class="w-full" id="offersViewport" style="overflow-x:clip;overflow-y:visible;padding:30px 0">
+        <div id="offersCarouselTrack" class="flex gap-5 will-change-transform" style="transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)">
+          <div class="flex items-center justify-center h-72 w-80 text-slate-400 flex-shrink-0 mx-auto">Cargando ofertas...</div>
+        </div>
+      </div>
+
+      <!-- Right Arrow -->
+      <button id="offersNext" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-slate-100 flex items-center justify-center hover:border-[#3778b8] hover:text-[#3778b8] transition-all active:scale-95">
+        <span class="material-symbols-outlined text-[22px]">chevron_right</span>
+      </button>
+    </div>
+
+    </div>
+    <div class="hidden md:flex max-w-7xl mx-auto px-6 mt-8 justify-center">
+      <a href="ofertas.html" class="flex items-center justify-center gap-2 font-medium text-sm text-[#3778b8] border border-[#3778b8] hover:bg-[#3778b8]/10 rounded-full px-8 py-3 transition-all">
+        Ver Todas las Ofertas <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Popular Destinations Bento Grid -->
+  <section id="destinos" class="w-full py-xl" style="background:#111c2d">
+    <div class="max-w-[1500px] mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="flex justify-between items-end mb-lg">
+      <div>
+        <h2 class="font-h2 text-h2 text-white mb-xs">Destinos Populares</h2>
+        <p class="font-body-md text-body-md text-white/60">Los lugares más elegidos por nuestros viajeros.</p>
+      </div>
+      <a href="busqueda.html" class="hidden md:flex items-center gap-1 font-label-md text-label-md text-primary-container hover:text-primary transition-colors">
+        Ver Todos <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </a>
+    </div>
+    
+    <!-- Dynamic Package Grid -->
+    <div id="pkgGrid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-gutter">
+      <div class="col-span-full text-center py-10 text-slate-500">Cargando destinos...</div>
+    </div>
+    
+    <!-- Ver Todos row -->
+    <div class="mt-8 flex justify-center" id="pkgActions">
+      <a href="busqueda.html" class="flex items-center justify-center gap-2 font-medium text-sm text-[#3778b8] border border-[#3778b8] hover:bg-[#3778b8]/10 rounded-full px-8 py-3 transition-all">
+        Ver todos los destinos <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </a>
+    </div>
+    </div>
+  </section>
+
+  <!-- Full Width Banner Section -->
+  <section class="w-full relative py-24 md:py-32 flex items-center" style="background-image: url('https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?q=80&w=2000'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+      <div class="w-full md:w-[60%] lg:w-[50%] text-white">
+        <h2 class="font-['Geomanist'] font-bold text-[36px] md:text-[44px] leading-tight mb-5 drop-shadow-md">Nuestra selección de viajes inspiradores, curados para viajeros como vos.</h2>
+        <p class="font-normal text-white text-[17px] leading-relaxed drop-shadow-md">No hay dos viajes iguales. Tu próximo destino será construido desde cero, artesanalmente y pensado especialmente para vos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué elegirnos Section -->
+  <section class="w-full pt-20 pb-28 md:pb-32" style="background:#0d1b2e">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <h2 class="font-['Geomanist'] font-medium text-[32px] text-white mb-3">Viajás con propósito</h2>
+        <p class="text-white/60 font-light text-lg max-w-xl mx-auto">Creemos que el mejor viaje es el que se hace con confianza, preparación y el equipo correcto.</p>
+      </div>
+
+      <div class="flex flex-col gap-16">
+        <!-- Item 1 -->
+        <div class="flex flex-col md:flex-row items-center gap-10">
+          <div class="flex-shrink-0 w-52 h-52 rounded-full overflow-hidden shadow-[0_12px_40px_rgba(55,120,184,0.25)] ring-4 ring-[#3778b8]/20">
+            <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=600" alt="Experiencia local" class="w-full h-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="text-center md:text-left">
+            <h3 class="font-['Geomanist'] font-medium text-[22px] text-white mb-2">Más de 30 años de experiencia real</h3>
+            <p class="text-white/60 font-light text-base leading-relaxed max-w-lg">Conocemos cada destino porque lo vivimos. Nuestros asesores viajan constantemente para traerte las recomendaciones más actualizadas y genuinas del mercado.</p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="flex flex-col md:flex-row-reverse items-center gap-10">
+          <div class="flex-shrink-0 w-52 h-52 rounded-full overflow-hidden shadow-[0_12px_40px_rgba(235,176,58,0.25)] ring-4 ring-[#ebb03a]/20">
+            <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?q=80&w=600" alt="Viaje a medida" class="w-full h-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="text-center md:text-left">
+            <h3 class="font-['Geomanist'] font-medium text-[22px] text-white mb-2">Tu viaje, a tu medida</h3>
+            <p class="text-white/60 font-light text-base leading-relaxed max-w-lg">No trabajamos con paquetes genéricos. Cada itinerario se diseña desde cero pensando en vos, en tus tiempos, en tus gustos y en tu presupuesto.</p>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="flex flex-col md:flex-row items-center gap-10">
+          <div class="flex-shrink-0 w-52 h-52 rounded-full overflow-hidden shadow-[0_12px_40px_rgba(55,120,184,0.25)] ring-4 ring-[#3778b8]/20">
+            <img src="https://images.unsplash.com/photo-1521336575822-6da63fb45455?q=80&w=600" alt="Acompañamiento" class="w-full h-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="text-center md:text-left">
+            <h3 class="font-['Geomanist'] font-medium text-[22px] text-white mb-2">Acompañamiento en cada etapa</h3>
+            <p class="text-white/60 font-light text-base leading-relaxed max-w-lg">Estamos con vos antes de salir, durante el viaje y cuando volvés. Un equipo humano, cercano y disponible para que nunca sientas que estás solo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  <!-- Cinematic Video Section -->
+  <section class="w-full relative h-[50vh] md:h-[65vh] min-h-[350px] max-h-[600px] overflow-hidden">
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover" style="transform: scale(1.05);">
+      <source data-src="section" src="video/Video Project 1.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 pointer-events-none" style="background:rgba(0,0,0,0.35)"></div>
+  </section>
+
+  <!-- Preguntas Frecuentes Section -->
+  <section class="w-full py-20" style="background:#0d1b2e">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <h2 class="font-['Geomanist'] font-medium text-[32px] text-white mb-3">Preguntas Frecuentes</h2>
+        <p class="text-white/60 font-light text-lg">Todo lo que necesitás saber antes de tu próxima aventura.</p>
+      </div>
+
+      <div class="flex flex-col gap-4" id="faqAccordion">
+        <!-- FAQ 1 -->
+        <div class="faq-item bg-[#1a2d45] rounded-[20px] overflow-hidden transition-all duration-300 border border-white/10 hover:border-white/20">
+          <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between font-['Geomanist'] font-medium text-[18px] text-white focus:outline-none">
+            ¿Cómo es el proceso para armar un viaje a medida?
+            <span class="material-symbols-outlined text-slate-400 transition-transform duration-300 faq-icon">expand_more</span>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out opacity-0">
+            <div class="px-6 pb-5 pt-1 text-white/60 font-light text-[17px] leading-relaxed">
+              Nos contactás contándonos tu idea (destinos, fechas, presupuesto aproximado). Uno de nuestros asesores se comunica con vos para afinar detalles y, en base a eso, diseñamos un itinerario 100% personalizado. Podés hacerle todos los cambios que quieras hasta que quede perfecto.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item bg-[#1a2d45] rounded-[20px] overflow-hidden transition-all duration-300 border border-white/10 hover:border-white/20">
+          <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between font-['Geomanist'] font-medium text-[18px] text-white focus:outline-none">
+            ¿Qué incluyen los paquetes en oferta?
+            <span class="material-symbols-outlined text-slate-400 transition-transform duration-300 faq-icon">expand_more</span>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out opacity-0">
+            <div class="px-6 pb-5 pt-1 text-white/60 font-light text-[17px] leading-relaxed">
+              Nuestras ofertas suelen incluir vuelos, alojamiento, traslados y seguro de asistencia médica. Dependiendo del paquete, también pueden incluir excursiones y comidas. En la descripción de cada oferta detallamos exactamente todo lo que está contemplado.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item bg-[#1a2d45] rounded-[20px] overflow-hidden transition-all duration-300 border border-white/10 hover:border-white/20">
+          <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between font-['Geomanist'] font-medium text-[18px] text-white focus:outline-none">
+            ¿Tienen opciones de financiación?
+            <span class="material-symbols-outlined text-slate-400 transition-transform duration-300 faq-icon">expand_more</span>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out opacity-0">
+            <div class="px-6 pb-5 pt-1 text-white/60 font-light text-[17px] leading-relaxed">
+              Sí, trabajamos con múltiples formas de pago. Podés abonar mediante transferencia bancaria (pesos o dólares), tarjeta de crédito y débito. Contamos con planes de cuotas fijas dependiendo de las promociones bancarias vigentes al momento de la compra.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item bg-[#1a2d45] rounded-[20px] overflow-hidden transition-all duration-300 border border-white/10 hover:border-white/20">
+          <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between font-['Geomanist'] font-medium text-[18px] text-white focus:outline-none">
+            ¿Ofrecen asistencia durante el viaje?
+            <span class="material-symbols-outlined text-slate-400 transition-transform duration-300 faq-icon">expand_more</span>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out opacity-0">
+            <div class="px-6 pb-5 pt-1 text-white/60 font-light text-[17px] leading-relaxed">
+              Absolutamente. Te acompañamos desde que salís hasta que volvés. Tenés a tu disposición un canal de WhatsApp de emergencias para comunicarte con nuestro equipo en caso de cualquier eventualidad durante tu viaje.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Testimonials Infinite Carousel -->
+  <section class="w-full py-20 overflow-hidden" style="background:#111c2d">
+    <div class="max-w-5xl mx-auto px-6 text-center mb-12">
+      <h2 class="font-['Geomanist'] font-medium text-[32px] text-white mb-3">Lo que dicen nuestros viajeros</h2>
+      <p class="text-white/60 font-light text-lg">Más de 30 años creando experiencias que se recuerdan para siempre.</p>
+    </div>
+
+    <!-- Marquee Wrapper -->
+    <div class="relative w-full" style="overflow:hidden">
+      <div class="testimonials-track flex gap-5 w-max" id="testimonialsTrack">
+        <!-- Generado dinámicamente por JavaScript -->
+      </div>
+    </div>
+    
+    <!-- Gradient Fades -->
+    <div class="testimonial-fade-left pointer-events-none absolute left-0 top-0 h-full w-24 z-10" style="background:linear-gradient(to right, #111c2d, transparent)"></div>
+    <div class="testimonial-fade-right pointer-events-none absolute right-0 top-0 h-full w-24 z-10" style="background:linear-gradient(to left, #111c2d, transparent)"></div>
+  </section>
+
+</main>
+
+
+
+<!-- WhatsApp CTA Section -->
+<section class="w-full py-16" style="background:#0d1b2e">
+  <div class="w-[90%] max-w-[1500px] mx-auto">
+    <div class="cta-dark-card rounded-[32px] px-10 py-14 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-[0_20px_60px_rgba(55,120,184,0.25)]">
+      <!-- Background image -->
+      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2000" alt="Viaje" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async">
+      <!-- Overlay for text readability -->
+      <div class="absolute inset-0 bg-[#2b4c7e]/80"></div>
+      
+      <div class="relative z-10 text-center md:text-left">
+        <div class="inline-flex items-center gap-2 bg-white/20 text-white text-sm font-medium px-4 py-1.5 rounded-full mb-4">
+          <span class="material-symbols-outlined text-[16px]" style="font-variation-settings:'FILL' 1">support_agent</span>
+          Atención personalizada
+        </div>
+        <h2 class="font-['Geomanist'] font-medium text-[32px] md:text-[38px] text-white mb-3">Tu próximo viaje empieza <span style="color:#ebb03a">hoy</span>.</h2>
+        <p class="text-white/80 font-light text-lg max-w-lg">Hablemos. Un asesor de Corradi Viajes te contacta enseguida para ayudarte a diseñar la experiencia perfecta para vos.</p>
+      </div>
+      
+      <div class="relative z-10 flex flex-col sm:flex-row gap-3 flex-shrink-0">
+        <a href="https://wa.me/5493411234567?text=Hola!%20Quisiera%20info%20sobre%20viajes" target="_blank"
+          class="flex items-center gap-3 bg-[#25D366] hover:bg-[#20ba5a] text-white font-medium font-['Geomanist'] text-base px-7 py-4 rounded-full transition-all shadow-[0_8px_24px_rgba(37,211,102,0.4)] hover:scale-105 active:scale-95">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escribinos por WhatsApp
+        </a>
+        <a href="contacto.html"
+          class="flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white font-medium font-['Geomanist'] text-base px-7 py-4 rounded-full border border-white/30 transition-all hover:scale-105 active:scale-95">
+          <span class="material-symbols-outlined text-[20px]">mail</span>
+          Enviarnos un mensaje
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="w-full border-t border-white/10 px-8 py-12 flex flex-col items-center gap-4 text-center" style="background:#0a1525">
+  <div class="mb-8">
+    <img src="img/logonavblanco.webp" alt="Corradi Viajes Logo" class="h-28 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300 dark-logo block mx-auto" loading="lazy" decoding="async">
+    <img src="img/logonavbnegro.webp" alt="Corradi Viajes Logo" class="h-28 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300 light-logo hidden mx-auto" loading="lazy" decoding="async">
+  </div>
+  <div class="flex gap-6 mb-4">
+    <a class="font-['Geomanist'] text-sm text-white/50 hover:text-[#3778b8] transition-colors" href="nosotros.html">Nosotros</a>
+    <a class="font-['Geomanist'] text-sm text-white/50 hover:text-[#3778b8] transition-colors" href="#">Términos</a>
+    <a class="font-['Geomanist'] text-sm text-white/50 hover:text-[#3778b8] transition-colors" href="contacto.html">Contacto</a>
+  </div>
+  <p class="font-['Geomanist'] text-sm text-white/30">© 2026 Corradi Viajes. De Rosario al Mundo.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="js/config.js" defer></script>
+<script src="js/components.js" defer></script>
+<script src="js/main.js" defer></script>
+<script>
+  // Popover helpers — fixed positioning to escape overflow:hidden hero
+  function positionBelow(trigger, popup) {
+    const r = trigger.getBoundingClientRect();
+    popup.style.top = (window.scrollY + r.bottom + 6) + 'px';
+    popup.style.left = r.left + 'px';
+    popup.style.maxWidth = (window.innerWidth - r.left - 12) + 'px';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Move popovers to body so overflow:hidden on hero doesn't clip them
+    const monthPopover = document.getElementById('monthPopover');
+    const pricePopover = document.getElementById('pricePopover');
+    const autocompleteList = document.getElementById('autocompleteList');
+    if (monthPopover) document.body.appendChild(monthPopover);
+    if (pricePopover) document.body.appendChild(pricePopover);
+    if (autocompleteList) document.body.appendChild(autocompleteList);
+
+    // Month picker
+    const monthContainer = document.getElementById('monthContainer');
+    const monthGrid = document.getElementById('monthGrid');
+    const monthDisplay = document.getElementById('searchMonthDisplay');
+    const monthInput = document.getElementById('searchMonth');
+
+    if (monthContainer && monthPopover && monthGrid) {
+      const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+      const today = new Date();
+      const currentMonth = today.getMonth();
+      const currentYear = today.getFullYear();
+      let html = '';
+      for (let i = 0; i < 12; i++) {
+        let m = (currentMonth + i) % 12;
+        let y = currentYear + Math.floor((currentMonth + i) / 12);
+        let monthName = months[m];
+        let label = `${monthName} ${y}`;
+        html += `<div class="month-option text-center py-2 px-1 rounded-lg hover:bg-blue-50 cursor-pointer text-sm font-medium transition-colors" data-val="${label}">${monthName.substring(0,3)} ${y}</div>`;
+      }
+      monthGrid.innerHTML = html;
+      monthContainer.addEventListener('click', (e) => {
+        if (monthPopover.contains(e.target)) return;
+        e.stopPropagation();
+        if (pricePopover) pricePopover.classList.add('hidden');
+        const isHidden = monthPopover.classList.contains('hidden');
+        if (isHidden) { positionBelow(monthContainer, monthPopover); monthPopover.classList.remove('hidden'); }
+        else { monthPopover.classList.add('hidden'); }
+      });
+      monthGrid.addEventListener('click', (e) => {
+        const option = e.target.closest('.month-option');
+        if (option) { monthDisplay.value = option.getAttribute('data-val'); monthInput.value = option.getAttribute('data-val'); monthPopover.classList.add('hidden'); }
+      });
+      document.addEventListener('click', (e) => { if (!monthContainer.contains(e.target) && !monthPopover.contains(e.target)) monthPopover.classList.add('hidden'); });
+    }
+
+    // Price picker
+    const priceContainer = document.getElementById('priceContainer');
+    const priceDisplay = document.getElementById('searchPriceDisplay');
+    const priceInput = document.getElementById('searchPrice');
+    if (priceContainer && pricePopover) {
+      priceContainer.addEventListener('click', (e) => {
+        if (pricePopover.contains(e.target)) return;
+        e.stopPropagation();
+        if (monthPopover) monthPopover.classList.add('hidden');
+        const isHidden = pricePopover.classList.contains('hidden');
+        if (isHidden) { positionBelow(priceContainer, pricePopover); pricePopover.classList.remove('hidden'); }
+        else { pricePopover.classList.add('hidden'); }
+      });
+      pricePopover.querySelectorAll('.price-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+          priceDisplay.value = opt.getAttribute('data-label');
+          priceInput.value = opt.getAttribute('data-val');
+          pricePopover.classList.add('hidden');
+        });
+      });
+      document.addEventListener('click', (e) => { if (!priceContainer.contains(e.target) && !pricePopover.contains(e.target)) pricePopover.classList.add('hidden'); });
+    }
+
+    // Infinite testimonial carousel
+    const track = document.getElementById('testimonialsTrack');
+    if (track) {
+      const testimonials = [
+        { t: "El viaje a Europa fue una experiencia increíble. Corradi Viajes organizó todo a la perfección, desde el primer vuelo hasta el último hotel.", n: "María A.", l: "Rosario · Europa 2024" },
+        { t: "Viajamos con toda la familia a Cancún y fue espectacular. Los chicos disfrutaron al máximo y nosotros nos relajamos sin preocuparnos por nada.", n: "Jorge L.", l: "Rosario · Cancún 2024" },
+        { t: "Ya hicimos 4 viajes con Corradi y siempre la misma calidad. Son de confianza total. Nos atienden de maravilla y siempre están disponibles.", n: "Sofía C.", l: "Rosario · Caribe 2023" },
+        { t: "Luna de miel en Maldivas. Simplemente perfecto. Cada detalle fue cuidado con amor. Corradi superó todas nuestras expectativas.", n: "Pablo & Rocío", l: "Rosario · Maldivas 2024" },
+        { t: "Grecia fue un sueño. El itinerario fue impecable, isla por isla. Volvemos el año que viene con ellos sin dudarlo.", n: "Lucía V.", l: "Rosario · Grecia 2023" },
+        { t: "Japón fue transformador. El equipo de Corradi armó un recorrido que mezcló modernidad y tradición de manera única. Cada día fue mejor que el anterior.", n: "Andrés M.", l: "Rosario · Japón 2024" },
+        { t: "Siempre tuve miedo de viajar sola, pero Corradi me dio toda la seguridad. El circuito por Turquía fue impresionante, conocí gente hermosa.", n: "Valeria B.", l: "Rosario · Turquía 2023" },
+        { t: "Safari en Kenya con ellos. Increíble. Los animales, los paisajes, la logística perfecta. Un viaje que voy a recordar toda la vida.", n: "Ricardo F.", l: "Rosario · Kenya 2024" },
+        { t: "Nueva York en familia fue un sueño hecho realidad. Todo coordinado, sin estrés. Los chicos volvieron felices y nosotros también.", n: "Claudia P.", l: "Rosario · Nueva York 2023" },
+        { t: "Viaje de egresados a Brasil con Corradi: una fiesta. Organización impecable, precios justos y un staff que realmente te cuida.", n: "Nicolás G.", l: "Rosario · Brasil 2023" },
+        { t: "Marruecos superó todas mis expectativas. Los zocos, el desierto, la gente... Y todo organizado por Corradi con una dedicación impresionante.", n: "Inés R.", l: "Rosario · Marruecos 2024" },
+        { t: "Trabajé con muchas agencias en mi vida, pero Corradi es otra cosa. Te escuchan de verdad y te arman un viaje que es tuyo, no un paquete genérico.", n: "Diego M.", l: "Rosario · Italia 2024" },
+        { t: "Croacia con mi grupo de amigas. ¡Insuperable! El yate, las islas, la comida... Todo fue magia. Y Corradi estuvo siempre disponible ante cualquier duda.", n: "Florencia T.", l: "Rosario · Croacia 2023" },
+        { t: "Patagonia argentina en pareja. Un viaje que nos cambió. Glaciares, lagos, silencio... Y la tranquilidad de saber que Corradi tenía todo resuelto.", n: "Martín H.", l: "Rosario · Patagonia 2024" },
+        { t: "Tailandia fue un viaje de película. Templos, playas cristalinas, street food increíble. Y la atención de Corradi fue excepcional en cada etapa.", n: "Gabriela S.", l: "Rosario · Tailandia 2024" }
+      ];
+      
+      const cardsHTML = testimonials.map(item => `
+        <div class="testimonial-card flex-shrink-0 w-[320px] bg-white rounded-[24px] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col gap-4">
+          <div class="flex gap-1 text-yellow-400">★★★★★</div>
+          <p class="text-slate-600 font-light text-sm leading-relaxed">"${item.t}"</p>
+          <div class="flex items-center gap-3 mt-auto"><div><p class="font-medium text-sm text-on-surface">${item.n}</p><p class="text-xs text-slate-400">${item.l}</p></div></div>
+        </div>
+      `).join('');
+      
+      track.innerHTML = cardsHTML + cardsHTML; // duplicate for seamless loop
+      let pos = 0;
+      let paused = false;
+      function animate() {
+        if (!paused) {
+          pos -= 0.5;
+          const halfWidth = track.scrollWidth / 2;
+          if (Math.abs(pos) >= halfWidth) pos = 0;
+          track.style.transform = `translateX(${pos}px)`;
+        }
+        requestAnimationFrame(animate);
+      }
+      animate();
+      // Pause on hover
+      track.parentElement.addEventListener('mouseenter', () => paused = true);
+      track.parentElement.addEventListener('mouseleave', () => paused = false);
+    }
+  });
+</script>
+<script>
+  // ── Inyectar URLs de video desde Supabase Storage ──
+  // (fallback a local si VIDEOS no está definido)
+  document.querySelectorAll('source[data-src]').forEach(source => {
+    const key = source.dataset.src;
+    if (typeof VIDEOS !== 'undefined' && VIDEOS[key]) {
+      source.src = VIDEOS[key];
+      source.parentElement.load(); // re-trigger video load
+    }
+  });
+</script>
+<script src="js/theme.js" defer></script>
+</body>
+</html>
