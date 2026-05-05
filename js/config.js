@@ -90,6 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
       <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.556 4.122 1.528 5.855L.057 23.882a.75.75 0 0 0 .923.923l6.042-1.464A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.524-5.225-1.435l-.374-.223-3.878.94.965-3.87-.245-.385A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
     </svg>`;
   document.body.appendChild(fab);
+
+  // ── Inyectar URLs de video desde Supabase Storage ──
+  document.querySelectorAll('source[data-src]').forEach(source => {
+    const key = source.dataset.src;
+    if (typeof VIDEOS !== 'undefined' && VIDEOS[key]) {
+      source.src = VIDEOS[key];
+      // re-trigger video load
+      if (source.parentElement && typeof source.parentElement.load === 'function') {
+        source.parentElement.load();
+      }
+    }
+  });
 });
 
 // Personalizar el FAB con el nombre del paquete (llamar desde paquete.js)

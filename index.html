@@ -726,17 +726,6 @@
     }
   });
 </script>
-<script>
-  // ── Inyectar URLs de video desde Supabase Storage ──
-  // (fallback a local si VIDEOS no está definido)
-  document.querySelectorAll('source[data-src]').forEach(source => {
-    const key = source.dataset.src;
-    if (typeof VIDEOS !== 'undefined' && VIDEOS[key]) {
-      source.src = VIDEOS[key];
-      source.parentElement.load(); // re-trigger video load
-    }
-  });
-</script>
 <script src="js/theme.js" defer></script>
 </body>
 </html>
